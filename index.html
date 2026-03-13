@@ -1,0 +1,1775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senior Officer Exam (Job ID - 10220)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px 0;
+            border-bottom: 1px solid #30363d;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            color: #f0f6fc;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: #8b949e;
+            font-weight: 400;
+        }
+
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #161b22;
+            border-radius: 12px;
+            border: 1px solid #30363d;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #58a6ff;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #8b949e;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+
+        .search-section {
+            background-color: #161b22;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 1px solid #30363d;
+        }
+
+        .search-container {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        #searchInput {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px 16px;
+            background-color: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            color: #f0f6fc;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        #searchInput:focus {
+            border-color: #58a6ff;
+        }
+
+        #searchInput::placeholder {
+            color: #484f58;
+        }
+
+        #searchBtn {
+            padding: 12px 24px;
+            background-color: #238636;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        #searchBtn:hover {
+            background-color: #2ea043;
+        }
+
+        .search-instruction {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: #8b949e;
+        }
+
+        .legend {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+
+        .legend-color.qualified {
+            background-color: #238636;
+        }
+
+        .legend-color.not-qualified {
+            background-color: #484f58;
+        }
+
+        .rolls-section {
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+
+        .rolls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+        }
+
+        .roll-card {
+            padding: 15px 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+            user-select: none;
+        }
+
+        .roll-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .roll-card.qualified {
+            background-color: #238636;
+            color: white;
+        }
+
+        .roll-card.qualified:hover {
+            background-color: #2ea043;
+        }
+
+        .roll-card.not-qualified {
+            background-color: #484f58;
+            color: #c9d1d9;
+        }
+
+        .roll-card.not-qualified:hover {
+            background-color: #6e7681;
+        }
+
+        .roll-card.active {
+            border-color: #58a6ff;
+            box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.3);
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            color: #8b949e;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #30363d;
+        }
+
+        
+        .graph-section {
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        .graph-container {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 20px;
+        }
+
+        .graph-caption {
+            color: #8b949e;
+            font-size: 0.85rem;
+            margin-bottom: 16px;
+            font-style: italic;
+        }
+
+        .graph-total-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(88, 166, 255, 0.08);
+            border: 1px solid rgba(88, 166, 255, 0.2);
+            border-radius: 8px;
+            padding: 7px 14px;
+            margin-bottom: 24px;
+            font-size: 0.82rem;
+            color: #58a6ff;
+        }
+
+        .graph-total-badge .badge-dot {
+            width: 6px; height: 6px;
+            background: #58a6ff;
+            border-radius: 50%;
+            animation: badgePulse 2s infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* New chart layout */
+        .chart-area {
+            position: relative;
+            padding-left: 52px;
+            padding-bottom: 50px;
+        }
+
+        .g-y-axis {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 50px;
+            width: 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding-right: 10px;
+            border-right: 1px solid #30363d;
+        }
+
+        .g-y-label {
+            font-size: 0.7rem;
+            color: #6e7681;
+            line-height: 1;
+        }
+
+        .g-grid-bars {
+            position: relative;
+            height: 340px;
+        }
+
+        .g-grid-lines {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .g-grid-line {
+            position: absolute;
+            left: 0; right: 0;
+            border-top: 1px dashed #21262d;
+        }
+
+        .g-bars-row {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: flex-end;
+            gap: 12px;
+            padding: 0 8px;
+        }
+
+        .g-bar-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            justify-content: flex-end;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .g-bar-col:hover .g-bar-fill {
+            filter: brightness(1.25);
+        }
+
+        .g-bar-fill {
+            width: 100%;
+            border-radius: 6px 6px 0 0;
+            position: relative;
+            transform-origin: bottom;
+            animation: gGrowUp 0.7s cubic-bezier(0.34, 1.4, 0.64, 1) forwards;
+            animation-delay: var(--g-delay);
+            transform: scaleY(0);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        @keyframes gGrowUp {
+            to { transform: scaleY(1); }
+        }
+
+        .g-bar-value {
+            position: absolute;
+            top: -24px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #f0f6fc;
+            white-space: nowrap;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .g-x-labels {
+            display: flex;
+            gap: 12px;
+            padding: 10px 8px 0;
+        }
+
+        .g-x-label {
+            flex: 1;
+            text-align: center;
+            font-size: 0.72rem;
+            color: #8b949e;
+        }
+
+        .g-axis-title {
+            text-align: center;
+            font-size: 0.72rem;
+            color: #6e7681;
+            margin-top: 6px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* Tooltip */
+        .bar-tooltip {
+            position: fixed;
+            background-color: #1c2333;
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            padding: 12px 16px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.15s;
+            z-index: 200;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            font-size: 0.85rem;
+            min-width: 180px;
+        }
+
+        .bar-tooltip.visible { opacity: 1; }
+
+        .tooltip-range {
+            color: #58a6ff;
+            font-weight: 600;
+            margin-bottom: 4px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tooltip-count {
+            color: #3fb950;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .tooltip-sub {
+            color: #8b949e;
+            font-size: 0.78rem;
+            margin-top: 2px;
+        }
+
+        .tooltip-pct {
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #30363d;
+            color: #58a6ff;
+            font-size: 0.78rem;
+        }
+
+        /* Summary cards */
+        .graph-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 10px;
+            margin-top: 28px;
+        }
+
+        .graph-summary-item {
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: border-color 0.2s;
+        }
+
+        .graph-summary-item:hover {
+            border-color: #58a6ff;
+        }
+
+        .g-swatch {
+            width: 8px;
+            height: 36px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .g-summary-label {
+            font-size: 0.72rem;
+            color: #8b949e;
+        }
+
+        .g-summary-count {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #f0f6fc;
+            margin-top: 2px;
+        }
+
+        .g-summary-meta {
+            font-size: 0.7rem;
+            color: #6e7681;
+            margin-top: 1px;
+        }
+
+        .no-data-message {
+            text-align: center;
+            padding: 60px 20px;
+            color: #8b949e;
+            font-size: 1.1rem;
+        }
+
+        
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            animation: fadeIn 0.2s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 16px;
+            max-width: 450px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.3s ease;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 32px;
+            height: 32px;
+            background-color: #30363d;
+            border: none;
+            border-radius: 50%;
+            color: #c9d1d9;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background-color: #f85149;
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #30363d;
+        }
+
+        .modal-roll {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #f0f6fc;
+            margin-top: 10px;
+        }
+
+        .modal-status {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .modal-status.qualified {
+            background-color: #238636;
+            color: white;
+        }
+
+        .modal-status.not-qualified {
+            background-color: #484f58;
+            color: #c9d1d9;
+        }
+
+        .modal-detail {
+            margin: 15px 0;
+            font-size: 1rem;
+            color: #c9d1d9;
+            line-height: 1.5;
+        }
+
+        .modal-detail strong {
+            color: #58a6ff;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 4px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .ratio-box {
+            background-color: #0d1117;
+            border: 2px solid #238636;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .ratio-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #3fb950;
+            margin: 10px 0;
+        }
+
+        .ratio-calculation {
+            font-size: 0.95rem;
+            color: #8b949e;
+            margin-bottom: 5px;
+        }
+
+        .ratio-note {
+            font-size: 0.75rem;
+            color: #8b949e;
+            font-style: italic;
+            margin-top: 15px;
+            line-height: 1.4;
+        }
+
+        .error-message {
+            color: #f85149;
+            font-size: 1.1rem;
+            text-align: center;
+            padding: 20px;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .chart-wrapper {
+                height: 350px;
+            }
+
+            .bar-range {
+                font-size: 0.65rem;
+                transform: translateX(-50%) rotate(-60deg);
+            }
+
+            .bar-label {
+                font-size: 0.75rem;
+                top: -20px;
+            }
+
+            .graph-container {
+                padding: 20px 15px;
+            }
+
+            .y-axis {
+                width: 35px;
+            }
+
+            .y-axis-label {
+                font-size: 0.6rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.4rem;
+            }
+            
+            .rolls-grid {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+                gap: 8px;
+            }
+            
+            .roll-card {
+                padding: 12px 8px;
+                font-size: 0.85rem;
+            }
+            
+            .stat-value {
+                font-size: 1.2rem;
+            }
+
+            .modal-roll {
+                font-size: 2rem;
+            }
+
+            .modal-body {
+                padding: 25px 20px;
+            }
+
+            .ratio-value {
+                font-size: 1.5rem;
+            }
+
+            .chart-wrapper {
+                height: 300px;
+            }
+
+            .bar-wrapper {
+                margin: 0 2px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .chart-wrapper {
+                height: 280px;
+            }
+
+            .bar {
+                min-width: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Senior Officer Exam (Job ID - 10220)</h1>
+            <p class="subtitle">Written Roll vs Viva Candidate Checker</p>
+        </header>
+
+        <div class="stats-bar" id="statsBar">
+            <div class="stat-item">
+                <span class="stat-value" id="totalWritten">0</span>
+                <span class="stat-label">Total Written</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="totalViva">0</span>
+                <span class="stat-label">Total Viva</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="qualifiedCount">0</span>
+                <span class="stat-label">Qualified</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="notQualifiedCount">0</span>
+                <span class="stat-label">Not Qualified</span>
+            </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color qualified"></div>
+                <span>Qualified for Viva</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color not-qualified"></div>
+                <span>Not Selected for Viva</span>
+            </div>
+        </div>
+
+        <div class="search-section">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Enter roll number..." autocomplete="off">
+                <button id="searchBtn" onclick="handleSearch()">Search</button>
+            </div>
+            <p class="search-instruction">Type a roll number and press Enter or click Search to find quickly</p>
+        </div>
+
+        <div class="rolls-section">
+            <h2 class="section-title">All Written Exam Roll Numbers</h2>
+            <div class="rolls-grid" id="rollsGrid"></div>
+        </div>
+
+        
+        <div class="graph-section">
+            <h2 class="section-title">Ratio Distribution Analysis</h2>
+            <div class="graph-container">
+                <p class="graph-caption">How many viva candidates fall in each written-to-viva competition ratio range</p>
+                <div class="graph-total-badge">
+                    <span class="badge-dot"></span>
+                    Total viva candidates: <strong id="graphTotalDisplay">—</strong> &nbsp;·&nbsp; All bars sum to this
+                </div>
+                <div id="graphContent"></div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="bar-tooltip" id="barTooltip">
+        <div class="tooltip-range" id="ttRange"></div>
+        <div class="tooltip-count" id="ttCount"></div>
+        <div class="tooltip-sub">viva candidates</div>
+        <div class="tooltip-pct" id="ttPct"></div>
+    </div>
+
+    
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnOverlay(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal()" title="Close">×</button>
+            <div class="modal-body" id="modalBody">
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+        
+        
+        
+        const vivaObjects = [
+  {
+    listRolls: [100086, 100115, 100218, 100363, 100416, 100573, 100650, 100680, 100744, 100840, 100915, 100925, 100931, 100943, 100961, 100987, 100995, 101004, 101013, 101015, 101017, 101085, 101092, 101106, 101128, 101149, 101173, 101201, 101229, 101231, 101283, 101298, 101314, 101378, 101401, 101704, 101790, 101895, 101913, 101968, 101988, 102014, 102152, 102286, 102298, 102371, 102374, 102425, 102451, 102500, 102614, 102616, 102681, 102692, 102743, 102768, 102797, 102844, 102951, 102958],
+    firstRoll: 100086,
+    lastRoll: 102958,
+    totalCandidate: 60,
+    reportingTime: "24/02/2026 08:00 am"
+  },
+  {
+    listRolls: [102991, 103065, 103153, 103273, 103288, 103328, 103339, 103359, 103479, 103491, 103503, 103725, 103785, 103847, 103931, 103967, 104098, 104155, 104351, 104360, 104375, 104402, 104431, 104549, 104565, 104607, 104637, 104747, 104763, 104783, 104885, 104933, 104973, 105022, 105025, 105144, 105246, 105273, 105358, 105435, 105442, 105552, 105581, 105585, 105686, 105806, 105821, 105824, 106057, 106076, 106104, 106109, 106137, 106206, 106318, 106500, 106524, 106547, 106610, 106648],
+    firstRoll: 102991,
+    lastRoll: 106648,
+    totalCandidate: 60,
+    reportingTime: "24/02/2026 10:00 am"
+  },
+  {
+    listRolls: [106825, 106839, 107008, 107175, 107208, 107279, 107369, 107400, 107419, 107477, 107559, 107621, 107671, 107693, 107696, 108002, 108067, 108200, 108265, 108460, 108467, 108548, 108648, 108734, 108738, 108744, 108777, 108860, 108890, 108891, 108894, 108913, 108920, 108939, 108976, 108989, 108991, 109061, 109085, 109116, 109131, 109182, 109228, 109270, 109467, 109483, 109600, 109616, 109677, 109769, 109771, 109812, 109851, 109873, 109923, 109941, 109967, 109993, 110081, 110156],
+    firstRoll: 106825,
+    lastRoll: 110156,
+    totalCandidate: 60,
+    reportingTime: "25/02/2026 08:00 am"
+  },
+  {
+    listRolls: [110169, 110289, 110447, 110656, 110721, 110757, 110845, 110871, 110898, 110988, 111202, 111224, 111256, 111261, 111626, 111666, 111855, 111966, 112083, 112102, 112120, 112204, 112208, 112213, 112220, 112235, 112257, 112358, 112364, 112395, 112410, 112469, 112476, 112487, 112509, 112609, 112661, 112699, 112724, 112769, 112786, 112793, 112807, 112815, 112830, 112887, 112901, 112948, 112954, 113015, 113029, 113149, 113154, 113172, 113225, 113247, 113302, 113337, 113353, 113398],
+    firstRoll: 110169,
+    lastRoll: 113398,
+    totalCandidate: 60,
+    reportingTime: "25/02/2026 10:00 am"
+  },
+  {
+    listRolls: [113533, 113552, 113573, 113594, 113602, 113666, 113820, 113887, 113890, 113920, 114093, 114294, 114339, 114402, 114450, 114453, 114630, 114694, 114715, 115558, 115565, 115568, 115641, 115690, 115734, 115736, 115740, 115752, 115764, 115802, 115813, 115853, 115905, 115915, 115986, 116092, 116134, 116229, 116247, 116284, 116287, 116290, 116337, 116413, 116464, 116524, 116593, 116656, 116669, 116709, 116738, 116791, 116887, 117030, 117173, 117178, 117203, 117235, 117248, 117338],
+    firstRoll: 113533,
+    lastRoll: 117338,
+    totalCandidate: 60,
+    reportingTime: "26/02/2026 08:00 am"
+  },
+  {
+    listRolls: [117413, 117489, 117537, 117540, 117581, 117596, 117765, 117781, 117876, 117922, 117947, 117975, 117994, 118062, 118068, 118208, 118405, 118417, 118434, 118462, 118506, 118631, 118639, 118645, 118647, 118704, 118713, 118728, 118894, 118944, 119078, 119129, 119135, 119187, 119229, 119319, 119354, 119441, 119515, 119587, 119589, 119595, 119608, 119624, 119632, 119692, 119754, 119758, 119770, 119800, 119818, 119863, 119962, 119971, 120104, 120129, 120159, 120191, 120239, 120241],
+    firstRoll: 117413,
+    lastRoll: 120241,
+    totalCandidate: 60,
+    reportingTime: "26/02/2026 10:00 am"
+  },
+  {
+    listRolls: [120279, 120317, 120339, 120361, 120363, 120364, 120439, 120448, 120525, 120542, 120543, 120576, 120615, 120656, 120680, 120741, 120776, 120794, 120829, 120893, 120897, 120917, 121012, 121017, 121026, 121051, 121060, 121117, 121147, 121298, 121388, 121455, 121490, 121612, 121730, 121759, 121784, 121933, 122072, 122188, 122231, 122258, 122301, 122332, 122335, 122550, 122559, 122648, 122653, 122720, 122746, 122800, 122829, 122842, 122930, 122941, 122949, 122974, 123060, 123319],
+    firstRoll: 120279,
+    lastRoll: 123319,
+    totalCandidate: 60,
+    reportingTime: "28/02/2026 08:00 am"
+  },
+  {
+    listRolls: [123345, 123604, 123696, 123761, 124034, 124074, 124101, 124171, 124226, 124309, 124690, 124824, 124865, 124907, 124910, 124915, 124920, 124923, 124976, 124987, 125000, 125002, 125025, 125049, 125118, 125124, 125193, 125215, 125242, 125256, 125275, 125308, 125335, 125337, 125346, 125356, 125371, 125379, 125408, 125478, 125520, 125661, 125817, 125907, 126004, 126108, 126138, 126207, 126232, 126253, 126267, 126292, 126300, 126344, 126367, 126374, 126513, 126563, 126572, 126635],
+    firstRoll: 123345,
+    lastRoll: 126635,
+    totalCandidate: 60,
+    reportingTime: "28/02/2026 10:00 am"
+  },
+  {
+    listRolls: [126717, 126719, 126758, 126764, 126878, 126905, 126945, 127051, 127217, 127227, 127255, 127289, 127345, 127357, 127497, 127517, 127549, 127582, 127592, 127631, 127666, 127706, 127851, 127925, 128042, 128051, 128070, 128163, 128216, 128267, 128292, 128309, 128319, 128325, 128326, 128358, 128359, 128413, 128420, 128489, 128513, 128548, 128575, 128594, 128599, 128615, 128688, 128931, 129743, 129893, 130021, 130317, 130390, 130493, 130511, 130525, 130530, 130531, 130605, 130657],
+    firstRoll: 126717,
+    lastRoll: 130657,
+    totalCandidate: 60,
+    reportingTime: "01/03/2026 08:00 am"
+  },
+  {
+    listRolls: [130692, 130695, 130765, 130805, 130832, 130833, 130838, 130885, 130906, 130924, 130940, 130942, 130992, 130995, 131001, 131007, 131029, 131061, 131078, 131079, 131096, 131136, 131144, 131215, 131240, 131320, 131332, 131393, 131404, 131417, 131433, 131457, 131479, 131521, 131538, 131600, 131602, 131623, 131624, 131647, 131668, 131679, 131738, 131740, 131769, 131770, 131809, 131817, 131917, 131947, 131960, 131991, 132091, 132094, 132241, 132326, 132378, 132425, 132714, 132746],
+    firstRoll: 130692,
+    lastRoll: 132746,
+    totalCandidate: 60,
+    reportingTime: "01/03/2026 10:00 am"
+  },
+  {
+    listRolls: [132803, 132821, 132841, 132858, 132860, 132899, 132952, 132955, 133069, 133152, 133179, 133190, 133303, 133372, 133387, 133402, 133409, 133427, 133431, 133440, 133487, 133492, 133506, 133518, 133525, 133526, 133605, 133663, 133690, 133720, 133861, 134024, 134106, 134270, 134277, 134321, 134409, 134666, 134685, 134851, 134925, 134978, 135191, 135273, 135415, 135427, 135438, 135509, 135574, 136017, 136197, 136336, 136388, 136395, 136509, 136510, 136542, 136573, 136595, 136644],
+    firstRoll: 132803,
+    lastRoll: 136644,
+    totalCandidate: 60,
+    reportingTime: "02/03/2026 08:00 am"
+  },
+  {
+    listRolls: [136681, 136717, 136798, 136806, 136837, 136847, 136890, 136934, 136947, 136977, 137028, 137034, 137055, 137290, 137317, 137324, 137347, 137429, 137475, 137494, 137566, 137605, 137609, 137629, 137665, 137872, 137934, 138134, 138203, 138305, 138314, 138390, 138400, 138437, 138474, 138531, 138538, 138581, 138655, 138697, 138784, 138804, 138864, 138996, 139079, 139275, 139384, 139406, 139450, 139611, 139710, 139749, 139891, 140035, 140049, 140084, 140121, 140302, 140312, 140397],
+    firstRoll: 136681,
+    lastRoll: 140397,
+    totalCandidate: 60,
+    reportingTime: "02/03/2026 10:00 am"
+  },
+  {
+    listRolls: [140408, 140421, 140449, 140515, 140602, 140630, 140671, 140755, 140796, 140806, 140816, 140841, 140879, 140946, 141008, 141020, 141035, 141105, 141142, 141185, 141235, 141247, 141291, 141303, 141349, 141364, 141491, 141500, 141510, 141541, 141543, 141615, 141639, 141661, 141682, 141683, 141734, 141745, 141748, 141878, 141945, 141958, 141989, 142022, 142146, 142436, 142502, 142555, 142638, 142660, 142669, 142687, 142720, 142724, 142732, 142773, 142791, 142859, 143024, 143233],
+    firstRoll: 140408,
+    lastRoll: 143233,
+    totalCandidate: 60,
+    reportingTime: "03/03/2026 08:00 am"
+  },
+  {
+    listRolls: [143280, 143411, 143439, 143533, 143643, 143690, 143715, 143751, 143772, 143838, 143848, 143860, 143888, 143971, 144079, 144093, 144259, 144280, 144330, 144332, 144340, 144441, 144449, 144467, 144572, 144657, 144668, 144700, 144720, 144753, 144760, 144789, 144791, 144801, 144820, 144846, 144851, 144935, 144941, 144943, 144987, 144990, 144993, 145036, 145041, 145053, 145060, 145178, 145201, 145214, 145274, 145287, 145438, 145510, 145534, 145637, 145682, 145844, 145879, 145880],
+    firstRoll: 143280,
+    lastRoll: 145880,
+    totalCandidate: 60,
+    reportingTime: "03/03/2026 10:00 am"
+  },
+  {
+    listRolls: [145893, 145905, 145989, 145996, 146022, 146047, 146068, 146125, 146185, 146186, 146202, 146213, 146226, 146239, 146251, 146257, 146262, 146296, 146308, 146314, 146334, 146406, 146415, 146427, 146568, 146575, 146620, 146623, 146634, 146684, 146756, 146887, 146961, 147031, 147151, 147156, 147216, 147288, 147300, 147371, 147394, 147395, 147398, 147402, 147475, 147477, 147669, 147876, 147965, 148141, 148178, 148280, 148387, 148402, 148410, 148456, 148560, 148574, 148653, 148666],
+    firstRoll: 145893,
+    lastRoll: 148666,
+    totalCandidate: 60,
+    reportingTime: "04/03/2026 08:00 am"
+  },
+  {
+    listRolls: [148742, 148876, 148896, 148919, 148951, 148953, 148978, 148983, 148992, 149026, 149042, 149122, 149130, 149176, 149214, 149271, 149296, 149323, 149433, 149581, 149669, 149675, 149739, 149774, 149795, 149822, 150038, 150113, 150164, 150190, 150235, 150281, 150294, 150325, 150328, 150356, 150373, 150383, 150394, 150399, 150402, 150476, 150515, 150520, 150541, 150603, 150634, 150872, 150894, 150914, 150938, 150968, 150973, 150988, 150992, 150998, 151036, 151067, 151094, 151152],
+    firstRoll: 148742,
+    lastRoll: 151152,
+    totalCandidate: 60,
+    reportingTime: "04/03/2026 10:00 am"
+  },
+  {
+    listRolls: [151241, 151350, 151365, 151411, 151426, 151550, 151694, 151939, 152004, 152005, 152125, 152140, 152144, 152152, 152165, 152227, 152269, 152318, 152325, 152378, 152379, 152410, 152470, 152474, 152497, 152512, 152546, 152600, 152645, 152662, 152676, 152731, 152740, 152766, 152775, 152787, 152823, 152825, 152830, 152854, 152954, 152982, 152985, 152991, 153064, 153116, 153170, 153172, 153199, 153228, 153251, 153304, 153359, 153367, 153381, 153429, 153482, 153498, 153501, 153505],
+    firstRoll: 151241,
+    lastRoll: 153505,
+    totalCandidate: 60,
+    reportingTime: "05/03/2026 08:00 am"
+  },
+  {
+    listRolls: [153530, 153543, 153589, 153616, 153635, 153673, 153778, 153781, 153828, 153848, 153864, 153878, 153911, 153964, 153993, 154145, 154175, 154224, 154226, 154238, 154244, 154258, 154355, 154371, 154411, 154448, 154513, 154558, 154564, 154670, 154780, 154781, 154869, 154929, 154968, 155135, 155190, 155211, 155224, 155227, 155281, 155296, 155312, 155336, 155367, 155400, 155402, 155416, 155428, 155439, 155545, 155585, 155637, 155805, 155814, 155821, 155920, 155937, 155951, 156053],
+    firstRoll: 153530,
+    lastRoll: 156053,
+    totalCandidate: 60,
+    reportingTime: "05/03/2026 10:00 am"
+  },
+  {
+    listRolls: [156056, 156062, 156090, 156118, 156121, 156142, 156143, 156179, 156200, 156213, 156254, 156284, 156355, 156357, 156358, 156484, 156485, 156504, 156550, 156556, 156609, 156686, 156704, 156706, 156762, 156775, 156780, 156787, 156819, 156877, 156920, 156942, 157015, 157127, 157160, 157162, 157258, 157281, 157396, 157455, 157516, 157551, 157593, 157731, 157774, 157791, 157802, 157843, 157860, 157861, 157865, 157903, 157950, 157988, 158008, 158017, 158160, 158181, 158182, 158230],
+    firstRoll: 156056,
+    lastRoll: 158230,
+    totalCandidate: 60,
+    reportingTime: "06/03/2026 08:00 am"
+  },
+  {
+    listRolls: [158265, 158289, 158300, 158305, 158311, 158342, 158374, 158450, 158511, 158556, 158596, 158606, 158700, 158855, 158907, 158928, 158929, 158963, 158998, 159092, 159205, 159213, 159270, 159415, 159418, 159423, 159435, 159449, 159484, 159506, 159549, 159560, 159566, 159631, 159812, 159836, 159901, 159905, 159997, 160220, 160253, 160317, 160350, 160388, 160491, 160516, 160637, 160913, 160970, 160998, 161031, 161137, 161183, 161245, 161333, 161378, 161460, 161519, 161522, 161523],
+    firstRoll: 158265,
+    lastRoll: 161523,
+    totalCandidate: 60,
+    reportingTime: "06/03/2026 10:00 am"
+  },
+  {
+    listRolls: [161583, 161620, 161646, 161692, 161695, 161716, 161780, 161781, 161828, 161856, 161861, 161871, 161909, 161942, 161966, 162004, 162046, 162067, 162108, 162269, 162273, 162291, 162356, 162362, 162412, 162421, 162432, 162466, 162720, 162782, 163014, 163135, 163203, 163287, 163353, 163392, 163471, 163531, 163574, 163648, 163748, 163752, 163782, 163805, 163843, 163876, 163923, 164049, 164072, 164078, 164161, 164275, 164281, 164320, 164364, 164390, 164479, 164480, 164496, 164538],
+    firstRoll: 161583,
+    lastRoll: 164538,
+    totalCandidate: 60,
+    reportingTime: "06/03/2026 02:00 pm"
+  },
+  {
+    listRolls: [164553, 164572, 164622, 164632, 164772, 164809, 164829, 164856, 164877, 165127, 165134, 165219, 165232, 165248, 165270, 165385, 165565, 165590, 165600, 165605, 165692, 165693, 165699, 165701, 165715, 165737, 165889, 166001, 166123, 166167, 166168, 166198, 166203, 166220, 166372, 166422, 166551, 166570, 166573, 166648, 166649, 166684, 166709, 166761, 166804, 166831, 166836, 166854, 166895, 166979, 167018, 167084, 167125, 167149, 167226, 167310, 167339, 167385, 167397, 167399],
+    firstRoll: 164553,
+    lastRoll: 167399,
+    totalCandidate: 60,
+    reportingTime: "07/03/2026 08:00 am"
+  },
+  {
+    listRolls: [167465, 167481, 167594, 167690, 167812, 167819, 167823, 167917, 167990, 168079, 168122, 168150, 168152, 168178, 168208, 168233, 168279, 168303, 168451, 168462, 168470, 168484, 168492, 168518, 168530, 168563, 168610, 168721, 168758, 168760, 168884, 168886, 168988, 169009, 169034, 169062, 169094, 169188, 169266, 169275, 169396, 169468, 169485, 169545, 169555, 169558, 169588, 169627, 169678, 169714, 169762, 169823, 169864, 169989, 170013, 170020, 170046, 170174, 170188, 170192],
+    firstRoll: 167465,
+    lastRoll: 170192,
+    totalCandidate: 60,
+    reportingTime: "07/03/2026 10:00 am"
+  },
+  {
+    listRolls: [170195, 170219, 170291, 170414, 170480, 170496, 170511, 170592, 170613, 170749, 170867, 171031, 171042, 171176, 171299, 171300, 171323, 171344, 171352, 171374, 171451, 171469, 171473, 171577, 171624, 171683, 171693, 171697, 171714, 171726, 171769, 171863, 171864, 172029, 172066, 172102, 172223, 172249, 172384, 172431, 172445, 172463, 172469, 172506, 172516, 172519, 172593, 172594, 172611, 172662, 172667, 172702, 172799, 172833, 172840, 172924, 172935, 172957, 172980, 173021],
+    firstRoll: 170195,
+    lastRoll: 173021,
+    totalCandidate: 60,
+    reportingTime: "07/03/2026 12:30 pm"
+  },
+  {
+    listRolls: [173132, 173163, 173168, 173243, 173249, 173252, 173258, 173341, 173435, 173497, 173658, 173725, 173741, 173755, 173793, 173876, 173928, 173961, 173971, 174015, 174016, 174025, 174036, 174042, 174063, 174130, 174151, 174183, 174196, 174218, 174259, 174264, 174298, 174318, 174333, 174337, 174453, 174522, 174541, 174550, 174610, 174613, 174633, 174636, 174645, 174714, 174737, 174786, 174814, 174881, 174919, 174926, 175222, 175333, 175337, 175394, 175399, 175449, 175491, 175542],
+    firstRoll: 173132,
+    lastRoll: 175542,
+    totalCandidate: 60,
+    reportingTime: "08/03/2026 08:00 am"
+  },
+  {
+    listRolls: [175628, 175682, 175788, 175838, 175911, 175942, 176005, 176035, 176214, 176225, 176236, 176312, 176339, 176344, 176497, 176507, 176512, 176519, 176526, 176528, 176537, 176602, 176633, 176653, 176658, 176702, 176704, 176713, 176733, 176758, 176800, 176806, 176816, 177020, 177037, 177045, 177232, 177288, 177464, 177496, 177546, 177556, 177558, 177560, 177562, 177641, 177661, 177791, 177838, 177839, 177879, 177907, 177911, 177921, 177929, 177951, 178016, 178071, 178121, 178195],
+    firstRoll: 175628,
+    lastRoll: 178195,
+    totalCandidate: 60,
+    reportingTime: "08/03/2026 10:00 am"
+  },
+  {
+    listRolls: [178198, 178252, 178270, 178383, 178429, 178530, 178613, 178619, 178724, 178731, 178785, 178951, 179031, 179056, 179072, 179081, 179123, 179180, 179213, 179217, 179244, 179259, 179260, 179268, 179273, 179307, 179502, 179549, 179550, 179678, 179685, 179693, 179698, 179709, 179729, 179742, 179759, 179790, 179886, 179964, 179983, 180001, 180005, 180093, 180185, 180192, 180198, 180232, 180233, 180285, 180294, 180314, 180315, 180346, 180358, 180402, 180405, 180429, 180431, 180444],
+    firstRoll: 178198,
+    lastRoll: 180444,
+    totalCandidate: 60,
+    reportingTime: "09/03/2026 08:00 am"
+  },
+  {
+    listRolls: [180521, 180535, 180540, 180572, 180615, 180643, 180652, 180669, 180721, 180732, 180741, 180754, 180792, 180800, 180805, 180809, 180827, 180853, 180871, 180890, 181030, 181069, 181134, 181161, 181194, 181233, 181271, 181362, 181424, 181493, 181520, 181546, 181554, 181573, 181695, 181705, 181763, 181780, 181784, 181788, 181798, 182092, 182173, 182280, 182354, 182421, 182433, 182537, 182567, 182619, 182655, 182689, 182807, 182851, 182989, 183002, 183072, 183108, 183147, 183170],
+    firstRoll: 180521,
+    lastRoll: 183170,
+    totalCandidate: 60,
+    reportingTime: "09/03/2026 10:00 am"
+  },
+  {
+    listRolls: [183206, 183498, 183509, 183530, 183616, 183642, 183643, 184009, 184102, 184126, 184300, 184308, 184311, 184328, 184359, 184362, 184429, 184451, 184459, 184553, 184554, 184567, 184619, 184825, 184890, 184905, 184911, 184931, 185005, 185061, 185115, 185144, 185174, 185176, 185222, 185277, 185309, 185378, 185392, 185530, 185542, 185679, 185769, 185798, 185844, 185975, 186146, 186170, 186321, 186327, 186357, 186399, 186446, 186481, 186507, 186585, 186755, 186777, 186905, 186987],
+    firstRoll: 183206,
+    lastRoll: 186987,
+    totalCandidate: 60,
+    reportingTime: "10/03/2026 08:00 am"
+  },
+  {
+    listRolls: [187030, 187102, 187111, 187158, 187164, 187183, 187338, 187368, 187425, 187526, 187541, 187552, 187556, 187595, 187605, 187617, 187640, 187657, 187700, 187727, 187737, 187754, 187776, 187778, 187779, 187783, 187799, 187803, 187809, 187822, 187851, 187930, 188009, 188014, 188076, 188170, 188212, 188222, 188245, 188300, 188367, 188424, 188460, 188474, 188586, 188591, 188597, 188613, 188627, 188631, 188690, 188712, 188862, 188931, 188935, 188950, 189023, 189048, 189053, 189105],
+    firstRoll: 187030,
+    lastRoll: 189105,
+    totalCandidate: 60,
+    reportingTime: "10/03/2026 10:00 am"
+  },
+  {
+    listRolls: [189172, 189248, 189325, 189359, 189392, 189440, 189582, 189604, 189666, 189681, 189898, 189995, 190008, 190104, 190115, 190254, 190257, 190274, 190367, 190455, 190569, 190578, 190579, 190590, 190630, 190670, 190672, 190675, 190684, 190699, 190728, 190824, 190833, 190887, 190891, 190893, 190896, 190914, 190918, 190922, 190923, 190968, 190978, 190989, 191006, 191057, 191092, 191096, 191101, 191154, 191179, 191209, 191217, 191272, 191281, 191298, 191311, 191343, 191368, 191395],
+    firstRoll: 189172,
+    lastRoll: 191395,
+    totalCandidate: 60,
+    reportingTime: "11/03/2026 08:00 am"
+  },
+  {
+    listRolls: [191405, 191428, 191506, 191574, 191627, 191630, 191718, 191722, 191812, 191821, 191890, 191923, 192012, 192064, 192097, 192129, 192212, 192228, 192308, 192417, 192426, 192464, 192490, 192526, 192577, 192589, 192596, 192604, 192733, 192761, 192812, 192819, 192942, 193161, 193179, 193191, 193200, 193209, 193255, 193265, 193269, 193286, 193329, 193340, 193378, 193438, 193448, 193468, 193552, 193590, 193691, 193721, 193852, 193863, 193869, 193910, 193927, 193960, 193985, 194004],
+    firstRoll: 191405,
+    lastRoll: 194004,
+    totalCandidate: 60,
+    reportingTime: "11/03/2026 10:00 am"
+  },
+  {
+    listRolls: [194005, 194014, 194015, 194024, 194104, 194153, 194173, 194180, 194187, 194246, 194277, 194309, 194341, 194349, 194369, 194399, 194444, 194524, 194592, 194666, 194671, 194689, 194691, 194704, 194907, 194908, 195052, 195090, 195093, 195187, 195234, 195258, 195277, 195356, 195408, 195415, 195435, 195461, 195476, 195481, 195493, 195507, 195529, 195557, 195569, 195618, 195646, 195658, 195675, 195680, 195709, 195712, 195714, 195731, 195737, 195755, 195771, 195781, 195814, 195834],
+    firstRoll: 194005,
+    lastRoll: 195834,
+    totalCandidate: 60,
+    reportingTime: "12/03/2026 08:00 am"
+  },
+  {
+    listRolls: [195850, 195868, 195951, 196013, 196052, 196102, 196219, 196257, 196269, 196271, 196333, 196338, 196355, 196372, 196381, 196467, 196595, 196606, 196679, 196684, 196713, 196784, 196797, 196822, 196834, 196861, 196886, 196898, 196915, 197028, 197080, 197087, 197099, 197143, 197266, 197340, 197350, 197373, 197374, 197385, 197387, 197452, 197496, 197536, 197548, 197557, 197561, 197604, 197646, 197719, 197730, 197816, 197997, 198041, 198053, 198129, 198135, 198373, 198382, 198438],
+    firstRoll: 195850,
+    lastRoll: 198438,
+    totalCandidate: 60,
+    reportingTime: "12/03/2026 10:00 am"
+  },
+  {
+    listRolls: [198456, 198467, 198531, 198578, 198585, 198783, 198800, 198859, 198889, 198892, 198912, 199014, 199058, 199081, 199116, 199155, 199191, 199220, 199223, 199231, 199252, 199293, 199358, 199476, 199575, 199623, 199721, 199771, 199778, 199809, 199814, 199816, 199821, 199843, 199844, 199855, 200001, 200020, 200031, 200096, 200149, 200158, 200164, 200179, 200194, 200213, 200290, 200294, 200353, 200386, 200504, 200505, 200601, 200710, 200720, 201159, 201194, 201201, 201203, 201216],
+    firstRoll: 198456,
+    lastRoll: 201216,
+    totalCandidate: 60,
+    reportingTime: "13/03/2026 08:00 am"
+  },
+  {
+    listRolls: [201222, 201238, 201243, 201299, 201383, 201548, 201555, 201572, 201601, 201603, 201604, 201611, 201629, 201655, 201709, 201710, 201748, 201796, 201803, 201863, 202028, 202071, 202116, 202157, 202229, 202276, 202282, 202381, 202467, 202515, 202613, 202721, 202789, 202791, 202862, 202923, 202959, 202999, 203138, 203187, 203199, 203201, 203249, 203259, 203262, 203281, 203299, 203304, 203336, 203352, 203356, 203378, 203379, 203438, 203448, 203496, 203502, 203534, 203541, 203564],
+    firstRoll: 201222,
+    lastRoll: 203564,
+    totalCandidate: 60,
+    reportingTime: "13/03/2026 10:00 am"
+  },
+  {
+    listRolls: [203633, 203638, 203765, 203854, 203869, 203915, 203922, 203923, 203931, 203959, 203965, 203969, 204013, 204054, 204074, 204078, 204200, 204266, 204474, 204617, 204699, 204735, 204885, 204899, 204958, 204964, 205132, 205177, 205217, 205220, 205244, 205348, 205394, 205425, 205427, 205441, 205504, 205541, 205551, 205566, 205589, 205597, 205630, 205635, 205662, 205685, 205689, 205766, 205866, 205870, 205898, 205986, 205990, 206010, 206026, 206027, 206040, 206077, 206124, 206130],
+    firstRoll: 203633,
+    lastRoll: 206130,
+    totalCandidate: 60,
+    reportingTime: "13/03/2026 02:00 pm"
+  },
+  {
+    listRolls: [206152, 206169, 206193, 206227, 206236, 206244, 206277, 206281, 206292, 206296, 206337, 206363, 206378, 206381, 206382, 206435, 206457, 206494, 206517, 206518, 206553, 206573, 206604, 206616, 206643, 206655, 206758, 206759, 206762, 206795, 206825, 206826, 206838, 206848, 206859, 206860, 206872, 206930, 206948, 207083, 207099, 207183, 207187, 207209, 207218, 207226, 207263, 207275, 207278, 207298, 207319, 207320, 207329, 207346, 207361, 207383, 207472, 207488, 207635, 207717],
+    firstRoll: 206152,
+    lastRoll: 207717,
+    totalCandidate: 60,
+    reportingTime: "14/03/2026 08:00 am"
+  },
+  {
+    listRolls: [207728, 207795, 207803, 207810, 207841, 207850, 207886, 207905, 207942, 207983, 208020, 208117, 208151, 208260, 208315, 208323, 208355, 208367, 208426, 208464, 208489, 208507, 208516, 208520, 208533, 208549, 208679, 208763, 208789, 208823, 208841, 208871, 208896, 208898, 208930, 208971, 208979, 209029, 209108, 209167, 209219, 209238, 209323, 209459, 209522, 209523, 209556, 209601, 209713, 209747, 209836, 209852, 210011, 210056, 210114, 210201, 210273, 210277, 210366, 210370],
+    firstRoll: 207728,
+    lastRoll: 210370,
+    totalCandidate: 60,
+    reportingTime: "14/03/2026 10:00 am"
+  },
+  {
+    listRolls: [210379, 210388, 210414, 210454, 210488, 210504, 210524, 210591, 210698, 210701, 210774, 210801, 210833, 210849, 210868, 210870, 210871, 210879, 210964, 210988, 211007, 211048, 211082, 211110, 211149, 211209, 211214, 211281, 211321, 211328, 211504, 211609, 211655, 211669, 211712, 211748, 211788, 211830, 212054, 212060, 212140, 212212, 212399, 212489, 212520, 212576, 212578, 212589, 212621, 212655, 212718, 212800, 212950, 213028, 213039, 213111, 213157, 213194, 213214, 213221],
+    firstRoll: 210379,
+    lastRoll: 213221,
+    totalCandidate: 60,
+    reportingTime: "14/03/2026 12:30 pm"
+  },
+  {
+    listRolls: [213323, 213427, 213431, 213487, 213577, 213582, 213584, 213595, 213636, 213642, 213646, 213744, 213797, 213802, 214035, 214100, 214118, 214149, 214166, 214199, 214301, 214319, 214447, 214449, 214471, 214500, 214516, 214520, 214577, 214614, 214617, 214630, 214631, 214740, 214843, 214875, 214905, 214908, 214954, 214972, 214990, 215021, 215047, 215084, 215144, 215173, 215266, 215414, 215417, 215442, 215518, 215525, 215660, 215772, 215964, 216009, 216016, 216044, 216060, 216071],
+    firstRoll: 213323,
+    lastRoll: 216071,
+    totalCandidate: 60,
+    reportingTime: "27/03/2026 08:00 am"
+  },
+  {
+    listRolls: [216074, 216095, 216115, 216132, 216134, 216138, 216177, 216242, 216291, 216386, 216390, 216403, 216418, 216455, 216607, 217079, 217120, 217135, 217187, 217228, 217253, 217286, 217346, 217495, 217500, 217518, 217530, 217533, 217534, 217617, 217627, 217667, 217710, 217885, 218117, 218269, 218425, 218432, 218612, 218616, 218619, 218634, 218660, 218665, 218673, 218677, 218728, 218735, 218763, 218768, 218803, 218824, 218835, 218837, 218843, 218849, 218874, 218891, 218905, 218914],
+    firstRoll: 216074,
+    lastRoll: 218914,
+    totalCandidate: 60,
+    reportingTime: "27/03/2026 10:00 am"
+  },
+  {
+    listRolls: [218968, 218978, 219013, 219018, 219030, 219198, 219203, 219253, 219406, 219424, 219494, 219496, 219585, 219640, 219644, 219650, 219692, 219723, 219771, 219783, 219962, 220067, 220142, 220143, 220251, 220273, 220351, 220354, 220387, 220430, 220451, 220543, 220546, 220589, 220609, 220693, 220795, 220818, 220840, 220842, 221182, 221188, 221391, 221392, 221399, 221440, 221457, 221466, 221472, 221477, 221487, 221490, 221500, 221511, 221570, 221670, 221719, 221749, 221773, 221861],
+    firstRoll: 218968,
+    lastRoll: 221861,
+    totalCandidate: 60,
+    reportingTime: "27/03/2026 02:00 pm"
+  },
+  {
+    listRolls: [221863, 221884, 221906, 221914, 221918, 221937, 221977, 221993, 222009, 222031, 222040, 222043, 222067, 222076, 222088, 222089, 222112, 222117, 222122, 222164, 222176, 222213, 222221, 222241, 222254, 222288, 222298, 222312, 222321, 222361, 222370, 222389, 222404, 222436, 222438, 222450, 222462, 222482, 222495, 222512, 222518, 222673, 222696, 222755, 222775, 222837, 222860, 222887, 222938, 222953, 222996, 223063, 223073, 223079, 223144, 223199, 223231, 223242, 223245, 223286],
+    firstRoll: 221863,
+    lastRoll: 223286,
+    totalCandidate: 60,
+    reportingTime: "28/03/2026 08:00 am"
+  },
+  {
+    listRolls: [223296, 223365, 223422, 223523, 223558, 223693, 223709, 223745, 223842, 223985, 224000, 224023, 224272, 224281, 224296, 224307, 224311, 224354, 224355, 224360, 224385, 224402, 224416, 224426, 224476, 224482, 224508, 224524, 224548, 224565, 224576, 224601, 224610, 224619, 224628, 224703, 224732, 224777, 224813, 224889, 224914, 224929, 224939, 224944, 224959, 224973, 224977, 225001, 225004, 225027, 225029, 225064, 225070, 225099, 225101, 225137, 225150, 225159, 225160, 225207],
+    firstRoll: 223296,
+    lastRoll: 225207,
+    totalCandidate: 60,
+    reportingTime: "28/03/2026 10:00 am"
+  },
+  {
+    listRolls: [225227, 225275, 225287, 225324, 225362, 225575, 225632, 225695, 225731, 225742, 225755, 225820, 225859, 225863, 225864, 225874, 225897, 225982, 225989, 226000, 226023, 226057, 226069, 226165, 226269, 226283, 226319, 226341, 226344, 226407, 226431, 226433, 226441, 226443, 226475, 226479, 226525, 226564, 226611, 226620, 226647, 226694, 226747, 226798, 226835, 226945, 227082, 227178, 227272, 227573, 227597, 227638, 227663, 227696, 227740, 227751, 227753, 227820, 227833, 227838],
+    firstRoll: 225227,
+    lastRoll: 227838,
+    totalCandidate: 60,
+    reportingTime: "28/03/2026 02:00 pm"
+  },
+  {
+    listRolls: [227846, 227852, 227855, 227857, 227880, 227897, 227944, 228024, 228040, 228051, 228058, 228062, 228082, 228105, 228143, 228156, 228191, 228215, 228256, 228291, 228296, 228576, 228580, 228629, 228701, 228741, 228748, 228839, 228901, 228957, 229034, 229052, 229065, 229159, 229174, 229190, 229194, 229220, 229319, 229374, 229513, 229517, 229582, 229625, 229722, 229813, 229835, 229868, 229899, 229912, 229937, 229982, 230028, 230085, 230204, 230212, 230220, 230258, 230298, 230305],
+    firstRoll: 227846,
+    lastRoll: 230305,
+    totalCandidate: 60,
+    reportingTime: "29/03/2026 08:00 am"
+  },
+  {
+    listRolls: [230391, 230420, 230488, 230492, 230572, 230577, 230580, 230620, 230649, 230687, 230693, 230750, 230757, 230768, 230789, 230820, 230926, 230996, 231024, 231074, 231130, 231143, 231219, 231296, 231366, 231382, 231494, 231498, 231518, 231597, 231671, 231692, 231699, 231734, 231833, 231886, 231891, 231895, 231902, 231905, 231941, 231997, 232016, 232027, 232029, 232040, 232072, 232143, 232160, 232181, 232290, 232331, 232337, 232350, 232472, 232498, 232595, 232646, 232670, 232711],
+    firstRoll: 230391,
+    lastRoll: 232711,
+    totalCandidate: 60,
+    reportingTime: "29/03/2026 10:00 am"
+  },
+  {
+    listRolls: [232765, 232793, 232823, 233054, 233071, 233089, 233105, 233106, 233135, 233140, 233147, 233163, 233168, 233169, 233315, 233316, 233334, 233379, 233391, 233453, 233491, 233493, 233499, 233521, 233572, 233586, 233614, 233659, 233669, 233671, 233711, 233714, 233771, 233788, 233795, 233800, 233820, 233902, 233963, 233974, 234151, 234204, 234246, 234342, 234460, 234524, 234545, 234558, 234614, 234642, 234815, 234828, 234919, 234924, 234992, 235045, 235046, 235051, 235067, 235077],
+    firstRoll: 232765,
+    lastRoll: 235077,
+    totalCandidate: 60,
+    reportingTime: "30/03/2026 08:00 am"
+  },
+  {
+    listRolls: [235079, 235104, 235134, 235159, 235361, 235402, 235527, 235531, 235550, 235585, 235693, 235740, 235952, 235968, 235997, 236060, 236063, 236158, 236347, 236392, 236401, 236434, 236441, 236562, 236609, 236625, 236772, 236825, 236845, 236872, 236953, 237002, 237116, 237233, 237303, 237305, 237311, 237407, 237420, 237422, 237449, 237503, 237505, 237509, 237592, 237621, 237666, 237734, 237754, 237764, 237905, 237907, 237947, 237972, 238018, 238061, 238070, 238096, 238134, 238140],
+    firstRoll: 235079,
+    lastRoll: 238140,
+    totalCandidate: 60,
+    reportingTime: "30/03/2026 10:00 am"
+  },
+  {
+    listRolls: [238153, 238182, 238264, 238305, 238317, 238340, 238561, 238597, 238638, 238678, 238749, 238787, 238804, 238823, 238826, 238970, 239007, 239198, 239433, 239722, 239740, 239917, 239923, 239995, 240094, 240127, 240130, 240268, 240392, 240447, 240453, 240463, 240559, 240571, 240815, 240853, 240881, 240908, 241052, 241053, 241084, 241129, 241145, 241207, 241212, 241379, 241395, 241418, 241426, 241453, 241466, 241490, 241499, 241507, 241586, 241598, 241702, 241709, 241774, 241797],
+    firstRoll: 238153,
+    lastRoll: 241797,
+    totalCandidate: 60,
+    reportingTime: "31/03/2026 08:00 am"
+  },
+  {
+    listRolls: [241812, 241949, 242006, 242025, 242029, 242174, 242253, 242352, 242386, 242503, 242576, 242631, 242747, 242892, 242909, 242929, 243004, 243260, 243265, 243280, 243291, 243364, 243456, 243467, 243490, 243544, 243590, 243614, 243641, 243655, 243666, 243681, 243760, 243777, 243782, 243803, 243806, 243809, 244016, 244088, 244105, 244140, 244172, 244214, 244282, 244287, 244304, 244312, 244362, 244408, 244412, 244421, 244429, 244462, 244478, 244484, 244542, 244547, 244553, 244566],
+    firstRoll: 241812,
+    lastRoll: 244566,
+    totalCandidate: 60,
+    reportingTime: "31/03/2026 10:00 am"
+  },
+  {
+    listRolls: [244575, 244580, 244592, 244630, 244665, 244698, 244725, 244727, 244739, 244822, 244853, 244890, 244947, 244964, 244999, 245020, 245107, 245131, 245184, 245193, 245231, 245335, 245351, 245352, 245381, 245488, 245588, 245591, 245601, 245621, 245702, 245719, 245765, 245807, 245809, 245854, 245883, 245902, 245922, 245926, 245962, 245985, 245995, 246021, 246115, 246120, 246122, 246152, 246170, 246205, 246327, 246328, 246386, 246409, 246468, 246477, 246608, 246748, 246756, 246769],
+    firstRoll: 244575,
+    lastRoll: 246769,
+    totalCandidate: 60,
+    reportingTime: "01/04/2026 08:00 am"
+  },
+  {
+    listRolls: [246829, 246848, 246867, 246927, 246940, 247020, 247025, 247039, 247046, 247066, 247074, 247088, 247103, 247104, 247121, 247170, 247190, 247231, 247244, 247266, 247331, 247337, 247361, 247366, 247405, 247407, 247414, 247451, 247525, 247545, 247652, 247674, 247722, 247731, 247736, 247746, 247751, 247766, 247771, 247815, 247826, 247855, 247865, 247960, 247961, 247992, 248041, 248085, 248092, 248147, 248191, 248219, 248229, 248232, 248239, 248248, 248277, 248308, 248381, 248423],
+    firstRoll: 246829,
+    lastRoll: 248423,
+    totalCandidate: 60,
+    reportingTime: "01/04/2026 10:00 am"
+  },
+  {
+    listRolls: [248445, 248464, 248510, 248567, 248590, 248695, 248748, 248970, 249050, 249090, 249094, 249133, 249187, 249198, 249203, 249240, 249250, 249271, 249283, 249305, 249333, 249338, 249345, 249359, 249383, 249399, 249457, 249691, 249771, 249812, 249830, 249866, 249919, 249937, 249959, 249965, 249974, 250026, 250033, 250043, 250056, 250061, 250148, 250172, 250257, 250318, 250320, 250483, 250690, 250707, 250711, 250815, 250829, 251032, 251044, 251089, 251165, 251229, 251281, 251294],
+    firstRoll: 248445,
+    lastRoll: 251294,
+    totalCandidate: 60,
+    reportingTime: "02/04/2026 08:00 am"
+  },
+  {
+    listRolls: [251362, 251369, 251400, 251472, 251504, 251511, 251528, 251533, 251546, 251561, 251574, 251586, 251606, 251613, 251701, 251724, 251751, 251765, 251769, 251818, 251844, 252003, 252092, 252225, 252232, 252300, 252302, 252335, 252376, 252401, 252427, 252428, 252484, 252583, 252607, 252618, 252726, 252759, 252768, 252769, 252832, 252856, 252921, 252922, 253120, 253164, 253268, 253300, 253333, 253359, 253402, 253421, 253491, 253611, 253615, 253619, 253642, 253674, 253683, 253804],
+    firstRoll: 251362,
+    lastRoll: 253804,
+    totalCandidate: 60,
+    reportingTime: "02/04/2026 10:00 am"
+  },
+  {
+    listRolls: [253807, 253846, 253873, 253971, 254034, 254042, 254142, 254197, 254320, 254323, 254438, 254495, 254610, 254611, 254802, 254823, 254847, 254864, 254882, 254900, 254918, 255008, 255029, 255047, 255075, 255238, 255304, 255389, 255414, 255421, 255431, 255457, 255524, 255542, 255586, 255650, 255708, 255717, 255726, 255734, 255741, 256183, 256235, 256267, 256271, 256287, 256288, 256326, 256340, 256387, 256416, 256480, 256498, 256510, 256624, 256644, 256681, 256691, 256708, 256772],
+    firstRoll: 253807,
+    lastRoll: 256772,
+    totalCandidate: 60,
+    reportingTime: "04/04/2026 08:00 am"
+  },
+  {
+    listRolls: [256804, 256805, 256831, 256836, 256897, 256965, 256967, 256982, 256996, 256997, 257005, 257022, 257071, 257094, 257096, 257152, 257244, 257297, 257319, 257362, 257461, 257468, 257511, 257553, 257555, 257620, 257635, 257636, 257659, 257761, 257788, 257878, 257904, 257926, 258107, 258134, 258250, 258301, 258409, 258445, 258453, 258568, 258670, 258748, 258835, 258893, 258905, 258924, 258931, 258975, 258994, 259003, 259026, 259053, 259132, 259154, 259168, 259216, 259220, 259243],
+    firstRoll: 256804,
+    lastRoll: 259243,
+    totalCandidate: 60,
+    reportingTime: "04/04/2026 10:00 am"
+  },
+  {
+    listRolls: [259249, 259261, 259269, 259296, 259325, 259396, 259413, 259559, 259612, 259740, 259750, 259751, 259777, 259784, 259793, 259844, 259887, 259915, 259957, 259969, 259972, 259989, 260002, 260003, 260046, 260076, 260087, 260104, 260205, 260264, 260274, 260280, 260318, 260347, 260348, 260371, 260382, 260420, 260421, 260486, 260563, 260572, 260577, 260606, 260677, 260784, 260819, 260847, 260990, 261029, 261084, 261117, 261149, 261166, 261225, 261308, 261322, 261326, 261396, 261452],
+    firstRoll: 259249,
+    lastRoll: 261452,
+    totalCandidate: 60,
+    reportingTime: "04/04/2026 02:00 pm"
+  },
+  {
+    listRolls: [261457, 261486, 261625, 261682, 261685, 261689, 261716, 261776, 261779, 261806, 261836, 261837, 261844, 261882, 261883, 261956, 261959, 261980, 262045, 262086, 262113, 262143, 262183, 262201, 262208, 262292, 262309, 262310, 262347, 262365, 262426, 262640, 262658, 262679, 262753, 262757, 262780, 262875, 262907, 263123, 263132, 263235, 263272, 263355, 263360, 263450, 263471, 263492, 263646, 263717, 263721, 263757, 263825, 263885, 263903, 263920, 264019, 264223, 264240, 264305],
+    firstRoll: 261457,
+    lastRoll: 264305,
+    totalCandidate: 60,
+    reportingTime: "05/04/2026 08:00 am"
+  },
+  {
+    listRolls: [264773, 264792, 264821, 264833, 264855, 264870, 264911, 264929, 264966, 264986, 264987, 265006, 265021, 265043, 265054, 265061, 265103, 265174, 265182, 265203, 265227, 265248, 265252, 265258, 265282, 265316, 265324, 265326, 265376, 265450, 265456, 265468, 265474, 265502, 265562, 265600, 265606, 265624, 265635, 265646, 265660, 265745, 265767, 265832, 265914, 265965, 265968, 266083, 266221, 266229, 266293, 266353, 266395, 266414, 266418, 266429, 266434, 266451, 266612, 266651],
+    firstRoll: 264773,
+    lastRoll: 266651,
+    totalCandidate: 60,
+    reportingTime: "05/04/2026 10:00 am"
+  },
+  {
+    listRolls: [266656, 266713, 266753, 266758, 266805, 266841, 266855, 266866, 266879, 266881, 266903, 266912, 266921, 266933, 266944, 266947, 266950, 266954, 266960, 266967, 266985, 267017, 267030, 267041, 267153, 267164, 267171, 267188, 267190, 267240, 267259, 267320, 267331, 267353, 267376, 267379, 267417, 267672, 267677, 267866, 267935, 267959, 267976, 267988, 268044, 268108, 268194, 268201, 268231, 268267, 268276, 268365, 268376, 268427, 268502, 268525, 268564, 268625, 268677, 268702],
+    firstRoll: 266656,
+    lastRoll: 268702,
+    totalCandidate: 60,
+    reportingTime: "06/04/2026 08:00 am"
+  },
+  {
+    listRolls: [268706, 268730, 268736, 268745, 268778, 268779, 268872, 268882, 268985, 268989, 269086, 269098, 269197, 269208, 269223, 269238, 269282, 269335, 269352, 269371, 269414, 269462, 269493, 269633, 269682, 269760, 269774, 269843, 269955, 269978, 269989, 270021, 270032, 270073, 270120, 270176, 270177, 270184, 270219, 270246, 270291, 270298, 270300, 270375, 270421, 270423, 270454, 270467, 270496, 270522, 270542, 270564, 270650, 270705, 270750, 270760, 270771, 270777, 270782, 270789],
+    firstRoll: 268706,
+    lastRoll: 270789,
+    totalCandidate: 60,
+    reportingTime: "06/04/2026 10:00 am"
+  },
+  {
+    listRolls: [270799, 270841, 270860, 270931, 270951, 270957, 270990, 270995, 271051, 271082, 271091, 271115, 271116, 271123, 271130, 271140, 271141, 271162, 271206, 271267, 271275, 271301, 271322, 271380, 271394, 271425, 271483, 271562, 271565, 271570, 271581, 271641, 271692, 271696, 271709, 271730, 271734, 271764, 271796, 271940, 272051, 272141, 272154, 272173, 272196, 272206, 272264, 272268, 272279, 272288, 272303, 272331, 272376, 272380, 272384, 272392, 272393, 272510, 272528, 272570],
+    firstRoll: 270799,
+    lastRoll: 272570,
+    totalCandidate: 60,
+    reportingTime: "07/04/2026 08:00 am"
+  },
+  {
+    listRolls: [272574, 272600, 272776, 272783, 272788, 272790, 272982, 273014, 273025, 273142, 273145, 273202, 273257, 273293, 273295, 273347, 273384, 273398, 273425, 273453, 273456, 273487, 273495, 273501, 273509, 273518, 273519, 273538, 273552, 273559, 273565, 273572, 273581, 273613, 273618, 273672, 273727, 273738, 273749, 273797, 273799, 273812, 273817, 273859, 273876, 273940, 273974, 273983, 274018, 274036, 274037, 274108, 274135, 274141, 274148, 274160, 274171, 274181, 274221, 274325],
+    firstRoll: 272574,
+    lastRoll: 274325,
+    totalCandidate: 60,
+    reportingTime: "07/04/2026 10:00 am"
+  },
+  {
+    listRolls: [274362, 274414, 274423, 274443, 274515, 274520, 274566, 274593, 274643, 274678, 274685, 274691, 274709, 274711, 274736, 274762, 274777, 274821, 274843, 274846, 274890, 274895, 274902, 274911, 274927, 274934, 274953, 274966, 274980, 275005, 275018, 275029, 275058, 275151, 275159, 275204, 275242, 275288, 275388, 275417, 275684, 275734, 275736, 275776, 275805, 275882, 275889, 275942, 275999, 276003, 276009, 276015, 276067, 276199, 276228, 276308, 276311, 276359, 276367, 276375],
+    firstRoll: 274362,
+    lastRoll: 276375,
+    totalCandidate: 60,
+    reportingTime: "08/04/2026 08:00 am"
+  },
+  {
+    listRolls: [276416, 276427, 276430, 276460, 276477, 276521, 276560, 276725, 276763, 276779, 276794, 276803, 276839, 276852, 276877, 276917, 276933, 276940, 276972, 277037, 277092, 277269, 277274, 277300, 277303, 277309, 277422, 277430, 277440, 277507, 277534, 277540, 277631, 277632, 277646, 277672, 277684, 277693, 277716, 277811, 277841, 277846, 277883, 277910, 277975, 278005, 278156, 278182, 278186, 278198, 278264, 278286, 278306, 278335, 278345, 278396, 278441, 278479, 278669, 278807],
+    firstRoll: 276416,
+    lastRoll: 278807,
+    totalCandidate: 60,
+    reportingTime: "08/04/2026 10:00 am"
+  },
+  {
+    listRolls: [278862, 278919, 278999, 279049, 279081, 279129, 279179, 279244, 279338, 279479, 279537, 279585, 279590, 279638, 279721, 279725, 279755, 279784, 279808, 279867, 279869, 279881, 279934, 279938, 279953, 279971, 279990, 280008, 280022, 280079, 280086, 280121, 280163, 280167, 280173, 280188, 280189, 280225, 280228, 280263, 280275, 280290, 280340, 280349, 280400, 280491, 280547, 280620, 280622, 280633, 280638, 280654, 280706, 280707, 280708, 280764, 280844, 280889, 280926, 280951],
+    firstRoll: 278862,
+    lastRoll: 280951,
+    totalCandidate: 60,
+    reportingTime: "09/04/2026 08:00 am"
+  },
+  {
+    listRolls: [281006, 281009, 281041, 281054, 281059, 281077, 281078, 281104, 281121, 281163, 281205, 281235, 281248, 281250, 281256, 281259, 281268, 281357, 281468, 281600, 281613, 281625, 281634, 281702, 281709, 281743, 281749, 281819, 281846, 281860, 281887, 281923, 281974, 281976, 281981, 282013, 282069, 282083, 282096, 282161, 282271, 282272, 282310, 282336, 282362, 282364, 282405, 282488, 282501, 282539, 282557, 282563, 282578, 282662, 282694, 282698, 282725, 282731, 282760, 282763],
+    firstRoll: 281006,
+    lastRoll: 282763,
+    totalCandidate: 60,
+    reportingTime: "09/04/2026 10:00 am"
+  },
+  {
+    listRolls: [282767, 282773, 282800, 282805, 282821, 282825, 282856, 282886, 282901, 282904, 282980, 283006, 283062, 283084, 283109, 283123, 283160, 283186, 283261, 283301, 283447, 283601, 283710, 284016, 284019, 284112, 284145, 284191, 284232, 284254, 284279, 284332, 284373, 284394, 284413, 284428, 284505, 284525, 284564, 284568, 284578, 284591, 284613, 284655, 284659, 284688, 284692, 284701, 284705, 284724, 284733, 284831, 284844, 284846, 284861, 284899],
+    firstRoll: 282767,
+    lastRoll: 284899,
+    totalCandidate: 56,
+    reportingTime: "10/04/2026 08:00 am"
+  },
+  {
+    listRolls: [284950, 285025, 285105, 285106, 285216, 285277, 285279, 285463, 285468, 285474, 285484, 285490, 285602, 285637, 285644, 285685, 285695, 285809, 285851, 285855, 285870, 285894, 285947, 286012, 286018, 286097, 286140, 286173, 286192, 286200, 286313, 286330, 286334, 286372, 286397, 286404, 286476, 286506, 286626, 286712, 286755, 286816, 286853, 286856, 286865, 286883, 286894, 286981, 286982, 287053, 287082, 287101, 287136, 287178, 287260, 287357],
+    firstRoll: 284950,
+    lastRoll: 287357,
+    totalCandidate: 56,
+    reportingTime: "10/04/2026 10:00 am"
+  },
+  {
+    listRolls: [287393, 287410, 287426, 287472, 287510, 287519, 287544, 287610, 287615, 287616, 287635, 287670, 287713, 287756, 287767, 287834, 287922, 287990, 287992, 287999, 288017, 288021, 288124, 288181, 288220, 288329, 288520, 288558, 288659, 288691, 288694, 288773, 288775, 288776, 288830, 288866, 288874, 288880, 288892, 288917, 288929, 288940, 288941, 289014, 289064, 289106, 289145, 289180, 289184, 289199, 289241, 289252, 289278, 289289, 289316, 289327],
+    firstRoll: 287393,
+    lastRoll: 289327,
+    totalCandidate: 56,
+    reportingTime: "10/04/2026 02:00 pm"
+  },
+  {
+    listRolls: [289356, 289442, 289495, 289508, 289523, 289575, 289578, 289585, 289622, 289643, 289724, 289779, 289842, 289926, 289995, 290038, 290045, 290049, 290143, 290171, 290220, 290225, 290249, 290296, 290470, 290492, 290507, 290512, 290587, 290612, 290643, 290659, 290664, 290832, 290868, 290876, 291026, 291047, 291070, 291097, 291106, 291136, 291176, 291239, 291252, 291275, 291304, 291308, 291310, 291317, 291401, 291407, 291433, 291466, 291467, 291492],
+    firstRoll: 289356,
+    lastRoll: 291492,
+    totalCandidate: 56,
+    reportingTime: "11/04/2026 08:00 am"
+  },
+  {
+    listRolls: [291500, 291501, 291510, 291536, 291552, 291597, 291615, 291664, 291679, 291717, 291721, 291728, 291847, 291849, 291884, 291897, 291900, 291915, 291936, 291958, 291974, 291975, 291976, 292003, 292062, 292068, 292096, 292139, 292186, 292272, 292314, 292390, 292391, 292495, 292512, 292531, 292550, 292739, 292849, 292859, 292884, 292929, 292944, 292952, 292992, 293097, 293115, 293158, 293295, 293356, 293486, 293500, 293561, 293596, 293614, 293618],
+    firstRoll: 291500,
+    lastRoll: 293618,
+    totalCandidate: 56,
+    reportingTime: "11/04/2026 10:00 am"
+  },
+  {
+    listRolls: [293625, 293662, 293670, 293822, 293826, 293833, 293920, 293924, 293932, 294016, 294021, 294030, 294128, 294175, 294184, 294196, 294205, 294294, 294296, 294357, 294376, 294383, 294454, 294495, 294507, 294564, 294568, 294572, 294627, 294659, 294662, 294702, 294888, 294945, 294964, 294967, 294969, 294982, 295009, 295033, 295170, 295195, 295378, 295485, 295557, 295576, 295623, 295633, 295637, 295669, 295704, 295791, 295898, 295957, 295979, 295986],
+    firstRoll: 293625,
+    lastRoll: 295986,
+    totalCandidate: 56,
+    reportingTime: "11/04/2026 02:00 pm"
+  },
+  {
+    listRolls: [296015, 296097, 296114, 296136, 296146, 296170, 296178, 296192, 296232, 296245, 296289, 296296, 296310, 296415, 296429, 296489, 296502, 296606, 296653, 296686, 296696, 296785, 296895, 296936, 296983, 297012, 297301, 297316, 297351, 297357, 297427, 297437, 297450, 297474, 297479, 297495, 297538, 297542, 297543, 297564, 297576, 297600, 297608, 297611, 297619, 297623, 297657, 297667, 297693, 297698, 297758, 297817, 297846, 297848, 297862, 297915],
+    firstRoll: 296015,
+    lastRoll: 297915,
+    totalCandidate: 56,
+    reportingTime: "12/04/2026 08:00 am"
+  },
+  {
+    listRolls: [297936, 297940, 297954, 297957, 297969, 297975, 298007, 298025, 298027, 298039, 298093, 298136, 298159, 298176, 298232, 298239, 298250, 298257, 298317, 298354, 298463, 298491, 298623, 298661, 298673],
+    firstRoll: 297936,
+    lastRoll: 298673,
+    totalCandidate: 25,
+    reportingTime: "13/04/2026 08:00 am"
+  }
+];
+
+const writtenRollNumbers = [100038,100046,100055,100058,100065,100083,100086,100094,100096,100104,100115,100119,100137,100149,100160,100170,100171,100184,100196,100201,100202,100203,100218,100233,100256,100270,100280,100295,100322,100323,100325,100333,100336,100361,100363,100371,100376,100386,100395,100407,100416,100424,100448,100491,100520,100560,100567,100573,100576,100582,100595,100612,100622,100625,100632,100633,100650,100651,100654,100655,100662,100676,100678,100680,100686,100687,100688,100694,100719,100727,100728,100744,100754,100770,100783,100800,100833,100840,100841,100850,100863,100879,100915,100925,100931,100943,100961,100969,100987,100995,101004,101008,101013,101015,101017,101034,101054,101069,101085,101092,101106,101109,101124,101128,101135,101149,101173,101182,101192,101201,101213,101229,101231,101232,101265,101283,101298,101314,101341,101346,101371,101378,101398,101401,101410,101415,101436,101454,101461,101472,101531,101535,101542,101547,101577,101606,101607,101614,101616,101625,101633,101634,101647,101649,101672,101680,101686,101704,101710,101711,101719,101732,101739,101743,101753,101757,101762,101780,101790,101794,101797,101799,101802,101885,101887,101895,101904,101913,101915,101917,101929,101940,101968,101973,101988,102014,102019,102032,102041,102047,102063,102068,102095,102105,102141,102143,102152,102159,102174,102179,102181,102192,102202,102231,102286,102288,102298,102310,102322,102327,102352,102371,102374,102425,102437,102451,102452,102477,102500,102510,102512,102513,102524,102539,102540,102562,102612,102614,102616,102623,102626,102633,102681,102689,102692,102714,102737,102739,102743,102758,102768,102776,102797,102811,102829,102844,102854,102866,102867,102877,102896,102913,102936,102951,102958,102984,102991,103021,103027,103029,103030,103040,103065,103103,103121,103149,103153,103157,103165,103171,103184,103210,103211,103212,103235,103255,103264,103273,103280,103288,103317,103320,103324,103328,103334,103339,103355,103359,103429,103438,103450,103458,103479,103481,103491,103496,103503,103517,103532,103536,103567,103575,103596,103617,103628,103658,103683,103687,103725,103729,103767,103785,103791,103814,103833,103834,103847,103853,103898,103931,103939,103941,103951,103963,103967,103979,103980,103992,104017,104019,104024,104032,104071,104097,104098,104113,104125,104155,104166,104178,104183,104188,104228,104280,104297,104301,104317,104339,104342,104346,104351,104360,104374,104375,104377,104401,104402,104415,104425,104430,104431,104436,104454,104457,104463,104476,104488,104549,104565,104579,104583,104607,104637,104675,104707,104708,104710,104714,104729,104745,104747,104753,104758,104759,104763,104766,104777,104783,104786,104797,104814,104824,104827,104852,104860,104864,104885,104897,104932,104933,104940,104946,104949,104967,104973,105005,105014,105022,105025,105064,105074,105076,105106,105134,105138,105144,105152,105168,105173,105192,105197,105224,105228,105246,105248,105252,105273,105294,105336,105358,105360,105383,105396,105410,105435,105437,105442,105449,105476,105489,105501,105505,105508,105515,105540,105552,105558,105562,105570,105573,105581,105585,105589,105596,105617,105621,105638,105686,105694,105699,105703,105751,105770,105777,105806,105808,105816,105821,105822,105824,105826,105832,105834,105851,105854,105860,105872,105875,105884,105895,105918,105926,105963,106006,106057,106071,106074,106076,106104,106109,106120,106127,106137,106141,106163,106174,106181,106199,106206,106209,106216,106227,106242,106266,106288,106301,106318,106342,106348,106359,106361,106382,106413,106414,106427,106435,106440,106458,106463,106468,106496,106500,106511,106518,106524,106547,106593,106604,106605,106610,106623,106630,106648,106692,106693,106731,106732,106757,106760,106769,106785,106804,106811,106814,106819,106825,106834,106839,106902,106910,106940,106949,106958,106970,106999,107005,107008,107013,107019,107078,107084,107095,107124,107125,107137,107175,107208,107210,107212,107225,107243,107258,107279,107286,107318,107329,107356,107369,107390,107400,107419,107435,107477,107482,107485,107518,107529,107533,107547,107558,107559,107581,107607,107621,107647,107658,107671,107685,107693,107696,107697,107706,107721,107726,107727,107733,107743,107744,107745,107749,107757,107793,107794,107797,107815,107822,107835,107856,107902,107918,107920,107923,107935,107953,107955,107973,108002,108013,108014,108020,108035,108044,108067,108069,108077,108107,108120,108143,108163,108200,108220,108226,108232,108235,108238,108239,108241,108265,108270,108305,108328,108345,108381,108383,108401,108440,108447,108449,108453,108457,108460,108467,108474,108501,108512,108516,108517,108540,108548,108577,108583,108593,108596,108627,108634,108648,108654,108659,108713,108714,108734,108738,108744,108774,108777,108801,108860,108879,108890,108891,108894,108913,108915,108920,108928,108939,108976,108989,108991,109016,109021,109061,109067,109085,109103,109116,109124,109125,109129,109131,109162,109164,109174,109182,109194,109201,109228,109238,109270,109273,109289,109300,109308,109311,109317,109345,109374,109375,109378,109387,109398,109405,109420,109437,109459,109467,109472,109482,109483,109485,109497,109509,109516,109525,109531,109534,109560,109573,109574,109584,109591,109600,109616,109628,109641,109659,109660,109677,109691,109697,109700,109704,109710,109717,109758,109760,109769,109771,109783,109785,109801,109812,109832,109842,109851,109854,109873,109877,109886,109923,109930,109935,109936,109938,109941,109947,109967,109969,109985,109993,109995,110010,110018,110039,110063,110081,110123,110140,110156,110169,110180,110192,110219,110251,110289,110308,110346,110367,110385,110408,110419,110436,110442,110447,110454,110477,110494,110511,110512,110514,110531,110598,110601,110616,110621,110634,110656,110685,110707,110708,110721,110739,110744,110757,110762,110781,110793,110794,110799,110811,110818,110822,110845,110854,110871,110898,110912,110938,110961,110977,110988,110993,111017,111029,111032,111085,111113,111121,111151,111163,111183,111186,111190,111197,111201,111202,111204,111210,111221,111222,111224,111225,111232,111256,111257,111261,111271,111295,111298,111366,111370,111374,111397,111401,111402,111404,111414,111443,111450,111455,111465,111491,111529,111536,111544,111557,111563,111567,111586,111597,111616,111626,111633,111641,111646,111666,111667,111675,111678,111686,111693,111721,111743,111753,111760,111769,111797,111804,111819,111827,111828,111829,111855,111867,111869,111925,111966,111967,111979,111990,111995,112034,112041,112064,112075,112083,112086,112102,112114,112120,112168,112204,112208,112210,112211,112213,112220,112235,112257,112308,112333,112345,112358,112364,112371,112395,112410,112469,112474,112476,112483,112484,112486,112487,112509,112517,112568,112609,112629,112661,112662,112670,112699,112724,112732,112769,112786,112793,112794,112807,112809,112810,112815,112824,112830,112843,112846,112849,112873,112884,112887,112901,112907,112948,112954,112961,112966,112969,112979,112994,112999,113001,113002,113005,113015,113026,113029,113042,113051,113058,113062,113066,113071,113090,113091,113093,113113,113131,113149,113154,113159,113172,113180,113199,113202,113218,113220,113225,113247,113255,113296,113302,113337,113353,113364,113384,113398,113407,113415,113433,113444,113463,113464,113466,113480,113490,113498,113533,113536,113537,113538,113546,113549,113552,113555,113560,113573,113594,113598,113602,113604,113611,113639,113640,113666,113669,113670,113676,113683,113686,113691,113699,113780,113787,113798,113820,113821,113827,113844,113859,113866,113868,113883,113887,113890,113915,113920,113930,113943,113950,113969,113998,114011,114016,114021,114040,114078,114093,114100,114157,114182,114210,114219,114233,114237,114239,114279,114283,114294,114339,114345,114365,114366,114402,114410,114411,114425,114450,114451,114453,114506,114511,114512,114523,114530,114532,114549,114576,114619,114623,114630,114645,114672,114686,114694,114715,114727,114745,114773,114777,114804,114846,114862,114879,114899,114922,114931,114956,114958,114967,114971,115021,115028,115036,115044,115083,115092,115157,115159,115166,115183,115195,115203,115207,115231,115233,115234,115241,115250,115251,115280,115292,115323,115346,115373,115389,115422,115426,115431,115437,115445,115475,115483,115496,115509,115514,115523,115555,115558,115559,115565,115568,115594,115598,115607,115609,115641,115684,115687,115689,115690,115733,115734,115736,115739,115740,115752,115764,115782,115802,115813,115836,115842,115846,115853,115889,115900,115905,115915,115930,115947,115953,115970,115981,115986,115997,116007,116020,116060,116069,116075,116084,116089,116092,116094,116101,116121,116126,116132,116134,116136,116144,116157,116161,116192,116207,116218,116229,116238,116247,116284,116287,116290,116293,116305,116312,116318,116337,116344,116368,116413,116416,116429,116440,116457,116462,116464,116465,116472,116493,116497,116511,116524,116541,116569,116573,116578,116593,116608,116656,116667,116669,116672,116709,116720,116738,116750,116759,116787,116789,116791,116821,116828,116833,116835,116858,116860,116871,116887,116898,116909,116910,116929,116935,116940,116949,116955,116956,117004,117015,117028,117030,117045,117047,117055,117074,117078,117091,117097,117103,117106,117138,117155,117173,117178,117182,117193,117203,117235,117239,117248,117250,117251,117255,117258,117262,117265,117277,117336,117338,117343,117346,117352,117353,117356,117364,117368,117373,117382,117384,117385,117390,117395,117413,117439,117489,117491,117501,117509,117521,117537,117540,117542,117562,117563,117569,117573,117581,117589,117596,117597,117600,117603,117613,117618,117625,117636,117674,117734,117740,117741,117744,117765,117766,117768,117781,117794,117797,117814,117849,117859,117863,117876,117885,117906,117918,117922,117941,117947,117951,117975,117977,117994,117996,118037,118062,118068,118108,118150,118178,118208,118215,118222,118233,118252,118273,118284,118292,118302,118318,118364,118369,118376,118405,118417,118422,118434,118458,118461,118462,118465,118476,118506,118558,118626,118631,118638,118639,118645,118647,118652,118682,118687,118704,118708,118713,118728,118732,118750,118802,118805,118806,118815,118816,118820,118828,118848,118853,118892,118894,118912,118944,118985,119001,119025,119027,119040,119043,119054,119078,119102,119110,119117,119122,119129,119135,119136,119148,119164,119168,119187,119210,119229,119246,119299,119317,119319,119321,119354,119374,119410,119429,119441,119453,119478,119515,119556,119587,119589,119595,119608,119619,119624,119632,119674,119692,119705,119706,119754,119758,119769,119770,119800,119818,119863,119869,119912,119914,119943,119958,119962,119971,119978,119984,119992,119993,120007,120013,120021,120062,120084,120097,120099,120104,120129,120133,120140,120145,120149,120159,120191,120226,120239,120241,120252,120273,120279,120317,120324,120339,120361,120363,120364,120367,120439,120448,120455,120525,120542,120543,120576,120615,120648,120656,120678,120680,120696,120700,120714,120718,120732,120733,120741,120776,120778,120781,120794,120797,120824,120829,120833,120844,120846,120870,120882,120893,120897,120900,120917,120975,120985,120992,121012,121017,121026,121041,121051,121060,121068,121069,121080,121102,121111,121115,121117,121129,121147,121194,121233,121234,121276,121286,121292,121298,121319,121322,121324,121337,121338,121388,121390,121397,121414,121425,121438,121455,121458,121479,121483,121485,121490,121501,121507,121524,121539,121546,121596,121612,121622,121655,121661,121666,121688,121698,121702,121705,121730,121739,121751,121759,121767,121784,121805,121825,121828,121835,121862,121891,121893,121926,121933,121937,121982,121988,121996,122001,122011,122018,122060,122063,122072,122090,122122,122128,122138,122157,122167,122188,122189,122197,122220,122231,122250,122258,122280,122286,122301,122332,122335,122344,122389,122397,122417,122446,122465,122482,122528,122545,122550,122553,122555,122559,122580,122597,122621,122648,122653,122704,122710,122712,122717,122720,122723,122731,122746,122761,122786,122798,122800,122810,122829,122840,122842,122874,122893,122926,122930,122941,122949,122950,122956,122974,122984,123018,123019,123029,123056,123060,123084,123107,123108,123110,123123,123147,123160,123164,123185,123210,123242,123253,123261,123265,123276,123304,123318,123319,123322,123328,123345,123346,123349,123372,123408,123422,123453,123464,123487,123497,123520,123548,123553,123568,123591,123599,123604,123605,123618,123623,123637,123696,123710,123713,123732,123758,123761,123772,123792,123817,123819,123829,123838,123864,123886,123895,123906,123938,123969,123977,123993,124000,124034,124074,124093,124101,124112,124130,124171,124199,124201,124206,124208,124210,124222,124224,124226,124230,124243,124247,124296,124309,124313,124375,124382,124390,124391,124394,124399,124402,124411,124435,124446,124528,124549,124552,124579,124629,124640,124673,124690,124697,124716,124759,124767,124768,124774,124800,124803,124816,124817,124822,124824,124835,124840,124841,124848,124855,124865,124878,124894,124907,124910,124915,124920,124923,124934,124976,124987,125000,125002,125016,125025,125049,125090,125118,125124,125136,125145,125148,125193,125215,125228,125231,125242,125251,125256,125257,125261,125275,125284,125301,125304,125308,125335,125337,125338,125346,125356,125371,125379,125408,125434,125460,125465,125471,125476,125478,125492,125514,125520,125522,125528,125535,125555,125593,125611,125626,125638,125661,125674,125693,125700,125716,125731,125741,125749,125817,125822,125846,125858,125874,125887,125907,125930,125949,125951,125962,125980,125983,125995,126004,126025,126059,126108,126117,126138,126163,126177,126207,126232,126253,126267,126270,126277,126292,126300,126304,126310,126343,126344,126346,126367,126374,126418,126454,126463,126483,126513,126514,126558,126563,126572,126575,126597,126612,126628,126633,126635,126644,126660,126663,126703,126711,126717,126719,126721,126724,126732,126757,126758,126763,126764,126783,126791,126798,126823,126835,126840,126850,126852,126854,126855,126863,126878,126888,126905,126914,126945,126963,126965,126984,126991,127017,127040,127051,127053,127065,127071,127107,127113,127128,127130,127131,127167,127174,127181,127193,127208,127212,127217,127218,127227,127242,127255,127257,127274,127281,127289,127307,127308,127323,127328,127331,127345,127357,127375,127389,127396,127424,127425,127434,127440,127463,127468,127494,127497,127517,127519,127523,127528,127534,127549,127550,127582,127592,127602,127603,127607,127614,127621,127625,127631,127652,127666,127667,127668,127670,127687,127699,127706,127715,127750,127753,127812,127835,127851,127852,127857,127859,127905,127911,127925,127946,127952,127963,127992,128002,128003,128005,128033,128042,128046,128049,128051,128064,128070,128072,128084,128133,128137,128154,128163,128177,128196,128198,128210,128213,128216,128218,128246,128258,128267,128292,128293,128299,128305,128309,128314,128319,128321,128325,128326,128330,128353,128355,128358,128359,128389,128391,128405,128413,128420,128446,128450,128462,128489,128513,128527,128529,128541,128548,128555,128575,128594,128599,128610,128614,128615,128639,128650,128652,128667,128674,128678,128687,128688,128706,128711,128780,128797,128810,128813,128828,128855,128856,128879,128892,128895,128923,128931,128936,128952,128957,128980,128988,129002,129005,129012,129033,129045,129058,129066,129080,129087,129140,129144,129152,129157,129201,129228,129265,129270,129280,129303,129305,129309,129314,129316,129378,129394,129418,129419,129431,129436,129437,129457,129461,129474,129503,129523,129559,129567,129616,129617,129622,129634,129653,129685,129696,129701,129712,129717,129724,129740,129743,129790,129810,129819,129829,129863,129893,129895,129927,129962,129966,129970,129971,129992,130019,130021,130061,130088,130105,130118,130119,130120,130150,130153,130168,130172,130179,130191,130196,130248,130257,130276,130279,130317,130322,130328,130376,130390,130420,130433,130434,130442,130459,130475,130486,130493,130497,130511,130518,130525,130530,130531,130583,130585,130589,130593,130605,130618,130630,130650,130657,130664,130667,130692,130695,130702,130730,130739,130765,130773,130776,130784,130794,130805,130832,130833,130838,130878,130885,130906,130924,130940,130942,130959,130967,130986,130992,130995,131001,131007,131029,131039,131061,131063,131075,131078,131079,131087,131096,131097,131136,131144,131148,131179,131182,131183,131188,131204,131209,131215,131216,131226,131240,131260,131287,131291,131295,131299,131315,131320,131332,131345,131374,131393,131404,131405,131417,131433,131457,131461,131479,131521,131525,131527,131538,131544,131560,131600,131602,131622,131623,131624,131647,131649,131668,131679,131693,131699,131702,131712,131713,131716,131725,131727,131735,131738,131740,131752,131754,131761,131767,131769,131770,131792,131796,131803,131809,131817,131875,131886,131890,131904,131917,131938,131947,131960,131961,131963,131989,131991,132013,132021,132032,132033,132059,132066,132075,132081,132086,132090,132091,132094,132120,132142,132159,132163,132190,132210,132212,132239,132241,132271,132292,132294,132321,132326,132332,132350,132361,132362,132364,132378,132379,132390,132391,132392,132401,132412,132419,132425,132454,132463,132467,132486,132487,132494,132545,132551,132553,132556,132591,132598,132615,132635,132646,132647,132714,132719,132720,132746,132751,132796,132803,132821,132833,132841,132850,132852,132858,132860,132864,132879,132884,132899,132918,132922,132927,132937,132952,132955,132969,133000,133015,133069,133075,133076,133082,133098,133108,133109,133113,133125,133129,133133,133144,133146,133149,133151,133152,133163,133179,133182,133190,133193,133199,133224,133229,133235,133254,133302,133303,133307,133324,133332,133372,133376,133378,133387,133402,133409,133427,133429,133431,133440,133476,133487,133492,133506,133518,133525,133526,133552,133605,133614,133639,133654,133656,133661,133663,133690,133720,133732,133735,133751,133756,133835,133851,133854,133861,133876,133905,133927,133934,133951,133973,133976,133984,134004,134024,134051,134053,134054,134062,134106,134125,134135,134156,134159,134186,134199,134241,134269,134270,134277,134284,134321,134335,134364,134386,134392,134400,134402,134408,134409,134419,134427,134428,134442,134461,134490,134513,134523,134538,134581,134589,134610,134613,134628,134632,134646,134663,134666,134675,134680,134685,134693,134706,134725,134731,134746,134762,134769,134772,134786,134805,134807,134836,134851,134854,134873,134882,134893,134925,134966,134967,134969,134978,134982,134984,134997,135037,135042,135108,135112,135114,135122,135129,135149,135174,135188,135189,135191,135193,135194,135202,135219,135223,135224,135241,135250,135258,135262,135266,135273,135290,135303,135310,135313,135315,135324,135334,135362,135367,135374,135375,135396,135408,135411,135415,135427,135432,135438,135469,135492,135500,135509,135538,135540,135553,135557,135574,135576,135586,135595,135597,135613,135618,135667,135669,135677,135685,135699,135764,135814,135820,135822,135853,135893,135918,135926,135935,135973,135976,135984,135996,136017,136049,136112,136132,136140,136191,136197,136215,136248,136264,136271,136281,136302,136311,136336,136361,136388,136389,136395,136398,136403,136455,136468,136493,136506,136509,136510,136514,136515,136542,136546,136551,136554,136559,136563,136573,136595,136612,136617,136632,136633,136634,136641,136643,136644,136675,136681,136682,136707,136717,136738,136740,136741,136752,136763,136774,136779,136795,136798,136806,136834,136837,136840,136847,136859,136890,136934,136945,136947,136977,136982,136988,136992,137002,137004,137007,137012,137028,137034,137040,137044,137055,137061,137086,137095,137099,137113,137126,137140,137141,137148,137154,137157,137164,137185,137188,137189,137192,137256,137285,137290,137312,137317,137320,137324,137328,137347,137370,137378,137388,137389,137398,137400,137403,137429,137430,137437,137475,137492,137494,137516,137530,137531,137533,137566,137570,137574,137597,137604,137605,137609,137621,137627,137629,137661,137665,137729,137746,137750,137751,137768,137769,137776,137793,137803,137843,137859,137872,137880,137918,137931,137934,137945,137951,137983,138020,138023,138036,138038,138067,138093,138101,138122,138127,138129,138130,138134,138152,138195,138197,138203,138205,138207,138232,138252,138265,138289,138294,138297,138305,138314,138316,138337,138361,138370,138371,138377,138385,138390,138400,138406,138437,138474,138495,138510,138512,138527,138529,138531,138538,138564,138581,138635,138644,138655,138667,138697,138706,138741,138747,138749,138772,138784,138804,138864,138865,138875,138908,138914,138935,138944,138952,138966,138984,138988,138996,139035,139057,139066,139079,139084,139087,139090,139116,139130,139169,139172,139176,139209,139255,139265,139275,139277,139296,139299,139319,139335,139363,139384,139388,139390,139406,139412,139429,139443,139448,139450,139454,139463,139465,139471,139474,139482,139484,139491,139503,139506,139542,139558,139560,139566,139611,139631,139633,139645,139648,139664,139681,139694,139698,139700,139710,139731,139732,139748,139749,139757,139758,139764,139797,139809,139841,139846,139849,139852,139863,139865,139891,139892,139908,139929,139937,139958,139963,139991,140006,140015,140035,140041,140046,140049,140054,140084,140094,140105,140108,140115,140119,140121,140124,140131,140141,140151,140188,140251,140255,140262,140269,140279,140302,140312,140319,140332,140342,140357,140360,140365,140386,140397,140408,140409,140415,140421,140430,140449,140487,140490,140515,140537,140547,140556,140602,140609,140630,140671,140689,140691,140698,140755,140769,140770,140788,140792,140796,140806,140809,140816,140837,140841,140848,140856,140875,140879,140883,140897,140939,140946,140987,141008,141009,141011,141020,141026,141032,141035,141065,141074,141105,141117,141120,141128,141129,141136,141142,141152,141178,141185,141195,141207,141217,141235,141247,141269,141273,141280,141291,141303,141308,141310,141316,141349,141364,141394,141414,141415,141417,141447,141459,141485,141491,141500,141510,141511,141541,141543,141550,141564,141609,141615,141639,141661,141674,141682,141683,141734,141745,141748,141755,141797,141802,141834,141853,141864,141878,141883,141919,141922,141945,141947,141953,141958,141980,141989,142022,142028,142048,142076,142091,142096,142110,142146,142163,142186,142216,142222,142251,142258,142261,142323,142355,142363,142377,142423,142424,142432,142436,142442,142486,142495,142502,142555,142575,142588,142602,142609,142614,142622,142630,142638,142642,142660,142665,142669,142683,142687,142691,142720,142723,142724,142725,142732,142744,142751,142754,142759,142773,142791,142803,142828,142843,142859,142875,142878,142907,142943,142949,142954,142976,142986,142987,143016,143019,143024,143040,143055,143079,143082,143088,143112,143129,143139,143144,143145,143148,143155,143187,143195,143202,143216,143218,143224,143233,143250,143280,143358,143383,143388,143404,143409,143411,143439,143470,143486,143522,143531,143533,143555,143556,143565,143581,143621,143643,143689,143690,143695,143704,143715,143727,143751,143752,143762,143772,143789,143797,143820,143838,143839,143840,143848,143860,143886,143888,143890,143896,143897,143899,143917,143922,143930,143935,143947,143951,143954,143960,143971,143977,143981,144009,144051,144058,144059,144067,144079,144093,144109,144136,144148,144163,144173,144176,144188,144207,144255,144259,144262,144276,144280,144296,144300,144330,144332,144335,144336,144340,144346,144403,144412,144424,144441,144449,144467,144558,144572,144589,144619,144633,144657,144668,144684,144700,144707,144720,144753,144754,144760,144782,144789,144791,144801,144820,144823,144846,144851,144892,144916,144920,144926,144935,144941,144943,144985,144987,144990,144993,145006,145028,145036,145041,145053,145060,145074,145081,145082,145100,145103,145114,145132,145146,145150,145163,145178,145184,145191,145194,145201,145202,145214,145215,145226,145229,145252,145274,145275,145286,145287,145289,145307,145314,145325,145336,145390,145438,145471,145489,145510,145520,145524,145532,145534,145538,145540,145549,145553,145567,145580,145613,145620,145622,145637,145654,145663,145672,145673,145682,145701,145705,145709,145712,145764,145782,145827,145832,145844,145845,145853,145863,145877,145879,145880,145893,145903,145905,145921,145925,145970,145984,145989,145995,145996,145997,146022,146036,146043,146044,146047,146051,146068,146092,146102,146110,146113,146123,146125,146128,146148,146157,146162,146173,146177,146185,146186,146196,146202,146213,146224,146226,146239,146242,146251,146257,146262,146296,146308,146314,146334,146344,146349,146374,146375,146383,146386,146406,146415,146416,146427,146450,146454,146457,146459,146466,146498,146516,146524,146539,146550,146556,146557,146568,146575,146583,146606,146620,146623,146634,146674,146679,146684,146697,146724,146737,146756,146770,146780,146785,146788,146815,146862,146874,146887,146913,146918,146943,146954,146961,146963,146982,146996,147015,147021,147022,147027,147031,147086,147094,147100,147116,147133,147135,147151,147156,147178,147180,147189,147216,147220,147238,147252,147258,147261,147270,147274,147280,147288,147300,147303,147318,147325,147344,147349,147350,147352,147371,147394,147395,147398,147402,147430,147448,147475,147477,147486,147487,147506,147520,147522,147552,147564,147566,147594,147615,147624,147665,147669,147674,147699,147703,147711,147739,147740,147750,147790,147800,147811,147819,147845,147850,147861,147876,147899,147930,147944,147945,147954,147960,147965,147971,147980,147991,147992,148006,148028,148034,148042,148051,148070,148084,148091,148095,148103,148119,148141,148145,148160,148165,148168,148178,148185,148186,148187,148188,148202,148204,148213,148221,148226,148254,148257,148280,148285,148286,148299,148367,148372,148384,148387,148402,148410,148414,148431,148433,148456,148458,148467,148473,148495,148509,148511,148512,148522,148527,148535,148556,148560,148568,148571,148574,148576,148582,148590,148603,148607,148642,148653,148654,148666,148708,148714,148722,148732,148742,148748,148752,148753,148756,148765,148776,148778,148785,148789,148791,148800,148811,148832,148834,148862,148874,148876,148879,148884,148886,148892,148896,148908,148919,148920,148925,148934,148935,148948,148951,148953,148978,148979,148983,148989,148992,148993,148995,149000,149001,149026,149027,149042,149051,149109,149122,149129,149130,149147,149159,149176,149186,149214,149226,149246,149271,149280,149296,149308,149323,149406,149433,149457,149473,149555,149581,149596,149599,149606,149609,149638,149654,149664,149669,149675,149688,149708,149718,149723,149732,149739,149772,149774,149790,149795,149822,149840,149844,149859,149912,149935,149987,150008,150025,150028,150038,150040,150045,150075,150080,150087,150109,150113,150118,150144,150153,150164,150190,150221,150235,150239,150265,150278,150281,150294,150302,150308,150315,150325,150328,150356,150369,150373,150383,150394,150399,150402,150439,150446,150476,150494,150508,150510,150515,150517,150520,150524,150541,150548,150561,150603,150634,150685,150688,150692,150697,150705,150725,150735,150777,150819,150820,150838,150854,150872,150879,150894,150912,150914,150924,150936,150938,150949,150966,150968,150973,150988,150989,150992,150998,151005,151009,151020,151036,151051,151067,151086,151094,151123,151129,151138,151149,151152,151195,151215,151241,151255,151262,151275,151283,151299,151300,151350,151354,151359,151361,151365,151377,151380,151405,151411,151418,151421,151426,151440,151447,151482,151489,151491,151529,151550,151554,151594,151615,151623,151626,151660,151675,151694,151702,151711,151713,151721,151727,151735,151737,151754,151755,151764,151772,151789,151799,151834,151865,151870,151879,151936,151939,151941,151946,152004,152005,152019,152051,152093,152109,152120,152125,152140,152144,152152,152159,152165,152174,152220,152227,152246,152257,152260,152269,152278,152279,152305,152318,152325,152342,152344,152361,152378,152379,152390,152391,152392,152408,152410,152438,152470,152474,152497,152512,152537,152546,152573,152582,152587,152589,152595,152596,152600,152623,152643,152645,152647,152653,152662,152676,152678,152682,152715,152725,152731,152739,152740,152758,152766,152775,152787,152789,152823,152825,152830,152854,152883,152886,152902,152954,152982,152985,152991,153001,153035,153064,153103,153105,153116,153118,153170,153172,153199,153228,153242,153251,153258,153265,153304,153318,153325,153330,153359,153367,153368,153381,153397,153407,153414,153429,153432,153456,153482,153498,153501,153505,153530,153543,153562,153570,153589,153600,153616,153635,153636,153663,153673,153681,153692,153722,153745,153778,153781,153791,153801,153813,153828,153844,153847,153848,153864,153871,153878,153888,153911,153917,153945,153950,153964,153974,153982,153990,153993,153999,154007,154025,154049,154072,154095,154099,154145,154149,154169,154175,154185,154206,154218,154224,154226,154238,154244,154258,154283,154295,154299,154314,154317,154332,154341,154355,154371,154398,154402,154409,154411,154413,154417,154448,154491,154495,154502,154503,154509,154513,154525,154550,154554,154558,154564,154582,154609,154614,154620,154625,154637,154667,154670,154694,154702,154712,154727,154780,154781,154811,154813,154841,154867,154869,154875,154897,154916,154921,154929,154943,154968,155062,155078,155080,155088,155095,155135,155155,155179,155180,155190,155211,155224,155227,155254,155255,155262,155281,155296,155312,155326,155329,155336,155367,155400,155402,155410,155416,155419,155428,155432,155439,155445,155467,155476,155500,155503,155513,155530,155531,155545,155552,155564,155585,155603,155630,155634,155637,155639,155641,155679,155687,155714,155715,155717,155729,155730,155750,155758,155763,155764,155790,155805,155807,155809,155810,155814,155821,155825,155847,155850,155854,155861,155881,155891,155913,155915,155920,155931,155937,155951,155994,156006,156015,156041,156049,156050,156053,156056,156062,156090,156101,156111,156118,156121,156122,156123,156124,156142,156143,156146,156160,156162,156179,156198,156200,156213,156245,156252,156254,156255,156282,156284,156314,156321,156352,156355,156357,156358,156390,156441,156463,156484,156485,156502,156504,156520,156530,156550,156556,156584,156605,156609,156614,156622,156623,156633,156638,156686,156694,156699,156704,156706,156722,156725,156733,156753,156762,156768,156775,156780,156787,156819,156877,156920,156930,156941,156942,156952,156980,156990,157002,157015,157016,157076,157080,157081,157120,157126,157127,157136,157160,157162,157178,157179,157184,157208,157210,157212,157236,157241,157247,157253,157258,157264,157280,157281,157310,157314,157337,157361,157385,157396,157400,157407,157455,157493,157516,157530,157551,157559,157568,157571,157593,157637,157640,157656,157657,157669,157682,157690,157700,157701,157705,157712,157724,157731,157750,157751,157757,157758,157761,157774,157791,157798,157802,157822,157843,157846,157849,157860,157861,157862,157865,157870,157871,157903,157932,157935,157936,157937,157941,157950,157964,157988,157993,158002,158008,158017,158034,158042,158044,158061,158075,158087,158096,158102,158160,158167,158181,158182,158185,158206,158214,158230,158247,158263,158265,158271,158278,158286,158289,158300,158305,158311,158325,158342,158357,158369,158374,158383,158407,158439,158441,158444,158448,158450,158455,158482,158511,158556,158562,158587,158592,158596,158606,158611,158644,158657,158675,158700,158720,158755,158759,158777,158805,158811,158823,158836,158855,158863,158873,158874,158892,158900,158907,158920,158928,158929,158931,158944,158963,158988,158994,158998,159037,159049,159051,159055,159070,159078,159092,159096,159099,159103,159160,159172,159176,159189,159190,159205,159213,159220,159232,159270,159293,159299,159315,159316,159378,159385,159390,159415,159418,159419,159423,159435,159449,159471,159473,159484,159492,159502,159506,159530,159549,159551,159560,159566,159583,159596,159618,159621,159631,159643,159645,159659,159662,159663,159668,159677,159679,159693,159712,159732,159752,159777,159795,159810,159812,159835,159836,159837,159849,159858,159880,159901,159905,159920,159923,159930,159934,159940,159971,159997,160007,160028,160058,160067,160071,160082,160085,160091,160118,160129,160154,160205,160217,160220,160228,160251,160253,160317,160333,160350,160354,160356,160381,160388,160423,160443,160448,160450,160451,160469,160472,160491,160502,160512,160516,160534,160535,160555,160566,160584,160586,160620,160630,160637,160697,160700,160703,160708,160709,160718,160729,160754,160766,160770,160832,160873,160882,160905,160913,160931,160932,160956,160970,160989,160994,160998,161000,161003,161008,161021,161022,161031,161063,161066,161074,161122,161137,161147,161155,161156,161183,161185,161199,161200,161226,161245,161249,161261,161264,161272,161273,161333,161358,161361,161363,161378,161380,161386,161390,161426,161456,161460,161469,161479,161480,161502,161509,161519,161520,161522,161523,161524,161541,161553,161570,161583,161601,161604,161611,161620,161624,161625,161646,161650,161685,161692,161695,161696,161706,161716,161729,161775,161780,161781,161796,161807,161821,161828,161833,161849,161856,161861,161871,161909,161911,161915,161942,161948,161966,161974,161982,161992,162004,162014,162016,162031,162033,162046,162053,162059,162066,162067,162089,162107,162108,162111,162155,162178,162213,162217,162219,162225,162245,162260,162269,162273,162285,162286,162287,162290,162291,162301,162329,162356,162362,162367,162368,162377,162396,162400,162408,162411,162412,162421,162432,162446,162466,162479,162487,162497,162518,162557,162559,162596,162608,162612,162614,162646,162655,162701,162711,162720,162728,162737,162747,162760,162763,162778,162779,162782,162785,162792,162794,162814,162816,162823,162825,162834,162850,162857,162892,162893,162913,162916,162958,162995,163014,163031,163100,163119,163135,163149,163159,163164,163203,163219,163225,163238,163287,163351,163353,163390,163392,163406,163438,163465,163471,163489,163491,163501,163527,163531,163546,163558,163560,163574,163595,163597,163648,163667,163678,163679,163688,163699,163701,163725,163735,163740,163748,163752,163771,163777,163782,163805,163843,163846,163860,163865,163876,163886,163906,163923,163927,163933,163967,163979,164015,164020,164027,164034,164049,164068,164072,164078,164085,164086,164161,164174,164275,164281,164320,164323,164339,164343,164360,164364,164366,164390,164422,164423,164448,164461,164479,164480,164484,164487,164496,164527,164531,164538,164545,164550,164553,164572,164578,164592,164595,164622,164632,164637,164670,164673,164693,164744,164748,164751,164756,164772,164782,164784,164798,164800,164809,164829,164850,164856,164869,164877,164892,164904,164915,164925,164943,164970,164984,164993,165007,165026,165032,165069,165091,165105,165114,165127,165134,165157,165171,165186,165207,165219,165232,165241,165248,165259,165269,165270,165275,165292,165305,165310,165311,165346,165378,165385,165386,165399,165403,165412,165439,165440,165475,165502,165510,165542,165545,165554,165565,165567,165590,165600,165605,165628,165631,165651,165653,165682,165692,165693,165694,165699,165701,165704,165715,165737,165764,165822,165835,165855,165871,165889,165901,165915,165919,165921,165927,165928,165938,165950,166001,166002,166022,166035,166038,166039,166042,166047,166075,166079,166080,166121,166123,166154,166167,166168,166198,166203,166219,166220,166234,166238,166255,166257,166283,166288,166355,166358,166359,166367,166372,166399,166416,166422,166459,166470,166473,166480,166488,166551,166555,166570,166573,166587,166643,166648,166649,166650,166668,166684,166695,166709,166712,166747,166748,166749,166759,166761,166777,166786,166803,166804,166806,166831,166836,166854,166855,166877,166891,166895,166897,166902,166941,166960,166971,166979,167009,167012,167015,167018,167025,167053,167068,167084,167087,167097,167123,167125,167148,167149,167151,167180,167188,167191,167208,167226,167243,167253,167276,167277,167295,167308,167310,167331,167339,167340,167360,167371,167385,167397,167399,167404,167410,167440,167465,167472,167481,167514,167517,167549,167558,167594,167611,167625,167628,167652,167653,167664,167674,167675,167690,167741,167744,167763,167772,167781,167782,167793,167794,167796,167812,167815,167819,167823,167832,167837,167867,167902,167910,167917,167924,167928,167955,167968,167969,167990,167993,167996,168004,168028,168038,168049,168079,168089,168122,168150,168152,168165,168178,168203,168208,168214,168232,168233,168275,168279,168303,168326,168353,168367,168382,168387,168422,168442,168443,168451,168461,168462,168467,168470,168479,168484,168492,168516,168518,168519,168530,168531,168532,168551,168563,168610,168631,168638,168640,168655,168703,168718,168721,168758,168760,168768,168794,168814,168827,168856,168884,168886,168903,168909,168920,168934,168935,168953,168980,168985,168988,169009,169024,169033,169034,169062,169065,169073,169094,169122,169131,169133,169147,169154,169188,169192,169266,169275,169302,169347,169387,169396,169402,169404,169415,169430,169432,169433,169444,169462,169463,169468,169483,169485,169545,169555,169558,169574,169581,169588,169627,169638,169645,169678,169691,169714,169739,169762,169822,169823,169835,169837,169864,169881,169889,169989,170013,170017,170020,170023,170046,170056,170072,170116,170128,170141,170174,170177,170188,170192,170195,170216,170219,170226,170237,170270,170291,170297,170303,170317,170358,170359,170367,170372,170389,170397,170398,170414,170419,170450,170480,170494,170495,170496,170498,170508,170511,170517,170526,170569,170578,170583,170592,170604,170607,170610,170613,170647,170661,170694,170749,170755,170757,170761,170780,170792,170796,170812,170829,170862,170867,170908,170915,170924,170943,170952,170963,170982,170984,170985,170988,171003,171031,171042,171150,171176,171183,171202,171212,171258,171273,171276,171299,171300,171313,171323,171328,171341,171344,171349,171352,171362,171374,171378,171381,171414,171451,171455,171458,171469,171473,171496,171528,171551,171552,171554,171562,171564,171569,171577,171581,171606,171609,171618,171624,171651,171665,171683,171693,171697,171709,171714,171726,171728,171746,171769,171780,171818,171834,171836,171861,171863,171864,171870,171879,171880,171905,171930,171931,171943,171964,171973,171979,171982,171990,172006,172011,172029,172049,172051,172062,172066,172089,172102,172111,172142,172145,172151,172154,172174,172187,172189,172201,172202,172223,172225,172243,172245,172249,172252,172253,172256,172264,172296,172298,172325,172334,172336,172344,172369,172384,172387,172392,172393,172404,172426,172427,172431,172439,172441,172445,172449,172463,172469,172506,172516,172519,172562,172579,172592,172593,172594,172611,172617,172654,172655,172660,172662,172667,172692,172702,172714,172732,172787,172799,172809,172821,172833,172840,172863,172894,172903,172924,172935,172957,172980,173019,173021,173025,173048,173050,173056,173085,173092,173116,173131,173132,173146,173162,173163,173165,173168,173177,173208,173236,173243,173249,173252,173253,173258,173261,173291,173341,173362,173374,173378,173412,173422,173423,173435,173461,173492,173497,173498,173499,173520,173531,173554,173555,173557,173561,173589,173655,173658,173675,173688,173704,173725,173726,173741,173753,173755,173793,173808,173832,173836,173847,173859,173876,173888,173893,173914,173917,173920,173925,173928,173945,173961,173970,173971,173984,174001,174013,174014,174015,174016,174020,174025,174036,174042,174063,174064,174071,174114,174130,174151,174155,174169,174171,174174,174183,174196,174203,174218,174240,174245,174259,174264,174298,174300,174318,174333,174337,174371,174377,174398,174403,174406,174453,174506,174522,174525,174541,174550,174579,174589,174610,174613,174633,174636,174645,174653,174680,174687,174701,174704,174714,174737,174739,174755,174768,174776,174777,174779,174786,174810,174814,174818,174859,174881,174891,174902,174910,174919,174926,174948,174953,174978,174987,174995,174997,175036,175074,175082,175093,175094,175110,175116,175120,175128,175151,175153,175154,175222,175234,175251,175267,175279,175303,175305,175316,175333,175337,175362,175392,175394,175397,175399,175400,175449,175456,175467,175470,175491,175542,175575,175580,175584,175622,175628,175632,175634,175659,175669,175675,175682,175688,175699,175761,175762,175763,175773,175783,175788,175815,175818,175838,175863,175869,175878,175885,175911,175925,175942,175962,176005,176007,176023,176035,176042,176149,176152,176177,176182,176192,176214,176225,176236,176261,176265,176267,176269,176271,176296,176305,176309,176312,176335,176339,176343,176344,176369,176395,176437,176473,176482,176491,176497,176507,176512,176513,176519,176521,176526,176528,176532,176537,176569,176576,176602,176622,176623,176633,176653,176658,176670,176693,176702,176704,176713,176733,176758,176777,176800,176806,176809,176816,176831,176847,176866,176874,176944,176964,176980,177003,177015,177020,177030,177037,177045,177054,177084,177113,177119,177129,177132,177139,177149,177151,177152,177168,177220,177226,177231,177232,177250,177260,177268,177288,177299,177314,177325,177343,177350,177353,177367,177376,177383,177385,177406,177407,177413,177416,177438,177452,177464,177467,177473,177475,177492,177496,177499,177506,177517,177546,177556,177558,177560,177562,177582,177598,177604,177610,177630,177641,177661,177671,177697,177708,177725,177760,177773,177783,177788,177790,177791,177802,177838,177839,177845,177846,177859,177879,177886,177907,177911,177921,177929,177951,178016,178053,178062,178071,178073,178086,178094,178095,178097,178121,178145,178150,178158,178181,178195,178198,178207,178252,178254,178270,178277,178298,178309,178311,178319,178364,178367,178372,178377,178378,178383,178397,178398,178418,178424,178429,178437,178445,178462,178499,178502,178503,178512,178530,178557,178573,178576,178613,178619,178627,178643,178659,178670,178678,178685,178693,178702,178724,178731,178785,178802,178808,178862,178883,178905,178906,178910,178943,178950,178951,178977,179012,179031,179040,179044,179056,179072,179078,179081,179114,179121,179123,179180,179182,179212,179213,179217,179244,179256,179259,179260,179268,179270,179273,179277,179285,179306,179307,179312,179320,179339,179351,179358,179424,179431,179449,179462,179464,179474,179498,179502,179523,179542,179543,179547,179549,179550,179564,179581,179614,179652,179678,179683,179685,179693,179698,179699,179709,179729,179742,179751,179752,179759,179766,179790,179800,179813,179838,179840,179850,179858,179865,179886,179902,179922,179931,179951,179964,179983,180001,180005,180080,180093,180104,180113,180144,180185,180192,180198,180212,180232,180233,180285,180294,180314,180315,180346,180358,180360,180401,180402,180405,180429,180431,180444,180479,180494,180495,180521,180535,180540,180545,180572,180577,180581,180585,180593,180615,180643,180652,180655,180669,180689,180706,180715,180721,180732,180739,180741,180754,180789,180790,180792,180796,180800,180805,180809,180826,180827,180853,180871,180880,180884,180890,180903,180908,180939,180951,180964,180985,180992,180997,181006,181016,181030,181032,181043,181058,181069,181098,181115,181118,181134,181161,181174,181193,181194,181201,181233,181236,181261,181271,181288,181290,181292,181298,181356,181362,181374,181376,181397,181403,181424,181425,181431,181469,181493,181520,181522,181546,181554,181555,181562,181566,181573,181574,181576,181588,181605,181606,181626,181627,181649,181663,181666,181670,181682,181695,181705,181739,181759,181763,181780,181784,181788,181789,181790,181791,181798,181825,181844,181860,181870,181876,181893,181900,181903,181908,181922,181925,181934,181950,181959,181991,181992,181994,182041,182078,182092,182097,182121,182141,182148,182173,182182,182196,182211,182268,182274,182280,182348,182352,182353,182354,182363,182371,182378,182387,182392,182409,182421,182423,182433,182488,182511,182537,182567,182578,182584,182592,182594,182608,182618,182619,182633,182635,182644,182655,182663,182677,182689,182703,182708,182721,182781,182807,182824,182851,182854,182889,182890,182898,182927,182969,182989,182993,183002,183072,183086,183101,183103,183108,183133,183147,183150,183165,183170,183171,183206,183211,183225,183239,183275,183288,183293,183325,183327,183343,183344,183377,183393,183423,183493,183498,183505,183509,183514,183516,183530,183531,183537,183541,183553,183569,183571,183578,183594,183602,183607,183616,183621,183629,183642,183643,183655,183662,183666,183667,183678,183684,183700,183723,183726,183768,183778,183799,183810,183820,183823,183824,183838,183851,183856,183863,183888,183892,183895,183896,183915,183916,183923,183947,184003,184009,184038,184043,184070,184102,184108,184126,184141,184149,184164,184219,184266,184284,184297,184300,184308,184311,184328,184350,184359,184362,184378,184384,184410,184429,184451,184459,184463,184484,184511,184547,184553,184554,184567,184581,184598,184601,184608,184619,184659,184691,184699,184704,184770,184814,184825,184865,184868,184890,184902,184905,184911,184913,184927,184930,184931,184935,184954,184957,184970,184977,184993,185005,185039,185041,185061,185066,185103,185114,185115,185144,185152,185174,185176,185179,185184,185222,185230,185237,185277,185280,185293,185294,185309,185316,185319,185327,185356,185376,185378,185392,185410,185424,185445,185449,185465,185505,185526,185530,185531,185533,185542,185545,185565,185617,185623,185641,185679,185683,185728,185769,185776,185777,185798,185809,185822,185844,185848,185856,185871,185875,185880,185949,185963,185975,185992,185997,185998,186005,186015,186036,186047,186049,186056,186075,186085,186087,186096,186126,186136,186146,186153,186156,186161,186170,186201,186204,186208,186217,186226,186230,186250,186256,186291,186298,186317,186321,186323,186327,186357,186365,186368,186388,186393,186399,186406,186438,186446,186470,186478,186480,186481,186492,186502,186507,186546,186579,186585,186594,186600,186607,186663,186684,186693,186718,186725,186750,186752,186755,186769,186777,186859,186880,186889,186905,186956,186987,186988,187012,187020,187021,187022,187025,187030,187036,187085,187086,187102,187111,187115,187135,187155,187158,187164,187165,187175,187176,187183,187187,187244,187245,187259,187263,187275,187276,187338,187340,187368,187400,187407,187425,187443,187444,187446,187448,187465,187471,187478,187510,187526,187532,187541,187552,187556,187586,187593,187595,187597,187605,187617,187624,187632,187637,187640,187657,187700,187727,187736,187737,187754,187768,187776,187778,187779,187783,187799,187803,187809,187822,187851,187882,187890,187891,187893,187904,187916,187919,187930,187932,188009,188014,188032,188076,188078,188082,188100,188115,188158,188162,188170,188212,188222,188238,188242,188245,188256,188267,188268,188271,188274,188277,188282,188284,188300,188316,188327,188336,188338,188348,188349,188351,188357,188367,188368,188404,188416,188421,188424,188425,188438,188440,188459,188460,188474,188476,188479,188483,188492,188524,188531,188559,188582,188586,188589,188591,188597,188607,188613,188619,188627,188631,188633,188651,188662,188668,188680,188690,188712,188725,188739,188767,188776,188785,188788,188795,188811,188822,188826,188862,188863,188905,188908,188917,188931,188933,188934,188935,188939,188950,188982,188992,189023,189036,189048,189053,189062,189068,189071,189073,189105,189106,189128,189137,189148,189153,189154,189172,189209,189214,189248,189283,189287,189303,189305,189323,189325,189359,189368,189392,189401,189411,189440,189485,189509,189515,189529,189535,189563,189582,189600,189604,189666,189681,189704,189734,189745,189749,189753,189765,189770,189791,189830,189836,189842,189848,189853,189858,189864,189872,189898,189948,189964,189995,190008,190031,190060,190077,190087,190094,190102,190104,190115,190132,190137,190142,190146,190153,190159,190169,190200,190207,190208,190233,190254,190257,190264,190274,190296,190336,190341,190348,190367,190369,190376,190437,190455,190477,190481,190482,190485,190490,190492,190508,190565,190569,190578,190579,190583,190590,190602,190606,190613,190630,190670,190672,190675,190684,190698,190699,190728,190730,190746,190763,190791,190801,190824,190833,190858,190862,190887,190891,190893,190896,190913,190914,190918,190922,190923,190968,190978,190987,190988,190989,191006,191057,191092,191096,191101,191127,191135,191154,191171,191179,191209,191211,191217,191232,191243,191264,191272,191281,191298,191308,191311,191343,191368,191390,191395,191405,191424,191428,191449,191459,191478,191496,191497,191506,191534,191547,191574,191627,191630,191643,191652,191653,191672,191701,191718,191722,191723,191730,191748,191812,191814,191821,191822,191890,191891,191913,191923,191925,191968,191981,191993,192001,192010,192012,192014,192022,192032,192044,192064,192081,192097,192099,192126,192127,192129,192149,192169,192176,192203,192212,192217,192219,192228,192277,192283,192287,192289,192308,192310,192313,192343,192354,192361,192386,192392,192393,192402,192408,192417,192426,192429,192439,192464,192476,192483,192490,192506,192517,192522,192526,192538,192560,192563,192575,192577,192589,192596,192604,192606,192613,192617,192618,192662,192670,192671,192682,192689,192694,192703,192722,192733,192741,192742,192753,192761,192801,192810,192812,192815,192819,192844,192853,192854,192868,192879,192915,192934,192936,192942,192948,192951,192965,193007,193032,193062,193080,193090,193114,193120,193128,193129,193161,193178,193179,193182,193183,193191,193194,193197,193200,193203,193209,193217,193255,193265,193269,193275,193277,193286,193287,193318,193323,193326,193329,193340,193362,193378,193404,193406,193422,193425,193438,193448,193453,193460,193468,193552,193578,193586,193590,193600,193605,193617,193638,193646,193663,193666,193691,193698,193721,193751,193852,193863,193869,193902,193910,193920,193927,193960,193976,193985,193988,194004,194005,194010,194014,194015,194024,194025,194092,194104,194105,194140,194145,194147,194153,194161,194163,194173,194180,194187,194215,194219,194246,194261,194277,194282,194297,194309,194331,194341,194349,194369,194373,194396,194399,194412,194444,194455,194469,194487,194496,194514,194515,194524,194526,194544,194558,194564,194592,194602,194622,194623,194648,194655,194663,194666,194671,194672,194684,194689,194691,194692,194704,194707,194751,194808,194842,194854,194874,194889,194906,194907,194908,194922,194934,194953,194954,194966,194968,195023,195047,195052,195059,195061,195090,195093,195164,195187,195198,195227,195234,195258,195277,195294,195347,195350,195351,195356,195359,195373,195388,195405,195408,195415,195425,195435,195446,195461,195476,195479,195481,195492,195493,195507,195516,195529,195557,195569,195581,195594,195618,195629,195641,195646,195655,195658,195673,195675,195680,195707,195709,195712,195714,195731,195732,195737,195755,195771,195781,195812,195814,195834,195838,195843,195850,195854,195855,195868,195880,195896,195919,195951,195988,195998,196013,196018,196024,196031,196052,196062,196065,196070,196092,196094,196102,196136,196163,196171,196202,196208,196219,196257,196269,196271,196308,196318,196321,196325,196333,196337,196338,196341,196349,196355,196372,196379,196381,196426,196436,196467,196499,196511,196543,196573,196595,196604,196606,196638,196642,196679,196684,196688,196696,196712,196713,196742,196779,196784,196797,196821,196822,196827,196829,196832,196834,196835,196861,196884,196886,196898,196899,196911,196915,196923,196948,196959,196965,196983,196984,197007,197024,197028,197029,197038,197080,197087,197099,197100,197115,197140,197143,197157,197214,197219,197253,197266,197270,197279,197284,197292,197300,197332,197340,197350,197373,197374,197385,197387,197395,197398,197449,197452,197473,197482,197496,197509,197527,197529,197536,197548,197557,197561,197564,197567,197570,197579,197586,197590,197604,197614,197624,197626,197644,197646,197653,197669,197677,197687,197703,197714,197719,197730,197743,197768,197776,197816,197853,197870,197871,197906,197928,197944,197963,197984,197997,198000,198015,198020,198024,198025,198027,198041,198050,198052,198053,198070,198080,198116,198129,198135,198145,198150,198157,198166,198181,198212,198217,198227,198250,198254,198255,198264,198276,198347,198359,198372,198373,198382,198388,198438,198456,198467,198511,198527,198531,198535,198565,198575,198576,198578,198585,198593,198599,198608,198609,198621,198627,198641,198647,198666,198670,198687,198692,198715,198720,198740,198755,198783,198791,198800,198847,198859,198861,198889,198892,198895,198901,198910,198912,198921,198971,198979,198992,199008,199011,199014,199030,199035,199039,199052,199054,199058,199064,199081,199083,199091,199116,199128,199140,199155,199191,199206,199220,199222,199223,199231,199242,199252,199260,199279,199281,199293,199312,199321,199326,199358,199374,199375,199429,199473,199476,199479,199480,199492,199517,199532,199541,199554,199575,199600,199623,199629,199633,199657,199688,199695,199710,199720,199721,199735,199753,199757,199764,199771,199778,199809,199814,199816,199821,199843,199844,199849,199855,199925,199950,199979,200001,200020,200024,200031,200048,200066,200067,200096,200125,200149,200151,200158,200164,200175,200179,200194,200201,200213,200222,200243,200290,200294,200309,200353,200356,200376,200378,200386,200387,200397,200405,200447,200451,200459,200461,200475,200484,200489,200504,200505,200525,200549,200560,200569,200570,200577,200586,200595,200601,200620,200660,200664,200684,200707,200710,200720,200797,200807,200813,200814,200816,200835,200837,200901,200909,200940,200945,200948,200953,200955,200957,200968,200996,201002,201014,201028,201043,201049,201051,201086,201088,201112,201134,201144,201159,201166,201182,201183,201194,201201,201203,201216,201222,201238,201242,201243,201254,201259,201261,201291,201299,201383,201408,201412,201434,201466,201468,201490,201494,201523,201547,201548,201555,201572,201601,201603,201604,201611,201629,201655,201704,201709,201710,201725,201748,201753,201779,201796,201803,201808,201833,201834,201863,201865,201871,201893,201926,201938,201945,201950,201959,201962,201971,201998,202003,202012,202028,202069,202071,202116,202133,202138,202143,202151,202157,202185,202209,202229,202265,202276,202282,202283,202337,202359,202381,202390,202460,202461,202462,202467,202482,202500,202506,202515,202545,202559,202571,202583,202598,202613,202617,202709,202721,202727,202747,202755,202768,202774,202777,202789,202791,202802,202818,202824,202830,202837,202857,202862,202892,202916,202923,202928,202932,202954,202959,202970,202985,202999,203001,203015,203018,203045,203068,203091,203098,203103,203107,203109,203110,203116,203125,203135,203138,203163,203187,203190,203198,203199,203201,203240,203248,203249,203259,203262,203267,203275,203281,203288,203299,203304,203323,203336,203352,203356,203367,203378,203379,203412,203423,203438,203448,203468,203475,203496,203502,203534,203541,203549,203564,203579,203598,203600,203605,203633,203635,203638,203669,203674,203688,203695,203735,203765,203842,203854,203869,203915,203922,203923,203931,203959,203965,203969,204002,204013,204033,204054,204074,204078,204085,204095,204099,204119,204124,204144,204164,204184,204198,204200,204203,204209,204220,204232,204266,204275,204277,204283,204284,204298,204307,204361,204364,204372,204373,204375,204403,204405,204439,204474,204481,204486,204570,204573,204608,204617,204655,204699,204716,204719,204735,204744,204746,204752,204769,204779,204805,204834,204864,204867,204879,204885,204894,204899,204915,204920,204948,204958,204964,204970,204971,204980,205023,205026,205030,205039,205052,205076,205081,205083,205084,205098,205104,205132,205145,205150,205155,205164,205177,205204,205213,205217,205220,205227,205233,205244,205258,205298,205313,205324,205327,205330,205332,205336,205348,205394,205413,205425,205427,205441,205461,205477,205504,205527,205541,205545,205551,205565,205566,205580,205589,205597,205618,205630,205635,205656,205661,205662,205685,205689,205692,205730,205766,205791,205816,205862,205866,205870,205898,205976,205986,205987,205990,206010,206026,206027,206040,206060,206077,206114,206124,206130,206150,206152,206169,206193,206227,206234,206236,206238,206244,206247,206257,206277,206281,206288,206292,206296,206334,206337,206351,206363,206370,206376,206378,206381,206382,206403,206410,206413,206427,206435,206457,206476,206494,206497,206500,206501,206502,206517,206518,206529,206553,206573,206574,206593,206604,206616,206639,206643,206655,206705,206742,206748,206754,206758,206759,206762,206795,206825,206826,206830,206838,206844,206848,206859,206860,206862,206866,206872,206883,206894,206926,206930,206948,206969,206972,206977,207061,207071,207083,207097,207099,207114,207129,207132,207152,207183,207187,207209,207216,207218,207222,207226,207234,207254,207255,207262,207263,207275,207278,207298,207307,207314,207315,207319,207320,207328,207329,207346,207349,207351,207361,207363,207376,207383,207393,207431,207440,207442,207451,207468,207472,207475,207488,207492,207500,207506,207508,207512,207548,207550,207561,207562,207583,207587,207590,207592,207623,207635,207638,207639,207648,207649,207653,207657,207697,207717,207728,207731,207776,207787,207795,207803,207807,207810,207817,207836,207841,207845,207850,207875,207877,207886,207900,207905,207906,207908,207910,207942,207957,207973,207983,207990,208006,208020,208025,208028,208062,208117,208138,208151,208158,208160,208177,208184,208231,208254,208260,208288,208303,208315,208322,208323,208346,208353,208355,208364,208367,208386,208426,208428,208464,208489,208494,208505,208507,208509,208516,208518,208520,208530,208531,208533,208549,208550,208552,208576,208602,208636,208668,208679,208698,208702,208742,208745,208747,208763,208789,208803,208807,208823,208837,208841,208871,208896,208898,208904,208908,208919,208923,208928,208930,208946,208950,208952,208958,208971,208979,208992,208994,209015,209016,209026,209029,209049,209051,209055,209108,209118,209139,209163,209167,209169,209192,209219,209229,209233,209238,209314,209323,209333,209338,209372,209374,209459,209464,209469,209481,209501,209522,209523,209533,209537,209556,209594,209595,209601,209612,209616,209635,209658,209667,209692,209704,209713,209724,209747,209761,209781,209794,209795,209832,209836,209852,209860,209884,209898,209915,209947,209951,209972,210011,210024,210049,210056,210114,210123,210161,210191,210198,210201,210242,210269,210273,210277,210288,210294,210295,210311,210340,210341,210348,210364,210366,210369,210370,210379,210388,210401,210414,210417,210446,210454,210458,210476,210483,210487,210488,210504,210524,210527,210533,210560,210575,210579,210580,210583,210586,210591,210597,210607,210657,210664,210678,210693,210694,210698,210701,210702,210717,210722,210728,210746,210757,210771,210774,210784,210800,210801,210833,210849,210861,210868,210870,210871,210879,210956,210962,210964,210967,210988,210996,211002,211007,211035,211048,211082,211094,211098,211110,211121,211134,211149,211164,211165,211185,211204,211209,211213,211214,211227,211231,211241,211281,211321,211328,211331,211340,211344,211352,211370,211388,211389,211438,211456,211461,211467,211480,211502,211504,211521,211539,211570,211605,211609,211655,211658,211669,211710,211712,211713,211748,211788,211794,211806,211813,211824,211825,211830,211853,211876,211880,211910,211950,211999,212054,212060,212073,212092,212094,212103,212117,212118,212140,212157,212159,212200,212212,212226,212233,212264,212268,212279,212302,212306,212310,212312,212329,212374,212383,212388,212399,212402,212407,212453,212465,212474,212489,212520,212532,212535,212544,212566,212567,212576,212578,212583,212589,212619,212621,212655,212664,212674,212717,212718,212751,212755,212760,212773,212775,212786,212800,212894,212896,212906,212925,212950,212996,213000,213008,213021,213027,213028,213039,213080,213111,213126,213138,213145,213157,213166,213190,213194,213197,213198,213214,213221,213249,213263,213264,213296,213323,213335,213350,213363,213377,213382,213393,213399,213401,213403,213414,213424,213427,213431,213467,213487,213495,213502,213549,213577,213578,213582,213584,213595,213597,213636,213642,213646,213648,213649,213658,213670,213700,213744,213745,213760,213765,213780,213791,213797,213802,213819,213820,213843,213881,213886,213887,213893,213918,213942,213945,213947,213960,213965,213969,213984,213990,213992,214035,214044,214100,214118,214141,214149,214166,214168,214189,214195,214199,214207,214218,214301,214308,214319,214338,214347,214357,214385,214406,214441,214447,214449,214455,214459,214471,214488,214489,214500,214503,214516,214520,214535,214558,214562,214577,214586,214594,214595,214610,214614,214617,214622,214624,214630,214631,214634,214654,214683,214726,214730,214735,214740,214751,214763,214764,214770,214775,214783,214790,214796,214834,214843,214864,214875,214905,214908,214915,214944,214954,214956,214972,214990,215021,215041,215047,215057,215063,215082,215084,215096,215104,215105,215116,215132,215134,215144,215147,215160,215173,215175,215186,215189,215192,215195,215244,215266,215270,215334,215370,215414,215417,215429,215442,215462,215468,215490,215507,215512,215518,215520,215525,215551,215554,215558,215561,215582,215593,215607,215609,215613,215622,215623,215642,215659,215660,215698,215731,215732,215733,215738,215763,215766,215772,215805,215811,215838,215872,215878,215906,215910,215934,215939,215947,215964,215970,215972,215997,216009,216016,216032,216044,216060,216071,216074,216082,216095,216103,216115,216129,216132,216134,216138,216147,216167,216177,216181,216182,216194,216209,216214,216232,216235,216242,216251,216271,216291,216316,216347,216353,216377,216386,216390,216400,216403,216408,216415,216417,216418,216455,216467,216488,216491,216494,216498,216529,216536,216561,216566,216577,216603,216606,216607,216643,216657,216668,216706,216718,216719,216733,216735,216749,216755,216769,216822,216824,216842,216846,216857,216886,216900,216921,216935,216941,216947,216948,216957,216990,217079,217102,217103,217118,217120,217132,217135,217187,217190,217196,217216,217228,217241,217253,217286,217290,217305,217306,217307,217330,217334,217343,217346,217356,217362,217393,217396,217434,217440,217443,217445,217447,217454,217464,217483,217495,217500,217502,217514,217518,217525,217530,217533,217534,217567,217590,217598,217615,217617,217627,217640,217655,217667,217685,217688,217707,217710,217713,217715,217724,217725,217747,217749,217767,217775,217780,217793,217833,217846,217847,217876,217885,217898,217903,217911,217914,217940,217947,217960,217961,217962,217970,217978,218002,218016,218017,218021,218039,218114,218117,218123,218140,218146,218153,218170,218185,218211,218232,218251,218269,218291,218328,218334,218351,218359,218369,218371,218378,218381,218387,218389,218392,218396,218399,218414,218425,218432,218458,218461,218475,218484,218496,218498,218500,218531,218542,218561,218576,218584,218612,218614,218616,218619,218621,218634,218660,218665,218673,218677,218703,218705,218728,218735,218756,218763,218768,218801,218803,218824,218835,218837,218843,218849,218874,218891,218892,218905,218914,218923,218938,218956,218961,218968,218978,219013,219018,219030,219060,219083,219084,219104,219120,219122,219126,219130,219145,219177,219192,219198,219199,219203,219211,219253,219281,219288,219294,219300,219312,219350,219353,219374,219406,219424,219426,219435,219436,219438,219456,219463,219486,219494,219496,219532,219536,219549,219550,219564,219571,219585,219589,219597,219598,219633,219640,219644,219650,219655,219676,219692,219704,219712,219723,219737,219771,219776,219783,219806,219809,219820,219822,219851,219878,219891,219895,219904,219906,219930,219943,219948,219962,219965,219968,219973,220005,220013,220032,220057,220062,220067,220081,220099,220106,220130,220137,220142,220143,220151,220156,220165,220172,220203,220218,220223,220251,220254,220260,220261,220264,220273,220275,220294,220336,220344,220346,220351,220354,220377,220387,220389,220396,220430,220451,220465,220473,220506,220533,220534,220537,220540,220543,220546,220564,220580,220589,220592,220609,220618,220626,220635,220645,220647,220661,220693,220757,220785,220795,220815,220818,220840,220842,220850,220862,220870,220905,220922,220942,220943,220980,220983,220997,221001,221004,221005,221058,221061,221076,221082,221092,221095,221103,221105,221115,221116,221118,221120,221136,221151,221174,221182,221186,221188,221208,221216,221218,221223,221254,221255,221257,221263,221281,221282,221289,221348,221350,221353,221363,221372,221384,221391,221392,221399,221419,221430,221432,221440,221444,221457,221466,221472,221477,221487,221490,221500,221511,221521,221527,221570,221585,221606,221621,221670,221681,221684,221699,221714,221719,221725,221737,221741,221749,221771,221773,221774,221811,221816,221848,221861,221863,221867,221870,221884,221906,221914,221918,221937,221977,221981,221986,221993,222009,222011,222017,222030,222031,222040,222043,222060,222067,222076,222078,222079,222088,222089,222112,222117,222122,222164,222173,222176,222213,222221,222236,222241,222252,222254,222275,222281,222288,222298,222307,222312,222321,222330,222360,222361,222369,222370,222388,222389,222404,222427,222436,222438,222449,222450,222462,222475,222482,222495,222506,222512,222518,222519,222526,222530,222531,222547,222578,222591,222592,222597,222609,222629,222652,222671,222673,222694,222696,222755,222768,222769,222775,222780,222787,222789,222837,222860,222884,222887,222897,222921,222938,222953,222957,222974,222978,222996,223039,223050,223052,223057,223060,223063,223073,223074,223079,223113,223140,223144,223199,223229,223231,223235,223242,223245,223262,223280,223286,223296,223311,223325,223335,223346,223350,223365,223369,223370,223422,223424,223442,223446,223467,223474,223487,223492,223494,223512,223515,223523,223527,223528,223551,223558,223621,223629,223668,223693,223698,223702,223709,223739,223745,223751,223759,223769,223792,223803,223812,223818,223842,223859,223887,223896,223917,223933,223968,223979,223985,223994,224000,224013,224023,224035,224038,224041,224064,224091,224165,224177,224210,224218,224258,224261,224272,224281,224290,224296,224299,224306,224307,224311,224323,224332,224351,224354,224355,224360,224385,224397,224402,224416,224426,224430,224450,224460,224468,224476,224477,224482,224497,224508,224524,224540,224548,224552,224564,224565,224574,224576,224588,224601,224610,224619,224628,224644,224649,224652,224656,224681,224682,224703,224717,224732,224777,224779,224809,224810,224812,224813,224851,224868,224889,224914,224928,224929,224939,224944,224955,224959,224973,224977,225001,225004,225027,225029,225031,225053,225064,225070,225099,225101,225106,225137,225150,225156,225159,225160,225197,225207,225227,225271,225275,225287,225324,225334,225344,225350,225356,225362,225365,225381,225396,225397,225410,225414,225439,225479,225483,225500,225503,225506,225510,225517,225525,225533,225540,225543,225553,225562,225575,225593,225613,225632,225668,225695,225731,225732,225742,225745,225752,225755,225787,225812,225820,225859,225863,225864,225874,225897,225900,225902,225922,225981,225982,225989,226000,226004,226023,226027,226045,226057,226069,226109,226165,226179,226194,226215,226224,226237,226252,226269,226283,226286,226319,226327,226334,226341,226344,226364,226367,226383,226407,226431,226433,226441,226443,226444,226475,226479,226490,226525,226564,226588,226595,226611,226614,226620,226647,226650,226694,226709,226719,226720,226739,226740,226747,226798,226814,226825,226835,226838,226839,226847,226850,226855,226865,226872,226882,226886,226888,226914,226945,226979,226981,226986,226991,226992,227018,227036,227040,227058,227082,227093,227139,227144,227171,227178,227196,227203,227224,227253,227272,227281,227293,227365,227366,227370,227380,227390,227425,227439,227474,227479,227520,227528,227542,227552,227573,227574,227588,227591,227597,227611,227638,227663,227696,227740,227745,227746,227751,227753,227797,227820,227833,227838,227841,227846,227852,227855,227857,227874,227880,227892,227897,227944,227972,228024,228030,228040,228051,228058,228062,228082,228095,228105,228143,228151,228156,228164,228186,228188,228191,228215,228232,228233,228242,228256,228261,228291,228296,228301,228351,228352,228388,228403,228410,228415,228447,228458,228459,228474,228486,228496,228501,228507,228509,228526,228527,228529,228541,228556,228558,228576,228580,228584,228592,228596,228600,228611,228629,228634,228648,228685,228688,228690,228701,228706,228710,228713,228741,228745,228746,228748,228776,228809,228815,228822,228833,228839,228858,228865,228874,228880,228893,228901,228915,228923,228926,228943,228957,228959,228973,228994,228998,229002,229015,229034,229052,229065,229076,229098,229099,229103,229124,229137,229139,229145,229148,229154,229159,229174,229180,229190,229194,229209,229212,229220,229222,229235,229238,229259,229280,229285,229289,229319,229344,229348,229350,229372,229374,229400,229411,229416,229420,229427,229443,229457,229470,229473,229485,229497,229513,229517,229548,229568,229575,229580,229582,229588,229595,229609,229612,229625,229658,229665,229695,229714,229722,229730,229733,229740,229775,229806,229809,229813,229835,229840,229868,229879,229886,229899,229912,229937,229946,229955,229964,229982,230003,230013,230021,230028,230039,230048,230049,230085,230088,230098,230102,230177,230204,230212,230220,230254,230258,230298,230305,230311,230377,230390,230391,230420,230434,230443,230488,230492,230496,230569,230572,230577,230580,230597,230620,230649,230663,230681,230687,230693,230717,230721,230736,230738,230750,230757,230768,230779,230789,230790,230798,230820,230842,230854,230861,230869,230874,230915,230916,230920,230926,230947,230958,230961,230965,230975,230976,230996,231010,231014,231024,231025,231026,231033,231036,231037,231038,231064,231074,231089,231126,231130,231143,231160,231171,231188,231192,231201,231213,231219,231237,231258,231268,231277,231296,231333,231335,231351,231366,231371,231382,231388,231429,231434,231472,231477,231494,231498,231513,231518,231597,231606,231671,231692,231699,231701,231734,231811,231829,231833,231869,231881,231886,231891,231895,231902,231905,231914,231930,231936,231941,231997,232016,232027,232029,232040,232072,232125,232135,232139,232143,232148,232160,232167,232181,232231,232257,232258,232281,232290,232294,232303,232310,232314,232331,232337,232350,232355,232398,232399,232404,232410,232431,232450,232472,232476,232481,232489,232497,232498,232504,232511,232527,232538,232540,232554,232558,232561,232574,232575,232583,232595,232614,232622,232636,232638,232646,232664,232670,232677,232700,232711,232716,232765,232768,232772,232793,232813,232821,232823,232825,232829,232849,232859,232878,232891,232895,232905,232907,232950,232960,232970,232980,233000,233004,233054,233071,233089,233095,233105,233106,233135,233140,233147,233158,233163,233168,233169,233185,233226,233241,233282,233287,233315,233316,233317,233334,233344,233358,233379,233391,233407,233426,233433,233453,233491,233493,233499,233518,233521,233558,233572,233577,233586,233588,233614,233659,233669,233671,233675,233697,233711,233714,233723,233728,233771,233787,233788,233795,233800,233820,233831,233873,233887,233902,233927,233963,233974,234002,234007,234011,234034,234054,234057,234072,234088,234089,234130,234135,234151,234170,234203,234204,234213,234220,234242,234246,234289,234307,234317,234331,234342,234422,234460,234519,234524,234545,234558,234602,234614,234616,234620,234642,234670,234675,234677,234687,234690,234692,234699,234714,234728,234744,234753,234777,234815,234828,234833,234864,234867,234869,234919,234924,234954,234976,234987,234992,235017,235028,235036,235045,235046,235051,235067,235071,235072,235077,235079,235099,235104,235106,235134,235144,235159,235195,235197,235210,235212,235218,235224,235261,235270,235284,235307,235324,235330,235331,235338,235345,235361,235364,235381,235397,235402,235407,235412,235428,235471,235478,235481,235527,235531,235544,235550,235562,235577,235585,235596,235612,235618,235619,235631,235643,235667,235670,235679,235693,235695,235707,235710,235724,235727,235740,235750,235766,235769,235775,235797,235809,235832,235856,235867,235870,235876,235889,235899,235908,235938,235952,235958,235960,235968,235975,235976,235997,236003,236015,236037,236047,236060,236063,236067,236071,236072,236073,236109,236117,236130,236133,236147,236158,236167,236170,236184,236205,236216,236246,236268,236310,236323,236325,236347,236372,236392,236401,236434,236441,236444,236445,236449,236461,236465,236490,236546,236552,236562,236577,236584,236609,236613,236617,236625,236630,236651,236656,236667,236680,236707,236736,236772,236774,236775,236778,236797,236801,236813,236825,236828,236845,236868,236872,236875,236880,236892,236922,236931,236943,236948,236951,236952,236953,236965,236966,236971,237000,237002,237003,237019,237047,237056,237069,237078,237082,237112,237116,237129,237131,237162,237175,237179,237210,237228,237233,237239,237280,237303,237305,237311,237315,237328,237333,237361,237364,237385,237407,237412,237418,237420,237422,237438,237449,237468,237493,237503,237505,237509,237513,237550,237558,237581,237592,237594,237603,237621,237652,237666,237676,237695,237698,237734,237739,237746,237754,237760,237764,237775,237784,237803,237815,237817,237831,237865,237892,237903,237905,237907,237912,237915,237947,237953,237972,237998,238008,238018,238061,238062,238070,238096,238123,238134,238140,238152,238153,238182,238211,238264,238273,238287,238294,238305,238317,238340,238371,238379,238470,238481,238547,238561,238576,238597,238603,238618,238638,238651,238653,238678,238718,238732,238735,238749,238787,238803,238804,238823,238826,238844,238851,238875,238881,238892,238922,238926,238970,239003,239007,239016,239041,239045,239092,239125,239171,239176,239179,239185,239198,239239,239244,239261,239265,239276,239311,239312,239314,239328,239353,239354,239370,239373,239390,239393,239426,239433,239439,239448,239454,239466,239473,239490,239507,239509,239519,239561,239577,239587,239588,239589,239623,239632,239658,239664,239703,239710,239718,239722,239730,239740,239758,239770,239780,239791,239792,239818,239825,239830,239838,239866,239884,239917,239921,239923,239939,239975,239979,239985,239986,239995,239997,240006,240020,240022,240040,240048,240074,240089,240094,240098,240101,240115,240127,240130,240133,240156,240170,240172,240191,240227,240239,240268,240311,240319,240326,240332,240333,240361,240364,240392,240394,240413,240417,240425,240435,240440,240447,240453,240463,240488,240509,240512,240516,240525,240540,240550,240558,240559,240571,240589,240593,240600,240604,240632,240656,240660,240683,240715,240726,240730,240735,240751,240788,240808,240815,240853,240859,240868,240881,240908,240970,240992,241013,241052,241053,241075,241083,241084,241094,241096,241129,241144,241145,241158,241200,241207,241212,241214,241226,241236,241252,241272,241301,241315,241325,241347,241363,241379,241382,241385,241395,241418,241426,241450,241453,241463,241466,241490,241492,241499,241507,241517,241525,241563,241579,241586,241598,241602,241619,241628,241645,241702,241709,241760,241774,241781,241797,241804,241812,241819,241826,241866,241871,241876,241883,241917,241929,241930,241938,241939,241949,241956,242000,242006,242023,242025,242029,242044,242080,242115,242132,242147,242173,242174,242183,242192,242199,242208,242225,242253,242256,242275,242276,242288,242313,242352,242358,242372,242379,242385,242386,242388,242391,242401,242421,242429,242445,242475,242491,242497,242498,242503,242508,242521,242558,242559,242576,242585,242588,242593,242631,242638,242639,242692,242698,242710,242711,242745,242747,242762,242776,242785,242810,242811,242827,242839,242848,242865,242872,242889,242892,242905,242908,242909,242921,242929,243004,243029,243050,243057,243064,243110,243126,243129,243151,243160,243180,243190,243240,243254,243260,243265,243275,243280,243281,243291,243309,243364,243407,243408,243456,243467,243483,243489,243490,243508,243544,243559,243560,243568,243590,243600,243611,243614,243641,243644,243655,243666,243674,243678,243681,243705,243711,243721,243733,243737,243747,243760,243777,243782,243803,243806,243809,243813,243838,243867,243880,243882,243887,243904,243914,243940,243971,243977,243989,244016,244048,244057,244068,244072,244088,244105,244140,244172,244178,244184,244186,244207,244212,244214,244218,244229,244282,244287,244302,244304,244312,244351,244362,244408,244412,244416,244421,244429,244438,244444,244447,244462,244478,244484,244532,244542,244547,244553,244566,244575,244579,244580,244584,244587,244592,244609,244630,244665,244698,244716,244725,244727,244739,244746,244771,244781,244795,244810,244822,244836,244851,244853,244854,244862,244874,244885,244890,244899,244908,244915,244937,244947,244963,244964,244988,244997,244999,245018,245020,245037,245049,245080,245096,245107,245117,245122,245131,245135,245145,245160,245181,245184,245191,245193,245203,245227,245231,245237,245260,245274,245319,245335,245351,245352,245357,245381,245382,245390,245393,245399,245421,245457,245470,245471,245488,245493,245497,245534,245563,245569,245574,245587,245588,245590,245591,245596,245601,245614,245621,245630,245648,245657,245665,245666,245678,245681,245691,245697,245702,245716,245719,245727,245730,245754,245765,245772,245773,245785,245791,245795,245796,245807,245809,245826,245842,245854,245871,245883,245902,245922,245926,245930,245962,245977,245985,245991,245995,246008,246021,246041,246047,246051,246073,246097,246106,246112,246115,246120,246121,246122,246148,246152,246170,246205,246209,246211,246218,246235,246255,246260,246283,246288,246297,246311,246327,246328,246338,246339,246343,246376,246384,246386,246409,246419,246442,246457,246468,246474,246477,246524,246538,246549,246567,246570,246608,246633,246651,246653,246684,246686,246697,246698,246702,246711,246723,246739,246748,246756,246769,246802,246813,246824,246829,246848,246862,246867,246868,246888,246913,246921,246927,246940,246965,246978,247017,247018,247020,247021,247025,247039,247046,247066,247067,247070,247074,247088,247103,247104,247115,247121,247122,247132,247134,247137,247140,247170,247182,247184,247190,247199,247226,247231,247244,247251,247266,247307,247315,247331,247337,247340,247361,247366,247375,247395,247405,247407,247411,247414,247431,247435,247451,247461,247468,247486,247521,247525,247539,247545,247578,247594,247595,247622,247625,247630,247644,247651,247652,247653,247659,247669,247674,247678,247685,247690,247701,247713,247720,247722,247731,247732,247736,247746,247751,247766,247768,247771,247774,247791,247815,247817,247826,247827,247855,247857,247865,247903,247933,247960,247961,247968,247972,247992,247997,248026,248041,248085,248092,248097,248100,248102,248125,248142,248147,248168,248169,248191,248192,248210,248219,248229,248232,248237,248239,248248,248277,248307,248308,248325,248381,248394,248400,248423,248430,248431,248445,248455,248457,248464,248465,248482,248489,248510,248548,248553,248567,248574,248586,248590,248602,248603,248610,248619,248621,248647,248661,248695,248716,248732,248741,248746,248748,248793,248803,248818,248839,248860,248939,248946,248949,248954,248970,248975,248993,249005,249050,249068,249090,249094,249116,249133,249187,249198,249203,249220,249235,249240,249250,249266,249271,249272,249283,249299,249305,249314,249333,249338,249342,249343,249345,249359,249383,249399,249444,249457,249458,249470,249471,249478,249506,249519,249541,249583,249608,249655,249662,249664,249688,249691,249707,249723,249735,249763,249771,249776,249787,249795,249797,249798,249800,249812,249830,249866,249877,249896,249897,249901,249919,249926,249929,249933,249935,249937,249939,249948,249956,249959,249965,249973,249974,249995,250008,250014,250017,250026,250033,250043,250056,250061,250079,250088,250105,250117,250120,250131,250148,250155,250172,250180,250189,250202,250229,250257,250268,250273,250274,250292,250293,250295,250318,250320,250330,250339,250342,250357,250366,250367,250381,250421,250427,250435,250440,250477,250483,250490,250510,250513,250529,250572,250573,250579,250612,250619,250654,250672,250673,250679,250690,250695,250707,250711,250758,250769,250775,250815,250829,250836,250843,250904,250930,250971,250972,250975,250976,250986,250990,250992,250998,250999,251010,251030,251032,251044,251061,251089,251093,251102,251114,251126,251135,251144,251165,251168,251175,251186,251187,251212,251223,251224,251229,251240,251256,251268,251271,251281,251292,251294,251300,251304,251309,251328,251362,251366,251369,251380,251400,251403,251472,251504,251505,251511,251528,251533,251546,251559,251561,251574,251586,251589,251590,251606,251613,251635,251665,251677,251695,251701,251704,251709,251717,251722,251724,251731,251738,251751,251752,251757,251765,251768,251769,251770,251783,251807,251818,251821,251844,251870,251887,251896,251916,251991,252003,252011,252012,252047,252050,252063,252076,252090,252092,252093,252110,252125,252162,252166,252212,252217,252223,252225,252232,252268,252300,252302,252314,252330,252335,252343,252355,252376,252401,252418,252425,252427,252428,252484,252519,252526,252559,252560,252568,252580,252583,252601,252607,252618,252655,252718,252726,252746,252748,252757,252759,252768,252769,252777,252803,252813,252832,252855,252856,252865,252921,252922,252923,252939,252949,252950,252971,252982,252984,252998,253019,253036,253040,253048,253064,253075,253083,253085,253095,253108,253120,253132,253138,253144,253147,253164,253169,253171,253211,253214,253217,253238,253252,253261,253263,253268,253291,253297,253300,253305,253332,253333,253336,253342,253359,253360,253381,253402,253404,253416,253421,253422,253423,253452,253458,253471,253491,253502,253545,253553,253566,253567,253572,253593,253605,253608,253611,253615,253619,253642,253674,253683,253692,253697,253699,253700,253708,253720,253738,253741,253789,253804,253807,253815,253818,253822,253834,253836,253837,253843,253846,253850,253856,253857,253873,253921,253971,253980,253982,253985,253989,254000,254034,254039,254042,254050,254053,254069,254073,254081,254112,254137,254142,254145,254173,254186,254192,254195,254197,254228,254270,254278,254281,254285,254286,254313,254315,254316,254320,254323,254346,254350,254393,254397,254423,254428,254438,254446,254459,254462,254484,254486,254493,254495,254506,254507,254517,254522,254526,254596,254604,254610,254611,254643,254652,254669,254677,254687,254707,254736,254741,254755,254763,254779,254789,254802,254821,254823,254847,254856,254864,254882,254895,254900,254906,254918,254920,254921,254945,254951,254978,255008,255025,255029,255044,255047,255075,255089,255109,255144,255162,255167,255170,255184,255193,255216,255238,255249,255262,255267,255304,255311,255331,255371,255389,255395,255400,255413,255414,255421,255422,255429,255431,255433,255449,255457,255461,255493,255524,255528,255538,255542,255586,255590,255603,255605,255634,255637,255650,255677,255695,255708,255717,255719,255726,255734,255736,255741,255751,255775,255792,255802,255806,255807,255818,255822,255824,255833,255848,255868,255869,255901,255906,255918,255920,255927,255932,255933,255938,256005,256050,256056,256123,256162,256168,256183,256188,256191,256198,256235,256267,256271,256277,256281,256287,256288,256326,256340,256357,256358,256360,256367,256387,256416,256423,256440,256445,256446,256447,256451,256458,256459,256467,256471,256480,256498,256510,256548,256575,256579,256615,256624,256644,256681,256691,256701,256708,256723,256772,256804,256805,256809,256811,256817,256826,256831,256836,256844,256858,256873,256891,256896,256897,256906,256915,256925,256937,256965,256967,256969,256982,256996,256997,257005,257018,257022,257023,257031,257038,257041,257054,257057,257064,257065,257068,257071,257094,257096,257110,257119,257152,257160,257163,257164,257187,257218,257244,257280,257282,257297,257319,257340,257362,257379,257384,257391,257395,257399,257415,257439,257449,257455,257456,257461,257468,257507,257511,257536,257548,257553,257555,257582,257600,257608,257609,257620,257635,257636,257646,257651,257657,257659,257671,257675,257684,257706,257725,257728,257737,257741,257749,257761,257788,257856,257878,257894,257904,257926,257977,257999,258000,258009,258031,258035,258086,258107,258108,258114,258120,258134,258166,258181,258211,258216,258222,258226,258235,258242,258250,258269,258301,258321,258328,258354,258362,258403,258409,258417,258424,258429,258430,258432,258445,258453,258508,258529,258537,258540,258544,258556,258568,258586,258587,258598,258608,258615,258626,258629,258670,258677,258684,258748,258771,258791,258799,258806,258811,258813,258826,258827,258835,258844,258851,258865,258870,258879,258880,258893,258905,258924,258931,258953,258969,258975,258994,258996,258999,259003,259026,259027,259037,259053,259086,259093,259132,259154,259162,259168,259187,259195,259205,259216,259219,259220,259226,259243,259249,259261,259269,259285,259296,259325,259384,259396,259413,259420,259429,259443,259447,259483,259496,259504,259527,259539,259543,259556,259559,259570,259595,259612,259619,259649,259689,259704,259729,259740,259750,259751,259762,259766,259773,259776,259777,259780,259784,259787,259793,259802,259844,259848,259887,259906,259915,259922,259924,259945,259953,259956,259957,259969,259972,259976,259978,259989,260002,260003,260006,260023,260039,260044,260046,260053,260076,260087,260103,260104,260107,260146,260156,260168,260174,260192,260205,260244,260254,260255,260264,260274,260280,260310,260311,260318,260347,260348,260367,260371,260382,260420,260421,260422,260423,260428,260430,260449,260474,260478,260486,260522,260541,260546,260563,260566,260570,260572,260577,260601,260606,260611,260648,260657,260670,260677,260691,260705,260708,260718,260737,260761,260784,260796,260807,260808,260819,260842,260847,260858,260884,260898,260899,260913,260932,260943,260947,260962,260973,260986,260990,261001,261010,261020,261025,261029,261081,261083,261084,261114,261117,261119,261149,261166,261216,261225,261229,261291,261295,261308,261322,261326,261368,261389,261396,261399,261433,261435,261452,261457,261472,261486,261489,261504,261514,261520,261540,261562,261566,261591,261617,261625,261631,261640,261649,261682,261685,261689,261716,261732,261746,261754,261759,261761,261771,261776,261779,261806,261812,261814,261836,261837,261844,261850,261854,261882,261883,261887,261893,261905,261931,261939,261956,261959,261961,261978,261980,261988,262001,262044,262045,262084,262086,262090,262095,262113,262117,262123,262132,262137,262143,262157,262171,262173,262183,262201,262203,262208,262236,262240,262281,262292,262300,262309,262310,262326,262330,262337,262338,262339,262347,262350,262352,262359,262365,262397,262409,262418,262424,262426,262491,262493,262501,262538,262552,262558,262584,262623,262633,262640,262658,262679,262706,262710,262732,262734,262739,262753,262755,262757,262780,262801,262830,262858,262875,262889,262895,262898,262907,262917,262950,262989,263010,263016,263052,263056,263064,263076,263086,263092,263094,263095,263121,263123,263132,263165,263204,263233,263235,263236,263270,263272,263311,263312,263316,263317,263342,263355,263356,263360,263411,263431,263442,263450,263471,263481,263482,263491,263492,263494,263537,263573,263634,263636,263646,263651,263655,263667,263679,263707,263717,263721,263747,263757,263795,263803,263825,263828,263831,263836,263838,263842,263849,263865,263885,263892,263895,263897,263903,263920,263924,263926,263929,263933,263943,263961,263972,263988,263989,263991,264019,264057,264099,264135,264140,264148,264196,264223,264237,264240,264248,264259,264285,264305,264311,264330,264338,264340,264342,264357,264380,264389,264412,264425,264442,264443,264449,264452,264460,264471,264479,264481,264482,264501,264511,264512,264520,264526,264531,264539,264554,264566,264575,264576,264580,264596,264599,264631,264656,264662,264663,264677,264719,264724,264735,264749,264752,264761,264764,264773,264774,264792,264821,264833,264854,264855,264860,264870,264911,264929,264948,264966,264986,264987,264990,265006,265021,265033,265043,265047,265048,265054,265058,265061,265103,265107,265137,265139,265160,265174,265182,265203,265212,265217,265227,265229,265231,265248,265250,265252,265258,265282,265309,265316,265319,265324,265326,265327,265336,265373,265374,265376,265378,265382,265393,265398,265399,265415,265424,265450,265451,265456,265468,265474,265498,265501,265502,265509,265540,265544,265557,265562,265565,265600,265606,265609,265624,265635,265642,265646,265660,265663,265689,265701,265726,265740,265744,265745,265752,265755,265757,265758,265767,265777,265790,265792,265796,265800,265817,265832,265834,265845,265872,265879,265892,265894,265904,265914,265916,265922,265933,265948,265963,265965,265968,265970,265976,265999,266007,266028,266053,266056,266062,266073,266077,266083,266088,266096,266103,266106,266134,266140,266141,266148,266154,266158,266160,266167,266175,266177,266221,266222,266229,266251,266267,266279,266289,266293,266297,266311,266316,266322,266353,266354,266391,266395,266406,266414,266418,266429,266430,266434,266445,266451,266466,266470,266482,266519,266534,266543,266551,266556,266579,266584,266612,266651,266656,266658,266662,266673,266701,266705,266713,266753,266758,266776,266792,266804,266805,266839,266841,266855,266866,266879,266881,266903,266912,266921,266933,266944,266947,266950,266954,266960,266967,266977,266979,266985,267017,267030,267037,267041,267051,267084,267103,267143,267152,267153,267161,267164,267171,267180,267188,267190,267195,267200,267212,267213,267220,267240,267259,267261,267262,267276,267320,267326,267331,267353,267376,267379,267384,267407,267417,267419,267430,267449,267453,267486,267500,267502,267542,267575,267595,267621,267634,267647,267660,267672,267677,267682,267687,267710,267721,267736,267755,267757,267776,267844,267845,267861,267866,267879,267885,267891,267894,267917,267931,267935,267959,267976,267988,268035,268044,268061,268067,268108,268115,268130,268131,268154,268174,268178,268188,268194,268201,268210,268226,268231,268238,268240,268253,268257,268267,268273,268274,268276,268309,268316,268318,268357,268365,268376,268427,268502,268514,268525,268564,268569,268590,268614,268625,268626,268677,268693,268702,268705,268706,268713,268721,268730,268736,268745,268778,268779,268801,268834,268860,268871,268872,268874,268882,268893,268910,268920,268926,268958,268963,268969,268974,268976,268982,268985,268989,268990,269003,269009,269019,269030,269042,269084,269086,269091,269098,269107,269151,269153,269180,269197,269199,269208,269223,269231,269238,269241,269251,269261,269282,269323,269335,269341,269351,269352,269371,269408,269414,269421,269427,269430,269449,269462,269469,269475,269493,269494,269512,269558,269633,269666,269680,269682,269695,269710,269714,269727,269728,269733,269760,269769,269770,269774,269782,269811,269812,269816,269843,269867,269868,269884,269904,269928,269940,269943,269946,269955,269977,269978,269985,269989,269990,270006,270021,270023,270032,270073,270120,270126,270127,270150,270176,270177,270178,270184,270219,270224,270226,270246,270261,270291,270294,270298,270300,270306,270323,270328,270358,270375,270401,270421,270423,270453,270454,270467,270496,270522,270529,270542,270550,270562,270564,270583,270606,270620,270623,270629,270646,270650,270651,270665,270689,270702,270705,270715,270731,270739,270750,270754,270760,270770,270771,270777,270782,270789,270799,270815,270816,270832,270841,270860,270931,270940,270951,270957,270990,270995,271016,271051,271080,271082,271091,271096,271112,271115,271116,271123,271126,271130,271140,271141,271142,271162,271170,271206,271226,271250,271257,271267,271275,271278,271301,271322,271342,271345,271349,271380,271381,271390,271393,271394,271425,271462,271466,271467,271477,271482,271483,271503,271539,271562,271565,271570,271581,271594,271595,271600,271605,271628,271641,271680,271692,271696,271709,271718,271730,271734,271764,271796,271818,271867,271892,271896,271933,271937,271940,271951,271991,271995,271997,272016,272051,272070,272076,272097,272102,272111,272118,272141,272154,272173,272180,272196,272203,272206,272228,272242,272248,272264,272268,272279,272288,272303,272331,272336,272357,272371,272372,272376,272380,272384,272392,272393,272404,272449,272481,272490,272505,272509,272510,272528,272536,272537,272539,272553,272555,272570,272574,272581,272595,272600,272610,272622,272626,272657,272664,272684,272690,272738,272746,272758,272760,272776,272783,272788,272790,272794,272800,272828,272836,272841,272876,272923,272938,272976,272982,273014,273025,273026,273034,273088,273090,273142,273145,273155,273185,273202,273218,273223,273232,273253,273257,273293,273295,273323,273338,273347,273376,273377,273384,273393,273398,273425,273438,273453,273456,273487,273495,273501,273509,273518,273519,273538,273552,273559,273565,273572,273581,273613,273618,273625,273629,273649,273672,273683,273727,273738,273749,273758,273761,273771,273780,273797,273799,273806,273812,273817,273835,273840,273859,273863,273867,273872,273874,273876,273940,273956,273974,273983,274015,274018,274036,274037,274080,274107,274108,274134,274135,274141,274148,274160,274171,274181,274221,274240,274279,274280,274288,274325,274328,274330,274342,274349,274362,274366,274380,274388,274414,274415,274416,274423,274443,274458,274461,274481,274515,274520,274524,274545,274566,274593,274605,274614,274643,274649,274678,274685,274691,274709,274711,274721,274736,274762,274763,274777,274788,274821,274843,274846,274890,274895,274897,274902,274911,274914,274927,274934,274953,274966,274974,274980,275005,275018,275029,275042,275058,275113,275133,275148,275151,275159,275204,275205,275241,275242,275247,275288,275297,275321,275329,275357,275360,275374,275388,275395,275398,275404,275417,275439,275445,275446,275447,275461,275511,275517,275522,275534,275541,275544,275550,275562,275598,275601,275604,275605,275623,275629,275635,275649,275656,275658,275668,275684,275711,275725,275727,275734,275736,275773,275776,275778,275805,275809,275816,275843,275880,275882,275883,275889,275893,275911,275913,275942,275999,276003,276007,276009,276015,276041,276046,276056,276061,276067,276071,276092,276093,276109,276111,276136,276152,276155,276161,276192,276199,276228,276245,276248,276259,276296,276304,276308,276311,276355,276359,276367,276375,276416,276427,276430,276460,276470,276471,276477,276491,276511,276513,276521,276527,276560,276578,276590,276626,276632,276644,276665,276675,276716,276725,276727,276739,276748,276763,276766,276779,276782,276794,276799,276803,276839,276852,276871,276877,276917,276923,276931,276932,276933,276940,276942,276945,276952,276955,276965,276972,276982,276990,276994,277009,277022,277036,277037,277048,277053,277092,277101,277102,277117,277154,277179,277206,277217,277219,277244,277254,277263,277269,277274,277285,277292,277300,277303,277309,277343,277352,277377,277394,277418,277420,277422,277430,277440,277442,277507,277534,277540,277552,277583,277602,277631,277632,277646,277655,277661,277672,277684,277693,277697,277705,277710,277712,277714,277716,277718,277723,277739,277753,277772,277775,277804,277811,277817,277820,277841,277846,277877,277883,277885,277910,277923,277949,277954,277955,277957,277961,277963,277975,277989,278000,278002,278005,278027,278045,278067,278093,278101,278136,278140,278141,278144,278147,278156,278158,278182,278186,278198,278216,278222,278239,278244,278264,278277,278286,278306,278335,278345,278384,278396,278412,278422,278435,278441,278447,278453,278456,278478,278479,278480,278481,278547,278550,278553,278587,278589,278595,278613,278629,278631,278634,278638,278639,278654,278664,278667,278669,278672,278705,278720,278729,278742,278743,278746,278773,278790,278807,278816,278825,278856,278860,278862,278890,278919,278928,278949,278963,278986,278999,279010,279016,279049,279075,279077,279081,279091,279101,279110,279124,279129,279169,279179,279210,279227,279239,279244,279245,279256,279260,279283,279297,279305,279309,279312,279315,279334,279338,279352,279408,279461,279478,279479,279484,279496,279516,279519,279537,279551,279583,279585,279590,279613,279623,279635,279638,279646,279654,279667,279698,279699,279711,279721,279725,279738,279739,279740,279745,279749,279755,279778,279784,279799,279804,279808,279822,279824,279843,279858,279867,279869,279881,279889,279905,279923,279934,279935,279938,279943,279953,279971,279990,280008,280022,280045,280075,280079,280086,280104,280107,280121,280139,280149,280163,280167,280173,280188,280189,280196,280215,280225,280228,280263,280275,280279,280290,280311,280313,280318,280321,280324,280335,280340,280349,280369,280377,280391,280400,280421,280432,280441,280443,280447,280465,280486,280488,280490,280491,280495,280500,280510,280521,280547,280558,280579,280597,280620,280622,280633,280638,280654,280669,280690,280705,280706,280707,280708,280727,280741,280757,280764,280807,280844,280853,280863,280888,280889,280891,280896,280918,280919,280926,280928,280931,280948,280951,280971,280997,281006,281009,281041,281054,281059,281077,281078,281104,281110,281121,281163,281205,281235,281248,281250,281256,281259,281268,281325,281357,281370,281371,281373,281383,281394,281395,281449,281464,281468,281493,281511,281556,281562,281567,281600,281613,281625,281628,281634,281640,281643,281644,281649,281654,281664,281694,281702,281709,281716,281718,281735,281743,281749,281751,281807,281819,281828,281831,281843,281846,281851,281857,281860,281870,281887,281912,281923,281928,281958,281974,281976,281981,281985,281993,281996,282013,282022,282065,282069,282083,282096,282102,282108,282113,282121,282123,282125,282127,282142,282143,282160,282161,282184,282200,282210,282223,282250,282265,282267,282271,282272,282299,282310,282336,282353,282354,282356,282362,282364,282371,282386,282405,282444,282469,282484,282488,282501,282539,282545,282557,282560,282561,282563,282576,282578,282586,282603,282642,282662,282663,282679,282694,282698,282725,282731,282743,282760,282763,282767,282773,282800,282801,282805,282821,282825,282856,282886,282901,282904,282951,282957,282968,282980,283006,283034,283062,283084,283094,283109,283123,283136,283160,283171,283172,283176,283186,283215,283216,283237,283245,283261,283268,283286,283301,283311,283343,283356,283372,283374,283393,283447,283456,283459,283485,283518,283547,283550,283564,283596,283601,283662,283670,283701,283705,283710,283712,283715,283732,283742,283748,283779,283802,283806,283819,283854,283855,283857,283866,283890,283901,283925,283935,283937,283948,284004,284016,284019,284022,284058,284090,284091,284095,284101,284112,284120,284132,284145,284152,284191,284195,284223,284232,284254,284279,284291,284332,284342,284373,284394,284413,284428,284459,284461,284505,284506,284517,284519,284525,284534,284564,284568,284573,284574,284578,284591,284613,284619,284620,284651,284655,284659,284670,284688,284692,284701,284705,284724,284733,284738,284765,284770,284795,284831,284842,284844,284846,284861,284874,284887,284889,284899,284919,284937,284950,284980,284986,284988,285025,285078,285085,285100,285105,285106,285140,285142,285143,285175,285183,285216,285224,285229,285277,285279,285308,285325,285327,285345,285352,285406,285463,285468,285472,285474,285484,285486,285490,285507,285508,285510,285514,285520,285547,285568,285577,285591,285598,285602,285604,285612,285632,285637,285644,285646,285648,285685,285695,285706,285725,285738,285776,285789,285805,285809,285827,285851,285855,285864,285866,285870,285894,285913,285927,285947,285959,285971,286009,286011,286012,286015,286018,286064,286074,286097,286119,286140,286173,286182,286183,286184,286192,286200,286254,286289,286296,286313,286330,286334,286342,286353,286357,286359,286361,286372,286374,286397,286404,286409,286413,286421,286423,286428,286443,286447,286450,286476,286503,286506,286529,286587,286598,286617,286626,286628,286637,286672,286706,286711,286712,286738,286754,286755,286760,286787,286792,286816,286819,286834,286853,286855,286856,286865,286883,286890,286894,286895,286897,286914,286946,286961,286969,286977,286981,286982,286992,287023,287034,287053,287064,287070,287082,287101,287136,287172,287178,287188,287205,287212,287215,287221,287230,287247,287257,287260,287263,287274,287284,287296,287300,287310,287331,287340,287357,287373,287393,287410,287417,287426,287431,287434,287436,287440,287453,287469,287472,287474,287483,287510,287519,287522,287527,287530,287544,287564,287603,287608,287610,287615,287616,287635,287666,287670,287676,287713,287755,287756,287767,287794,287812,287834,287855,287859,287862,287892,287918,287922,287941,287954,287955,287958,287990,287992,287999,288017,288021,288037,288071,288074,288119,288124,288130,288148,288181,288220,288221,288225,288264,288289,288312,288329,288376,288377,288394,288427,288439,288471,288478,288520,288522,288523,288529,288530,288558,288570,288595,288599,288616,288659,288678,288685,288691,288694,288695,288722,288728,288737,288743,288753,288773,288775,288776,288830,288847,288866,288874,288880,288892,288911,288917,288927,288929,288940,288941,288995,289014,289064,289084,289088,289106,289120,289123,289145,289180,289184,289199,289241,289252,289253,289278,289287,289289,289303,289316,289327,289356,289387,289396,289403,289415,289442,289495,289508,289515,289521,289523,289537,289540,289561,289575,289576,289578,289580,289585,289589,289599,289622,289632,289643,289668,289687,289697,289705,289724,289757,289779,289827,289842,289863,289909,289924,289926,289961,289965,289974,289978,289995,290002,290003,290038,290045,290049,290062,290067,290075,290090,290111,290115,290143,290146,290171,290174,290175,290179,290198,290202,290220,290225,290249,290255,290258,290282,290287,290295,290296,290298,290308,290373,290384,290393,290401,290406,290432,290448,290452,290469,290470,290492,290499,290507,290512,290518,290523,290527,290536,290544,290565,290580,290587,290612,290626,290636,290637,290643,290650,290659,290664,290674,290677,290700,290734,290746,290768,290804,290813,290817,290832,290835,290851,290868,290876,290892,290950,290962,290981,290987,290990,291026,291033,291047,291058,291066,291070,291076,291097,291106,291136,291140,291141,291176,291189,291203,291225,291231,291239,291240,291252,291263,291268,291275,291285,291304,291308,291310,291317,291323,291345,291388,291401,291407,291411,291423,291426,291429,291433,291447,291449,291450,291466,291467,291477,291492,291500,291501,291510,291526,291536,291552,291554,291565,291568,291573,291595,291597,291615,291648,291664,291667,291668,291670,291676,291677,291679,291717,291721,291728,291730,291744,291746,291756,291763,291775,291795,291816,291845,291847,291849,291851,291859,291884,291897,291898,291900,291915,291923,291930,291936,291941,291948,291953,291958,291974,291975,291976,292003,292016,292062,292066,292068,292084,292095,292096,292102,292104,292106,292127,292139,292169,292177,292180,292186,292212,292218,292220,292260,292272,292282,292314,292339,292349,292374,292390,292391,292409,292428,292453,292478,292493,292495,292502,292512,292513,292528,292531,292537,292550,292575,292581,292605,292607,292615,292631,292661,292675,292689,292694,292725,292734,292738,292739,292751,292759,292813,292835,292845,292847,292848,292849,292859,292881,292884,292902,292914,292915,292929,292944,292946,292952,292989,292992,293031,293055,293096,293097,293109,293115,293128,293152,293158,293166,293176,293256,293276,293295,293325,293334,293344,293356,293410,293415,293428,293430,293432,293479,293480,293486,293500,293506,293515,293521,293539,293548,293561,293589,293596,293614,293618,293625,293659,293662,293670,293694,293805,293808,293810,293822,293826,293832,293833,293840,293842,293862,293864,293870,293884,293886,293891,293905,293920,293924,293932,293965,293975,293981,294003,294016,294021,294022,294030,294039,294049,294087,294092,294111,294126,294128,294175,294184,294196,294205,294229,294240,294259,294294,294296,294344,294354,294357,294376,294377,294383,294428,294435,294442,294454,294495,294507,294557,294564,294568,294572,294602,294608,294627,294659,294662,294663,294683,294702,294704,294715,294742,294746,294751,294761,294770,294785,294790,294793,294806,294815,294826,294835,294855,294857,294869,294870,294888,294904,294921,294945,294964,294967,294969,294976,294982,294990,295005,295007,295009,295033,295043,295082,295093,295108,295110,295149,295151,295161,295170,295194,295195,295211,295249,295251,295253,295254,295275,295310,295318,295322,295361,295378,295399,295402,295435,295455,295470,295474,295485,295520,295530,295557,295576,295589,295594,295598,295623,295630,295633,295637,295642,295669,295698,295704,295705,295763,295779,295791,295798,295828,295882,295897,295898,295903,295911,295931,295936,295957,295979,295986,296015,296021,296031,296047,296097,296114,296136,296140,296143,296146,296170,296178,296192,296228,296229,296232,296245,296256,296289,296296,296310,296353,296354,296362,296370,296377,296386,296415,296418,296429,296437,296462,296464,296489,296502,296520,296563,296575,296579,296606,296615,296620,296626,296638,296653,296670,296686,296696,296708,296713,296727,296743,296756,296763,296770,296775,296784,296785,296786,296819,296844,296850,296874,296895,296900,296903,296905,296913,296936,296939,296959,296971,296983,296991,296998,297012,297021,297026,297030,297070,297088,297107,297108,297118,297178,297192,297214,297252,297257,297275,297279,297301,297316,297324,297351,297357,297407,297412,297427,297437,297450,297463,297474,297479,297483,297495,297538,297542,297543,297548,297564,297576,297600,297608,297611,297612,297619,297623,297657,297667,297671,297693,297694,297698,297715,297758,297777,297817,297838,297841,297846,297848,297862,297915,297936,297940,297948,297951,297954,297957,297969,297975,298007,298025,298027,298036,298039,298052,298068,298071,298072,298093,298101,298113,298116,298127,298136,298156,298159,298176,298209,298213,298232,298239,298250,298257,298282,298312,298317,298354,298394,298406,298415,298434,298448,298463,298491,298502,298533,298537,298555,298573,298598,298602,298623,298624,298633,298643,298656,298661,298673,298685];
+        
+        
+        
+
+        
+        const vivaRollsSet = new Set();
+        const rollToVivaMap = new Map(); 
+
+        
+        vivaObjects.forEach(vivaObj => {
+            vivaObj.listRolls.forEach(roll => {
+                vivaRollsSet.add(roll);
+                
+                
+                if (!rollToVivaMap.has(roll)) {
+                    rollToVivaMap.set(roll, vivaObj);
+                }
+            });
+        });
+
+        
+        const uniqueWrittenRolls = [...new Set(writtenRollNumbers)];
+
+        
+        const totalWritten = writtenRollNumbers.length;
+        const totalViva = vivaRollsSet.size;
+        let qualifiedCount = 0;
+        
+        uniqueWrittenRolls.forEach(roll => {
+            if (vivaRollsSet.has(roll)) {
+                qualifiedCount++;
+            }
+        });
+        
+        const notQualifiedCount = uniqueWrittenRolls.length - qualifiedCount;
+
+        
+        document.getElementById('totalWritten').textContent = totalWritten;
+        document.getElementById('totalViva').textContent = totalViva;
+        document.getElementById('qualifiedCount').textContent = qualifiedCount;
+        document.getElementById('notQualifiedCount').textContent = notQualifiedCount;
+
+        
+        
+        
+
+        
+        
+
+        function renderRatioGraph() {
+            const graphContent = document.getElementById('graphContent');
+
+            if (vivaObjects.length === 0) {
+                graphContent.innerHTML = '<div class="no-data-message">No viva data available for ratio analysis.</div>';
+                return;
+            }
+
+            // Define bins
+            const bins = [
+                { min: 0,   max: 2,        label: '<2',    color: '#34d399', groups: 0, candidates: 0 },
+                { min: 2,   max: 2.5,      label: '2–2.5', color: '#38bdf8', groups: 0, candidates: 0 },
+                { min: 2.5, max: 3,        label: '2.5–3', color: '#818cf8', groups: 0, candidates: 0 },
+                { min: 3,   max: 3.5,      label: '3–3.5', color: '#a78bfa', groups: 0, candidates: 0 },
+                { min: 3.5, max: 4,        label: '3.5–4', color: '#f472b6', groups: 0, candidates: 0 },
+                { min: 4,   max: 5,        label: '4–5',   color: '#fb923c', groups: 0, candidates: 0 },
+                { min: 5,   max: 7,        label: '5–7',   color: '#f87171', groups: 0, candidates: 0 },
+                { min: 7,   max: Infinity, label: '≥7',    color: '#ef4444', groups: 0, candidates: 0 },
+            ];
+
+            // Calculate candidates per bin
+            vivaObjects.forEach(vivaObj => {
+                const writtenInRange = countWrittenInRange(vivaObj.firstRoll, vivaObj.lastRoll);
+                const ratio = writtenInRange / vivaObj.totalCandidate;
+                for (const b of bins) {
+                    if (ratio >= b.min && ratio < b.max) {
+                        b.groups++;
+                        b.candidates += vivaObj.totalCandidate;
+                        break;
+                    }
+                }
+            });
+
+            const activeBins = bins.filter(b => b.candidates > 0);
+            const total = activeBins.reduce((s, b) => s + b.candidates, 0);
+
+            // Update badge
+            document.getElementById('graphTotalDisplay').textContent = total.toLocaleString();
+
+            const yMax   = Math.ceil(Math.max(...activeBins.map(b => b.candidates)) / 200) * 200;
+            const STEPS  = 6;
+
+            // Y-axis
+            let yAxisHTML = '<div class="g-y-axis">';
+            for (let i = STEPS; i >= 0; i--) {
+                const v = Math.round((yMax / STEPS) * i);
+                const label = v >= 1000 ? (v / 1000).toFixed(1) + 'k' : v;
+                yAxisHTML += `<div class="g-y-label">${label}</div>`;
+            }
+            yAxisHTML += '</div>';
+
+            // Grid lines
+            let gridHTML = '<div class="g-grid-lines">';
+            for (let i = 0; i <= STEPS; i++) {
+                gridHTML += `<div class="g-grid-line" style="bottom:${(i/STEPS)*100}%"></div>`;
+            }
+            gridHTML += '</div>';
+
+            // Bars
+            let barsHTML = '<div class="g-bars-row">';
+            activeBins.forEach((bin, idx) => {
+                const heightPct = (bin.candidates / yMax) * 100;
+                barsHTML += `
+                    <div class="g-bar-col"
+                         data-label="${bin.label}"
+                         data-candidates="${bin.candidates}"
+                         data-groups="${bin.groups}"
+                         data-pct="${((bin.candidates/total)*100).toFixed(1)}">
+                        <div class="g-bar-fill"
+                             style="height:${heightPct}%;
+                                    background:linear-gradient(180deg,${bin.color}dd,${bin.color}77);
+                                    --g-delay:${idx*0.08}s">
+                            <span class="g-bar-value">${bin.candidates.toLocaleString()}</span>
+                        </div>
+                    </div>`;
+            });
+            barsHTML += '</div>';
+
+            // X labels
+            let xHTML = '<div class="g-x-labels">';
+            activeBins.forEach(bin => {
+                xHTML += `<div class="g-x-label">${bin.label}</div>`;
+            });
+            xHTML += '</div>';
+
+            // Summary cards
+            let summaryHTML = '<div class="graph-summary">';
+            activeBins.forEach(bin => {
+                summaryHTML += `
+                    <div class="graph-summary-item">
+                        <div class="g-swatch" style="background:${bin.color}"></div>
+                        <div>
+                            <div class="g-summary-label">Ratio ${bin.label}</div>
+                            <div class="g-summary-count">${bin.candidates.toLocaleString()} candidates</div>
+                            <div class="g-summary-meta">${bin.groups} group${bin.groups !== 1 ? 's' : ''} · ${((bin.candidates/total)*100).toFixed(1)}%</div>
+                        </div>
+                    </div>`;
+            });
+            summaryHTML += '</div>';
+
+            graphContent.innerHTML = `
+                <div class="chart-area">
+                    ${yAxisHTML}
+                    <div class="g-grid-bars">
+                        ${gridHTML}
+                        ${barsHTML}
+                    </div>
+                    ${xHTML}
+                    <p class="g-axis-title">Competition Ratio (written ÷ viva)</p>
+                </div>
+                ${summaryHTML}`;
+
+            setupGraphTooltips();
+        }
+
+        function setupGraphTooltips() {
+            const tooltip = document.getElementById('barTooltip');
+            const ttRange = document.getElementById('ttRange');
+            const ttCount = document.getElementById('ttCount');
+            const ttPct   = document.getElementById('ttPct');
+
+            document.querySelectorAll('.g-bar-col').forEach(col => {
+                col.addEventListener('mouseenter', () => {
+                    ttRange.textContent = 'Ratio ' + col.dataset.label;
+                    ttCount.textContent = parseInt(col.dataset.candidates).toLocaleString();
+                    ttPct.textContent   = col.dataset.pct + '% of total · ' + col.dataset.groups + ' group' + (col.dataset.groups != 1 ? 's' : '');
+                    tooltip.classList.add('visible');
+                });
+                col.addEventListener('mousemove', e => {
+                    tooltip.style.left = (e.clientX + 14) + 'px';
+                    tooltip.style.top  = (e.clientY - 70) + 'px';
+                });
+                col.addEventListener('mouseleave', () => tooltip.classList.remove('visible'));
+            });
+        }
+
+        
+        
+        
+
+        
+        function isVivaQualified(roll) {
+            return vivaRollsSet.has(roll);
+        }
+
+        
+        function findVivaObjectByRoll(roll) {
+            return rollToVivaMap.get(roll) || null;
+        }
+
+        
+        function calculateWrittenCountInRange(firstRoll, lastRoll) {
+            let count = 0;
+            uniqueWrittenRolls.forEach(roll => {
+                if (roll >= firstRoll && roll <= lastRoll) {
+                    count++;
+                }
+            });
+            return count;
+        }
+
+        function countWrittenInRange(firstRoll, lastRoll) {
+            return calculateWrittenCountInRange(firstRoll, lastRoll);
+        }
+
+        
+        function openModal(content) {
+            const modalOverlay = document.getElementById('modalOverlay');
+            const modalBody = document.getElementById('modalBody');
+            modalBody.innerHTML = content;
+            modalOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        
+        function closeModal() {
+            const modalOverlay = document.getElementById('modalOverlay');
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        
+        function closeModalOnOverlay(event) {
+            if (event.target === event.currentTarget) {
+                closeModal();
+            }
+        }
+
+        
+        function showRollDetails(roll) {
+            if (isVivaQualified(roll)) {
+                
+                const vivaObj = findVivaObjectByRoll(roll);
+                const writtenInRange = calculateWrittenCountInRange(vivaObj.firstRoll, vivaObj.lastRoll);
+                const ratio = (writtenInRange / vivaObj.totalCandidate).toFixed(2);
+                
+                const content = `
+                    <div class="modal-header">
+                        <span class="modal-status qualified">Qualified for Viva</span>
+                        <div class="modal-roll">${roll}</div>
+                    </div>
+                    <div class="modal-detail">
+                        <strong>Viva Date</strong>
+                        ${vivaObj.reportingTime}
+                    </div>
+                    <div class="ratio-box">
+                        <div class="ratio-calculation">Written candidates in range: ${writtenInRange}</div>
+                        <div class="ratio-calculation">Viva candidates: ${vivaObj.totalCandidate}</div>
+                        <div class="ratio-value">${writtenInRange} / ${vivaObj.totalCandidate} = ${ratio}</div>
+                        <div class="ratio-note">Don't be so serious! It's just a controversial hypothesis.</div>
+                    </div>
+                `;
+                openModal(content);
+            } else {
+                
+                const content = `
+                    <div class="modal-header">
+                        <span class="modal-status not-qualified">Not Qualified</span>
+                        <div class="modal-roll">${roll}</div>
+                    </div>
+                    <div class="error-message">Sorry, this candidate didn't qualify in written Exam.</div>
+                `;
+                openModal(content);
+            }
+        }
+
+        
+        function highlightRoll(roll) {
+            
+            document.querySelectorAll('.roll-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            
+            
+            const rollCards = document.querySelectorAll('.roll-card');
+            for (let card of rollCards) {
+                if (parseInt(card.dataset.roll) === roll) {
+                    card.classList.add('active');
+                    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    break;
+                }
+            }
+        }
+
+        
+        function handleSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchValue = searchInput.value.trim().replace(/\s/g, '');
+            
+            if (!searchValue) {
+                return;
+            }
+            
+            const searchRoll = parseInt(searchValue);
+            
+            if (isNaN(searchRoll)) {
+                
+                const content = `
+                    <div class="modal-header">
+                        <span class="modal-status not-qualified">Invalid Input</span>
+                    </div>
+                    <div class="error-message">Please enter a valid roll number.</div>
+                `;
+                openModal(content);
+                return;
+            }
+            
+            
+            if (!uniqueWrittenRolls.includes(searchRoll)) {
+                const content = `
+                    <div class="modal-header">
+                        <span class="modal-status not-qualified">Not Found</span>
+                        <div class="modal-roll">${searchRoll}</div>
+                    </div>
+                    <div class="error-message">This roll number was not found in the written exam list.</div>
+                `;
+                openModal(content);
+                return;
+            }
+            
+            
+            highlightRoll(searchRoll);
+            showRollDetails(searchRoll);
+        }
+
+        
+        function renderRollGrid() {
+            const grid = document.getElementById('rollsGrid');
+            grid.innerHTML = '';
+            
+            
+            const sortedRolls = [...uniqueWrittenRolls].sort((a, b) => a - b);
+            
+            sortedRolls.forEach(roll => {
+                const card = document.createElement('div');
+                card.className = `roll-card ${isVivaQualified(roll) ? 'qualified' : 'not-qualified'}`;
+                card.textContent = roll;
+                card.dataset.roll = roll;
+                
+                card.addEventListener('click', () => {
+                    highlightRoll(roll);
+                    showRollDetails(roll);
+                });
+                
+                grid.appendChild(card);
+            });
+        }
+
+        
+        
+        
+
+        
+        document.getElementById('searchInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                handleSearch();
+            }
+        });
+
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        
+        renderRollGrid();
+        renderRatioGraph();
+    </script>
+
+    <button id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top" style="
+        display:none;
+        position:fixed;
+        bottom:28px;
+        right:28px;
+        width:44px;
+        height:44px;
+        background-color:#238636;
+        color:white;
+        border:none;
+        border-radius:50%;
+        font-size:1.2rem;
+        cursor:pointer;
+        box-shadow:0 4px 14px rgba(0,0,0,0.4);
+        transition:background-color 0.2s, transform 0.2s;
+        z-index:999;
+        align-items:center;
+        justify-content:center;
+    ">&#8679;</button>
+
+    <script>
+        const scrollBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            scrollBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+        });
+        scrollBtn.addEventListener('mouseenter', () => scrollBtn.style.transform = 'scale(1.1)');
+        scrollBtn.addEventListener('mouseleave', () => scrollBtn.style.transform = 'scale(1)');
+    </script>
+</body>
+</html>
+
