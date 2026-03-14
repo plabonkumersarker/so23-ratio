@@ -267,7 +267,7 @@
             50% { opacity: 0.3; }
         }
 
-        /* New chart layout */
+        
         .chart-area {
             position: relative;
             padding-left: 52px;
@@ -384,7 +384,7 @@
             text-transform: uppercase;
         }
 
-        /* Tooltip */
+        
         .bar-tooltip {
             position: fixed;
             background-color: #1c2333;
@@ -431,7 +431,7 @@
             font-size: 0.78rem;
         }
 
-        /* Summary cards */
+        
         .graph-summary {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
@@ -486,7 +486,7 @@
             font-size: 1.1rem;
         }
 
-        /* Welcome Popup */
+        
         #welcomePopup {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -564,7 +564,7 @@
             font-weight: 600;
         }
 
-        /* Credit Section */
+        
         .credit-section {
             position: fixed;
             bottom: 0;
@@ -594,6 +594,111 @@
             height: 12px;
             background: #21262d;
             flex-shrink: 0;
+        }
+
+        
+        #visitorWidget {
+            position: fixed;
+            bottom: 34px; 
+            right: 18px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(13, 17, 23, 0.55);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(88, 166, 255, 0.12);
+            border-radius: 20px;
+            padding: 5px 12px 5px 9px;
+            font-size: 0.72rem;
+            color: #6e7681;
+            z-index: 490;
+            transition: background 0.2s, border-color 0.2s;
+            pointer-events: none;
+        }
+
+        #visitorWidget:hover {
+            background: rgba(22, 27, 34, 0.8);
+            border-color: rgba(88, 166, 255, 0.28);
+        }
+
+        #visitorWidget #vcTotal {
+            font-weight: 700;
+            color: #58a6ff;
+            font-size: 0.78rem;
+            transition: color 0.4s;
+        }
+
+        #visitorWidget #vcTotal.highlight {
+            color: #79c0ff;
+        }
+
+        .vc-widget-label {
+            color: #484f58;
+            font-size: 0.68rem;
+            letter-spacing: 0.3px;
+        }
+
+        
+        .visitor-counter {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            white-space: nowrap;
+        }
+
+        .visitor-counter-divider {
+            width: 1px;
+            height: 12px;
+            background: #21262d;
+            flex-shrink: 0;
+        }
+
+        .vc-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.7rem;
+            color: #3d444e;
+        }
+
+        .vc-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .vc-dot.live {
+            background: #3fb950;
+            box-shadow: 0 0 0 0 rgba(63, 185, 80, 0.6);
+            animation: vcPulse 2s infinite;
+        }
+
+        .vc-dot.total {
+            background: #58a6ff;
+            box-shadow: 0 0 0 0 rgba(88, 166, 255, 0.5);
+            animation: vcPulse 2.5s infinite;
+        }
+
+        @keyframes vcPulse {
+            0%   { box-shadow: 0 0 0 0 rgba(63, 185, 80, 0.6); }
+            70%  { box-shadow: 0 0 0 5px rgba(63, 185, 80, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(63, 185, 80, 0); }
+        }
+
+        .vc-value {
+            font-weight: 700;
+            color: #6e7681;
+            transition: color 0.4s;
+        }
+
+        .vc-value.highlight {
+            color: #58a6ff;
+        }
+
+        .vc-label {
+            color: #3d444e;
         }
 
         .credit-section a {
@@ -854,7 +959,7 @@
     </style>
 </head>
 <body>
-    <!-- Welcome Popup -->
+    
     <div id="welcomePopup">
         <div class="welcome-box">
             <button class="welcome-close" onclick="dismissPopup()" title="Close">&#x2715;</button>
@@ -1550,7 +1655,7 @@ const writtenRollNumbers = [100038,100046,100055,100058,100065,100083,100086,100
                 return;
             }
 
-            // Define bins
+            
             const bins = [
                 { min: 0,   max: 2,        label: '<2',    color: '#34d399', groups: 0, candidates: 0 },
                 { min: 2,   max: 2.5,      label: '2–2.5', color: '#38bdf8', groups: 0, candidates: 0 },
@@ -1562,7 +1667,7 @@ const writtenRollNumbers = [100038,100046,100055,100058,100065,100083,100086,100
                 { min: 7,   max: Infinity, label: '≥7',    color: '#ef4444', groups: 0, candidates: 0 },
             ];
 
-            // Calculate candidates per bin
+            
             vivaObjects.forEach(vivaObj => {
                 const writtenInRange = countWrittenInRange(vivaObj.firstRoll, vivaObj.lastRoll);
                 const ratio = writtenInRange / vivaObj.totalCandidate;
@@ -1578,13 +1683,13 @@ const writtenRollNumbers = [100038,100046,100055,100058,100065,100083,100086,100
             const activeBins = bins.filter(b => b.candidates > 0);
             const total = activeBins.reduce((s, b) => s + b.candidates, 0);
 
-            // Update badge
+            
             document.getElementById('graphTotalDisplay').textContent = total.toLocaleString();
 
             const yMax   = Math.ceil(Math.max(...activeBins.map(b => b.candidates)) / 200) * 200;
             const STEPS  = 6;
 
-            // Y-axis
+            
             let yAxisHTML = '<div class="g-y-axis">';
             for (let i = STEPS; i >= 0; i--) {
                 const v = Math.round((yMax / STEPS) * i);
@@ -1593,14 +1698,14 @@ const writtenRollNumbers = [100038,100046,100055,100058,100065,100083,100086,100
             }
             yAxisHTML += '</div>';
 
-            // Grid lines
+            
             let gridHTML = '<div class="g-grid-lines">';
             for (let i = 0; i <= STEPS; i++) {
                 gridHTML += `<div class="g-grid-line" style="bottom:${(i/STEPS)*100}%"></div>`;
             }
             gridHTML += '</div>';
 
-            // Bars
+            
             let barsHTML = '<div class="g-bars-row">';
             activeBins.forEach((bin, idx) => {
                 const heightPct = (bin.candidates / yMax) * 100;
@@ -1620,14 +1725,14 @@ const writtenRollNumbers = [100038,100046,100055,100058,100065,100083,100086,100
             });
             barsHTML += '</div>';
 
-            // X labels
+            
             let xHTML = '<div class="g-x-labels">';
             activeBins.forEach(bin => {
                 xHTML += `<div class="g-x-label">${bin.label}</div>`;
             });
             xHTML += '</div>';
 
-            // Summary cards
+            
             let summaryHTML = '<div class="graph-summary">';
             activeBins.forEach(bin => {
                 summaryHTML += `
@@ -1873,14 +1978,15 @@ const writtenRollNumbers = [100038,100046,100055,100058,100065,100083,100086,100
         renderRatioGraph();
     </script>
 
-    <!-- Credit Section -->
+    
     <div class="credit-section">
         <span class="credit-item">Hypothesis · <a href="https://www.facebook.com/share/1CRJicTpnn/" target="_blank" rel="noopener">Thohidul Islam Riad</a></span>
         <span class="credit-divider"></span>
         <span class="credit-item">Coding · <a href="https://plabonkumersarker.github.io/profile" target="_blank" rel="noopener">Plabon Kumer Sarker</a></span>
+
     </div>
 
-    <!-- Popup Script -->
+    
     <script>
         function dismissPopup() {
             document.getElementById('welcomePopup').classList.add('hidden');
@@ -1928,7 +2034,7 @@ const writtenRollNumbers = [100038,100046,100055,100058,100065,100083,100086,100
             const currentY = window.scrollY;
             const maxScroll = getMaxScroll();
 
-            // Determine scroll direction
+            
             if (currentY > lastScrollY) {
                 scrollingDown = true;
             } else {
@@ -1938,16 +2044,16 @@ const writtenRollNumbers = [100038,100046,100055,100058,100065,100083,100086,100
 
             const nearBottom = currentY >= maxScroll - 80;
 
-            // Show button only if scrolled more than 300px
+            
             if (currentY > 300) {
                 scrollBtn.style.display = 'flex';
                 if (nearBottom || !scrollingDown) {
-                    // At bottom or scrolling up — show up arrow
+                    
                     scrollBtn.innerHTML = '&#8679;';
                     scrollBtn.title = 'Back to top';
                     scrollingDown = false;
                 } else {
-                    // Scrolling down and not near bottom — show down arrow
+                    
                     scrollBtn.innerHTML = '&#8681;';
                     scrollBtn.title = 'Scroll down';
                 }
@@ -1959,6 +2065,61 @@ const writtenRollNumbers = [100038,100046,100055,100058,100065,100083,100086,100
         scrollBtn.addEventListener('mouseenter', () => scrollBtn.style.transform = 'scale(1.1)');
         scrollBtn.addEventListener('mouseleave', () => scrollBtn.style.transform = 'scale(1)');
     </script>
-</body>
-</html>
+    
+    <div id="visitorWidget">
+        <span class="vc-dot total"></span>
+        <span id="vcTotal">…</span>
+        <span class="vc-widget-label">visitors</span>
+    </div>
+    <script>
+        (function () {
+            
+            
+            
+            
+            const NAMESPACE = 'plabon-senior-officer-exam';
+            const KEY       = 'job-10220-visitors';
+            const SESSION_KEY = 'vc_counted_v1'; 
 
+            const elTotal = document.getElementById('vcTotal');
+
+            
+            function rollUp(el, target) {
+                const start = 0;
+                const duration = 1200;
+                const startTime = performance.now();
+                function tick(now) {
+                    const progress = Math.min((now - startTime) / duration, 1);
+                    
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    el.textContent = Math.round(start + (target - start) * eased).toLocaleString();
+                    if (progress < 1) requestAnimationFrame(tick);
+                    else el.textContent = target.toLocaleString();
+                }
+                requestAnimationFrame(tick);
+            }
+
+            
+            
+            const alreadyCounted = sessionStorage.getItem(SESSION_KEY);
+            const endpoint = alreadyCounted
+                ? `https://api.countapi.xyz/get/${NAMESPACE}/${KEY}`
+                : `https://api.countapi.xyz/hit/${NAMESPACE}/${KEY}`;
+
+            fetch(endpoint)
+                .then(r => r.json())
+                .then(data => {
+                    if (!alreadyCounted) sessionStorage.setItem(SESSION_KEY, '1');
+                    const count = data.value || 0;
+                    elTotal.textContent = '0';
+                    rollUp(elTotal, count);
+                    elTotal.classList.add('highlight');
+                    setTimeout(() => elTotal.classList.remove('highlight'), 800);
+                })
+                .catch(() => {
+                    elTotal.textContent = '—';
+                });
+        })();
+    </script>
+</body>
+    </html>
