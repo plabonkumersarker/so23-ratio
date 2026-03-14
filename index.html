@@ -2077,20 +2077,17 @@ const writtenRollNumbers = [100038,100046,100055,100058,100065,100083,100086,100
             
             
             
-            const NAMESPACE = 'plabon-senior-officer-exam';
-            const KEY       = 'job-10220-visitors';
-            const SESSION_KEY = 'vc_counted_v1'; 
+            const KEY         = 'plabon-job-10220-visitors';
+            const SESSION_KEY = 'vc_counted_v1';
 
             const elTotal = document.getElementById('vcTotal');
 
-            
             function rollUp(el, target) {
                 const start = 0;
                 const duration = 1200;
                 const startTime = performance.now();
                 function tick(now) {
                     const progress = Math.min((now - startTime) / duration, 1);
-                    
                     const eased = 1 - Math.pow(1 - progress, 3);
                     el.textContent = Math.round(start + (target - start) * eased).toLocaleString();
                     if (progress < 1) requestAnimationFrame(tick);
@@ -2099,18 +2096,16 @@ const writtenRollNumbers = [100038,100046,100055,100058,100065,100083,100086,100
                 requestAnimationFrame(tick);
             }
 
-            
-            
             const alreadyCounted = sessionStorage.getItem(SESSION_KEY);
             const endpoint = alreadyCounted
-                ? `https://countapi.mileshilliard.com/get/${NAMESPACE}/${KEY}`
-                : `https://countapi.mileshilliard.com/hit/${NAMESPACE}/${KEY}`;
+                ? `https://countapi.mileshilliard.com/api/v1/get/${KEY}`
+                : `https://countapi.mileshilliard.com/api/v1/hit/${KEY}`;
 
             fetch(endpoint)
                 .then(r => r.json())
                 .then(data => {
                     if (!alreadyCounted) sessionStorage.setItem(SESSION_KEY, '1');
-                    const count = data.value || 0;
+                    const count = parseInt(data.value) || 0;
                     elTotal.textContent = '0';
                     rollUp(elTotal, count);
                     elTotal.classList.add('highlight');
