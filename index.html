@@ -2103,8 +2103,8 @@ const writtenRollNumbers = [100038,100046,100055,100058,100065,100083,100086,100
             
             const alreadyCounted = sessionStorage.getItem(SESSION_KEY);
             const endpoint = alreadyCounted
-                ? `https://api.countapi.xyz/get/${NAMESPACE}/${KEY}`
-                : `https://api.countapi.xyz/hit/${NAMESPACE}/${KEY}`;
+                ? `https://countapi.mileshilliard.com/get/${NAMESPACE}/${KEY}`
+                : `https://countapi.mileshilliard.com/hit/${NAMESPACE}/${KEY}`;
 
             fetch(endpoint)
                 .then(r => r.json())
@@ -2122,4 +2122,4 @@ const writtenRollNumbers = [100038,100046,100055,100058,100065,100083,100086,100
         })();
     </script>
 </body>
-    </html>
+</html>
