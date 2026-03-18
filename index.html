@@ -964,7 +964,7 @@
         <div class="welcome-box">
             <button class="welcome-close" onclick="dismissPopup()" title="Close">&#x2715;</button>
             <div class="welcome-icon">🙂</div>
-            <p>প্রিয় দর্শক, আপনি অধিক সিরিয়াস হবেন না। এটা শুধুমাত্র একটি জরিপ, কোনো চিরন্তন সত্য না। আপনাকে দুশ্চিন্তায় ফেলা কিংবা অবমাননা করা এই প্রোজেক্টের উদ্দেশ্য নয়। মজার ছলে উপভোগ করুন।</p>
+            <p>Ratio এর সাথে চূড়ান্ত নিয়োগের কোনো সম্পর্ক না থাকায়, সেই অংশ মুছে ফেলা হয়েছে।</p>
 
         </div>
     </div>
@@ -1019,34 +1019,7 @@
         </div>
 
         
-        <div class="graph-section">
-            <h2 class="section-title">Ratio Distribution Analysis</h2>
-            <div class="graph-container">
-                <p class="graph-caption">How many viva candidates fall in each written-to-viva competition ratio range</p>
-                <div class="graph-total-badge">
-                    <span class="badge-dot"></span>
-                    Total viva candidates: <strong id="graphTotalDisplay">—</strong> &nbsp;·&nbsp; All bars sum to this
-                </div>
-                <div id="graphContent"></div>
-                <div style="display:flex; justify-content:center; margin-top:24px;">
-    <a href="ratio_distribution_chart.pdf" download="ratio_distribution_chart.pdf" style="
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        padding: 13px 28px;
-        background: linear-gradient(135deg, #1a7f37 0%, #238636 100%);
-        color: #ffffff;
-        font-size: 0.92rem;
-        font-weight: 600;
-        text-decoration: none;
-        border-radius: 8px;
-        box-shadow: 0 4px 14px rgba(35,134,54,0.35);
-    ">
-        ⬇ Download Detailed Analysis
-    </a>
-</div>
-            </div>
-        </div>
+        
     </div>
 
     
@@ -1871,9 +1844,6 @@ const writtenRollNumbers = [100038,100046,100055,100058,100065,100083,100086,100
                     </div>
                     <div class="ratio-box">
                         <div class="ratio-calculation">Written candidates in range: ${writtenInRange}</div>
-                        <div class="ratio-calculation">Viva candidates: ${vivaObj.totalCandidate}</div>
-                        <div class="ratio-value">${writtenInRange} / ${vivaObj.totalCandidate} = ${ratio}</div>
-                        <div class="ratio-note">Don't be so serious! It's just a controversial hypothesis.</div>
                     </div>
                 `;
                 openModal(content);
@@ -1997,7 +1967,7 @@ const writtenRollNumbers = [100038,100046,100055,100058,100065,100083,100086,100
 
     
     <div class="credit-section">
-        <span class="credit-item">Hypothesis · <a href="https://www.facebook.com/share/1CRJicTpnn/" target="_blank" rel="noopener">Thohidul Islam Riad</a></span>
+        <span class="credit-item">Influencer · <a href="https://www.facebook.com/share/1CRJicTpnn/" target="_blank" rel="noopener">Thohidul Islam Riad</a></span>
         <span class="credit-divider"></span>
         <span class="credit-item">Coding · <a href="https://plabonkumersarker.github.io/profile" target="_blank" rel="noopener">Plabon Kumer Sarker</a></span>
 
